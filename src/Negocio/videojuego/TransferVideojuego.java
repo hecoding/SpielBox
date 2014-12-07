@@ -1,4 +1,4 @@
-package Integracion;
+package Negocio.videojuego;
 /**
  * 
  */
@@ -9,25 +9,13 @@ package Integracion;
  * @author Héctor
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class TransactionManagerImp extends TransactionManager {
+public class TransferVideojuego { //FALTA TODOS LOS GETTERS SETTERS!!! Mirar diagrama
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void nuevaTransaccion() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
-	}
-
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void eliminarTransaccion() {
+	public void crear() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 

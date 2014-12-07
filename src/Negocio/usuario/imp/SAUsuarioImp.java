@@ -1,4 +1,6 @@
-package Negocio;
+package Negocio.usuario.imp;
+
+import Negocio.usuario.SAUsuario;
 /**
  * 
  */

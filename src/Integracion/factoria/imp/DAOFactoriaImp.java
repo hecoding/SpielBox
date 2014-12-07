@@ -1,4 +1,6 @@
-package Integracion;
+package Integracion.factoria.imp;
+
+import Integracion.factoria.DAOFactoria;
 /**
  * 
  */

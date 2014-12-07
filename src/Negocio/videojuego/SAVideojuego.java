@@ -1,4 +1,4 @@
-package Integracion;
+package Negocio.videojuego;
 /**
  * 
  */
@@ -9,16 +9,11 @@ package Integracion;
  * @author Héctor
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class TransferJuego {
+public interface SAVideojuego { //FALTAN METODOS, MIRAD DIAGRAMAS
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void crear() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
-	}
+	public void crearVideojuego();
 }

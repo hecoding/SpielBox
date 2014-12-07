@@ -1,4 +1,4 @@
-package Integracion;
+package Integracion.videojuego;
 /**
  * 
  */
@@ -9,5 +9,5 @@ package Integracion;
  * @author Héctor
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class DAOVideojuego {
+public interface DAOVideojuego {
 }

@@ -1,4 +1,4 @@
-package Integracion;
+package Negocio.usuario;
 /**
  * 
  */
