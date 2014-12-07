@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 
 import Presentacion.biblioteca.JPanelBiblioteca;
-import Presentacion.usuarios.JPanelUsuarios;
+import Presentacion.usuario.JPanelUsuarios;
 import Presentacion.videojuego.JPanelVideojuego;
 
 /**
