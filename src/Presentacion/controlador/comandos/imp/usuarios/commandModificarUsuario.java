@@ -1,4 +1,6 @@
-package Presentacion;
+package Presentacion.controlador.comandos.imp.usuarios;
+
+import Presentacion.controlador.comandos.Command;
 /**
  * 
  */
@@ -9,7 +11,7 @@ package Presentacion;
  * @author Héctor
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class commandCrearUsuario implements Command {
+public class commandModificarUsuario implements Command {
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->

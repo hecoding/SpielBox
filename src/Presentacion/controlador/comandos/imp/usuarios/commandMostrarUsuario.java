@@ -1,4 +1,6 @@
-package Presentacion;
+package Presentacion.controlador.comandos.imp.usuarios;
+
+import Presentacion.controlador.comandos.Command;
 /**
  * 
  */
@@ -9,13 +11,13 @@ package Presentacion;
  * @author Héctor
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class DispatcherImp extends Dispatcher {
+public class commandMostrarUsuario implements Command {
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void dispatch() {
+	public void execute() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 
