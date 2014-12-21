@@ -1,4 +1,6 @@
 package Integracion.transaction;
+
+import java.sql.Connection;
 /**
  * 
  */
@@ -35,6 +37,7 @@ public interface Transaction {
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @return TODO
 	 */
-	public void getResources();
+	public Connection getResources();
 }

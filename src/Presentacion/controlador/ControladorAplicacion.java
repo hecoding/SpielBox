@@ -11,24 +11,25 @@ import Presentacion.controlador.imp.ControladorAplicacionImp;
  * @author Héctor
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class ControladorAplicacion {
+public abstract class ControladorAplicacion {
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private ControladorAplicacionImp controlador;
+	private static ControladorAplicacionImp controlador;
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void getInstance() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
+	public static ControladorAplicacionImp getInstance() {
+	     if (controlador == null) {
+	            controlador = new ControladorAplicacionImp();
+	        }
 
-		// end-user-code
+	        return controlador;
 	}
 
 	/** 
@@ -36,22 +37,13 @@ public class ControladorAplicacion {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void accionVista() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
-	}
+	public abstract void accionVista();
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void accionCommand() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
+	public abstract void accionCommand(Integer evento, Object datos);
 
-		// end-user-code
-	}
 }

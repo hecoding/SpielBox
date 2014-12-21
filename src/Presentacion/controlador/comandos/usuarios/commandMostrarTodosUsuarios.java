@@ -1,5 +1,10 @@
 package Presentacion.controlador.comandos.usuarios;
 
+import java.util.ArrayList;
+
+import Negocio.factoria.SAFactoria;
+import Negocio.usuario.SAUsuario;
+import Negocio.usuario.TransferUsuario;
 import Presentacion.controlador.comandos.Command;
 /**
  * 
@@ -17,10 +22,9 @@ public class commandMostrarTodosUsuarios implements Command {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void execute() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	public Object execute(Object datos) {
+		SAUsuario service = SAFactoria.getInstancia().nuevoServicioUsuario();
+		ArrayList<TransferUsuario> ret = service.mostrarTodosUsuarios();
+		return ret;
 	}
 }

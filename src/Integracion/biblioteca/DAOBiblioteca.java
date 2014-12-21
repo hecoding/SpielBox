@@ -1,7 +1,9 @@
 package Integracion.biblioteca;
-/**
- * 
- */
+
+import java.util.ArrayList;
+
+import Negocio.biblioteca.TransferBiblioteca;
+import Negocio.videojuego.TransferVideojuego;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -14,55 +16,58 @@ public interface DAOBiblioteca {
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @param tbiblioteca TODO
 	 */
-	public void crearBiblioteca();
+	public void crearBiblioteca(TransferBiblioteca tBiblioteca);
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void modificarBiblioteca();
+	public void modificarBiblioteca(TransferBiblioteca tBiblioteca);
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void mostrarBiblioteca();
+	public TransferBiblioteca mostrarBiblioteca(int ID);
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void mostrarTodasBibliotecas();
+	public ArrayList<TransferBiblioteca> mostrarTodasBibliotecas();
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void eliminarBiblioteca();
+	public void eliminarBiblioteca(TransferBiblioteca tBiblioteca);
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void anadirVideojuegoBiblioteca();
+	public void anadirVideojuegoBiblioteca(TransferVideojuego videojuego, TransferBiblioteca tBiblioteca);
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void eliminarVideojuegoBiblioteca();
+	public void eliminarVideojuegoBiblioteca(TransferVideojuego videojuego, TransferBiblioteca tBiblioteca);
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @param nombre TODO
+	 * @return TODO
 	 */
-	public void buscarIDBiblioteca();
+	public boolean buscarBiblioteca(String nombre);
 }

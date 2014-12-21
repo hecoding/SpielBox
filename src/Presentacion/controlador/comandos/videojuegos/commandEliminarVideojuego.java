@@ -1,9 +1,13 @@
 package Presentacion.controlador.comandos.videojuegos;
 
+import Negocio.factoria.SAFactoria;
+import Negocio.videojuego.SAVideojuego;
+import Negocio.videojuego.TransferVideojuego;
 import Presentacion.controlador.comandos.Command;
 /**
  * 
  */
+import Presentacion.controlador.comandos.exceptions.commandException;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -17,10 +21,17 @@ public class commandEliminarVideojuego implements Command {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void execute() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	public Object execute(Object datos) {
+		SAVideojuego service = SAFactoria.getInstancia().nuevoServicioVideojuego();
+		
+		try {
+			service.eliminarVideojuego((TransferVideojuego)datos);
+		} catch (commandException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+          
+		return (TransferVideojuego)datos;
 	}
 }

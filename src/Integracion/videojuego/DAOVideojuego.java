@@ -1,4 +1,8 @@
 package Integracion.videojuego;
+
+import java.util.ArrayList;
+
+import Negocio.videojuego.TransferVideojuego;
 /**
  * 
  */
@@ -13,42 +17,48 @@ public interface DAOVideojuego {
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
+	 * @param transfer 
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void crearVideojuego();
+	public void crearVideojuego(TransferVideojuego transfer);
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
+	 * @param transfer 
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void modificarVideojuego();
+	public void modificarVideojuego(TransferVideojuego transfer);
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
+	 * @return 
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void mostrarVideojuego();
+	public TransferVideojuego mostrarVideojuego(int id);
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
+	 * @return 
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void mostrarTodosVideojuegos();
+	public ArrayList<TransferVideojuego> mostrarTodosVideojuegos();
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
+	 * @param transfer 
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void eliminarVideojuego();
+	public void eliminarVideojuego(TransferVideojuego transfer);
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
+	 * @param s 
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void buscarIDVideojuego();
+	public boolean buscarIDVideojuego(int s);
 }

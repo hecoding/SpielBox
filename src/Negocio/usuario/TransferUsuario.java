@@ -1,14 +1,5 @@
 package Negocio.usuario;
-/**
- * 
- */
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author Héctor
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
 public class TransferUsuario {
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -27,7 +18,7 @@ public class TransferUsuario {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Object apellidosString;
+	private String apellidos;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -45,23 +36,11 @@ public class TransferUsuario {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private double descuento;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private boolean tipo;
-
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void getID() {
+	
+	public int getID() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-
+		return this.ID;
 		// end-user-code
 	}
 
@@ -70,10 +49,10 @@ public class TransferUsuario {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void getNombre() {
+	public String getNombre() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-
+		return this.nombre;
 		// end-user-code
 	}
 
@@ -82,10 +61,10 @@ public class TransferUsuario {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void getApellidos() {
+	public String getApellidos() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-
+		return this.apellidos;
 		// end-user-code
 	}
 
@@ -94,10 +73,10 @@ public class TransferUsuario {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void getEmail() {
+	public String getEmail() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-
+		return this.email;
 		// end-user-code
 	}
 
@@ -106,10 +85,38 @@ public class TransferUsuario {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void getNick() {
+	public String getNick() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
+		return this.nick;
+		// end-user-code
+	}
 
+
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+
+
+	public void setNombre(String string) {
+		// begin-user-code
+		// TODO Apéndice de método generado automáticamente
+		this.nombre = string;
+		// end-user-code
+	}
+
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @param string 
+	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void setApellidos(String string) {
+		// begin-user-code
+		// TODO Apéndice de método generado automáticamente
+		this.apellidos = string;
 		// end-user-code
 	}
 
@@ -118,10 +125,10 @@ public class TransferUsuario {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void getDescuento() {
+	public void setEmail(String string) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-
+		this.email = string;
 		// end-user-code
 	}
 
@@ -130,70 +137,16 @@ public class TransferUsuario {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void getTipo() {
+	public void setNick(String string) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-
+		this.nick = string;
 		// end-user-code
 	}
-
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setNombre() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	
+	public void setID(int id) {
+		this.ID = id;
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setApellidos() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
-	}
-
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setEmail() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
-	}
-
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setNick() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
-	}
-
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setDescuento() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
-	}
+	
 }

@@ -1,4 +1,7 @@
 package Presentacion.controlador.comandos;
+
+import Presentacion.controlador.comandos.imp.CommandFactoriaImp;
+
 /**
  * 
  */
@@ -9,28 +12,27 @@ package Presentacion.controlador.comandos;
  * @author Héctor
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class CommandFactoria {
+public abstract class CommandFactoria {
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void getInstance() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	private static CommandFactoria instancia;
+	
+	public static CommandFactoria getInstance() {
+		
+		if (instancia == null){
+			instancia = new CommandFactoriaImp();
+		}
+		return instancia;
 	}
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
+	 * @return 
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void getCommand() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
-	}
+	public abstract Command getCommand(Integer evento);
 }

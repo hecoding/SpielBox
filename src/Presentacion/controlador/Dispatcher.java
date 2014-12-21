@@ -1,4 +1,7 @@
 package Presentacion.controlador;
+
+import Presentacion.controlador.imp.DispatcherImp;
+
 /**
  * 
  */
@@ -9,35 +12,30 @@ package Presentacion.controlador;
  * @author Héctor
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class Dispatcher {
+public abstract class Dispatcher {
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Object instanciaDispatcher;
-
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void dispatch() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
-	}
+	private static Dispatcher instanciaDispatcher;
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void getInstance() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
+	public abstract void dispatch(Integer evento,Object datos);	
 
-		// end-user-code
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public static Dispatcher getInstance() {
+		if (instanciaDispatcher == null){
+			instanciaDispatcher = new DispatcherImp();
+		}
+		return instanciaDispatcher;
 	}
 }

@@ -1,5 +1,10 @@
 package Presentacion.controlador.comandos.bibliotecas;
 
+import java.util.ArrayList;
+
+import Negocio.biblioteca.SABiblioteca;
+import Negocio.biblioteca.TransferBiblioteca;
+import Negocio.factoria.SAFactoria;
 import Presentacion.controlador.comandos.Command;
 /**
  * 
@@ -17,10 +22,11 @@ public class commandMostrarTodasBibliotecas implements Command {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void execute() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	public Object execute(Object datos) {
+		SABiblioteca service = SAFactoria.getInstancia().nuevoServicioBiblioteca();
+		
+		ArrayList<TransferBiblioteca> ret = service.mostrarTodasBibliotecas();
+          
+		return ret;
 	}
 }

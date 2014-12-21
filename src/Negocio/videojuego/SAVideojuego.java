@@ -1,47 +1,22 @@
 package Negocio.videojuego;
-/**
- * 
- */
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author Héctor
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
+import java.util.ArrayList;
+
+import Presentacion.controlador.comandos.exceptions.commandException;
+
 public interface SAVideojuego {
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void crearVideojuego();
+	
+	public void crearVideojuego(TransferVideojuego t) throws commandException;
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void modificarVideojuego();
+	
+	public void modificarVideojuego(TransferVideojuego t) throws commandException;
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void mostrarVideojuego();
+	
+	public TransferVideojuego mostrarVideojuego(TransferVideojuego t) throws commandException;
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void mostrarTodosVideojuegos();
+	
+	public ArrayList<TransferVideojuego> mostrarTodosVideojuegos();
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void eliminarVideojuego();
+	
+	public void eliminarVideojuego(TransferVideojuego t) throws commandException;
 }
