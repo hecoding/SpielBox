@@ -1,0 +1,5 @@
+DROP TABLE espacio_total;
+DROP TABLE plataforma;
+DROP TABLE programa_alquiler;
+DROP TABLE programa_pago;
+DROP TABLE clasificacion;

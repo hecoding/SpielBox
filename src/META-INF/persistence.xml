@@ -1,0 +1,25 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+	<persistence-unit name="SpielBox" transaction-type="RESOURCE_LOCAL">
+	
+		<class>negocio.programa.Programa</class>
+		<class>negocio.programa.ProgramaPago</class>
+		<class>negocio.programa.ProgramaAlquiler</class>
+		<class>negocio.plataforma.Plataforma</class>
+		<class>negocio.clasificacion.Clasificacion</class>
+		<class>negocio.programaplataforma.ProgramaPlataforma</class>
+		
+		<!-- Database connection settings -->
+		<properties>
+			<property name="javax.persistence.jdbc.user" value = "root"/>						
+			<property name="javax.persistence.jdbc.driver" value = "com.mysql.jdbc.Driver"/>
+			<property name="javax.persistence.jdbc.url" value = "jdbc:mysql://localhost/spielbox_programas"/>	
+			
+      		<property name="eclipselink.ddl-generation" value="create-tables"/>
+			<property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.jdbc"/>
+			<property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.jdbc"/>
+			<property name="eclipselink.ddl-generation.output-mode" value="both"/>
+			
+			<property name="javax.persistence.jdbc.logging.level" value="INFO"/>
+		</properties>
+	</persistence-unit>
+</persistence>
