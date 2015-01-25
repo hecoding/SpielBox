@@ -21,7 +21,7 @@ public class TableModelPlataforma extends AbstractTableModel {
 	private ArrayList<TransferPlataforma> content;
 
 
-	String[] columnNames = { "Nombre", "Categoria"};
+	String[] columnNames = { "ID", "Tipo"};
 
 	public TableModelPlataforma() {
 		content = new ArrayList<TransferPlataforma>();

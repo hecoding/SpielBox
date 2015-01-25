@@ -3,7 +3,19 @@
  */
 package Negocio.plataforma.imp;
 
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
+import javax.persistence.Persistence;
+
+import Negocio.plataforma.Plataforma;
 import Negocio.plataforma.SAPlataforma;
+import Negocio.plataforma.TransferPlataforma;
+import Negocio.programa.TransferPrograma;
+import Negocio.programaPlataforma.ProgramaPlataforma;
+import Presentacion.controlador.comandos.exceptions.commandException;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -12,99 +24,77 @@ import Negocio.plataforma.SAPlataforma;
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class SAPlataformaImp implements SAPlataforma {
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void crearPlataforma() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 
-		// end-user-code
+	@Override
+	public String crearPlataforma(TransferPlataforma datos)
+			throws commandException {
+		// TODO Auto-generated method stub
+		
+		String mensaje;
+		javax.persistence.EntityManagerFactory entityFactoria =Persistence.createEntityManagerFactory("SpielBox");
+		javax.persistence.EntityManager entityManager = entityFactoria.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+	//	Plataforma pl=  entityManager.find(Plataforma.class, datos.getTipo());
+		Plataforma pl= new Plataforma();
+		pl.setTipo(datos.getTipo());
+		pl.setId(132);
+		//Collection<ProgramaPlataforma> programasPl= new ArrayList<ProgramaPlataforma>();
+		//pl.setAsociacion(programasPl);
+		entityManager.persist(pl);
+		entityManager.getTransaction().commit();	
+		
+		entityManager.close();
+		entityFactoria.close();	
+		
+		
+		return "OK";
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void modificarPlataforma() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	@Override
+	public String modificarPlataforma(TransferPlataforma datos) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void eliminarPlataforma() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	@Override
+	public void mostrarPlataforma(TransferPlataforma datos) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void mostrarPlataforma() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	@Override
+	public void mostrarPlataformas(TransferPlataforma datos) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void mostrarPlataformas() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	@Override
+	public void eliminarPlataforma(TransferPlataforma datos) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void anadirProgramaPlataforma() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	@Override
+	public void anadirProgramaPlataforma(TransferPlataforma datos) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void borrarProgramaPlataforma() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	@Override
+	public void borrarProgramaPlataforma(TransferPlataforma datos) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void mostrarProgramasPlataforma() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	@Override
+	public ArrayList<TransferPrograma> mostrarProgramasPlataforma(
+			TransferPlataforma datos) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+
+
+
 }

@@ -19,9 +19,13 @@ import Presentacion.controlador.Eventos;
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class JDialogCrearClasificacion extends JDialog {
-	private static final long serialVersionUID = 1L;
-	private JTextField jTextFieldDificultad;
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public JDialogCrearClasificacion() {
 		// TODO Auto-generated constructor stub
 		initComponents();
@@ -30,7 +34,7 @@ public class JDialogCrearClasificacion extends JDialog {
 	private void initComponents() {
 		// TODO Auto-generated method stub
         JLabel jLabelDificultad = new javax.swing.JLabel();
-        jTextFieldDificultad = new javax.swing.JTextField();
+        final JTextField jTextFieldDificultad = new javax.swing.JTextField();
         JButton jButtonCrear = new javax.swing.JButton();
         JButton jButtonCancel = new javax.swing.JButton();
 

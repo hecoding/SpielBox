@@ -5,6 +5,9 @@ package Negocio.plataforma;
 
 import java.util.Collection;
 
+import javax.persistence.*;
+
+
 import Negocio.programaPlataforma.ProgramaPlataforma;
 
 /** 
@@ -13,35 +16,23 @@ import Negocio.programaPlataforma.ProgramaPlataforma;
  * @author Héctor
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
+@Entity
 public class Plataforma {
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private String tipo;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	@Id
 	private Integer ID;
+	
+	private String tipo;
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
 	////////////////////////////
-	private Collection<ProgramaPlataforma> asociacion;
+	//private Collection<ProgramaPlataforma> asociacion;
 	//////////////////////////////
 	
 	
 	
-	public void getID() {
+	public Integer getID() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-
+		return ID;
 		// end-user-code
 	}
 
@@ -50,10 +41,10 @@ public class Plataforma {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void getTipo() {
+	public String getTipo() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-
+		return tipo;
 		// end-user-code
 	}
 
@@ -62,21 +53,29 @@ public class Plataforma {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setTipo() {
+	public void setTipo(String t) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-
+		this.tipo=t;
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
 	public Plataforma() {
 		// begin-user-code
 		// TODO Apéndice de constructor generado automáticamente
 		// end-user-code
 	}
+
+	public void setId(int i) {
+		// TODO Auto-generated method stub
+		ID=i;
+	}
+/*
+	public Collection<ProgramaPlataforma> getAsociacion() {
+		return asociacion;
+	}
+
+	public void setAsociacion(Collection<ProgramaPlataforma> asociacion) {
+		this.asociacion = asociacion;
+	}*/
 }

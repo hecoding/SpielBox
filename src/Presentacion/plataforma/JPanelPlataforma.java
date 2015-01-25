@@ -189,6 +189,9 @@ public class JPanelPlataforma extends JPanel {
 		////////////////////////////////////////////////////////////////////////////////////   
 
 	}
+    public static JTable getTablePlataforma(){
+    	return jTablePlataforma;
+    }
 
 	public static TableModelPlataforma getModelo(){
 		return modeloPlataforma;
@@ -199,7 +202,6 @@ public class JPanelPlataforma extends JPanel {
 
 	public boolean validar(){
 		boolean ret=false;
-		
 		if(jTablePlataforma.getSelectedRow() == -1)
 			JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna plataforma");
 		else

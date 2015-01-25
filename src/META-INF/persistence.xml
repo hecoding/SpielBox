@@ -1,12 +1,12 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
 	<persistence-unit name="SpielBox" transaction-type="RESOURCE_LOCAL">
 	
-		<class>negocio.programa.Programa</class>
-		<class>negocio.programa.ProgramaPago</class>
-		<class>negocio.programa.ProgramaAlquiler</class>
-		<class>negocio.plataforma.Plataforma</class>
-		<class>negocio.clasificacion.Clasificacion</class>
-		<class>negocio.programaplataforma.ProgramaPlataforma</class>
+		<class>Negocio.programa.Programa</class>
+		<class>Negocio.programa.ProgramaPago</class>
+		<class>Negocio.programa.ProgramaAlquiler</class>
+		<class>Negocio.plataforma.Plataforma</class>
+		<class>Negocio.clasificacion.Clasificacion</class>
+		<class>Negocio.programaplataforma.ProgramaPlataforma</class>
 		
 		<!-- Database connection settings -->
 		<properties>
