@@ -25,8 +25,8 @@ public class commandCrearVideojuego implements Command {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Object execute(Object datos) {
-	SAVideojuego service = SAFactoria.getInstancia().nuevoServicioVideojuego();
 		
+	SAVideojuego service = SAFactoria.getInstancia().nuevoServicioVideojuego();
 		try {
 			service.crearVideojuego((TransferVideojuego)datos);
 		} catch (commandException e) {
