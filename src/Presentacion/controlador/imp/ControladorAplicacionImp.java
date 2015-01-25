@@ -19,10 +19,10 @@ public class ControladorAplicacionImp extends ControladorAplicacion {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void accionVista() {
+	public void accionVista(Integer evento, Object datos){
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-
+		Dispatcher.getInstance().dispatch(evento, datos);
 		// end-user-code
 	}
 

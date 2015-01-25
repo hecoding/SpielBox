@@ -2,7 +2,11 @@ package Negocio.factoria.imp;
 
 import Negocio.biblioteca.SABiblioteca;
 import Negocio.biblioteca.imp.SABibliotecaImp;
+import Negocio.clasificacion.SAClasificacion;
 import Negocio.factoria.SAFactoria;
+import Negocio.plataforma.SAPlataforma;
+import Negocio.plataforma.imp.SAPlataformaImp;
+import Negocio.programa.SAPrograma;
 import Negocio.usuario.SAUsuario;
 import Negocio.usuario.imp.SAUsuarioImp;
 import Negocio.videojuego.SAVideojuego;
@@ -31,9 +35,11 @@ public class SAFactoriaImp extends SAFactoria {
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
+	 * @return 
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void nuevoServicioPrograma() {
+	public SAPrograma nuevoServicioPrograma() {
+		return null;
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 
@@ -45,19 +51,22 @@ public class SAFactoriaImp extends SAFactoria {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void nuevoServicioPlataforma() {
+	public SAPlataforma nuevoServicioPlataforma() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 
 		// end-user-code
+		return new SAPlataformaImp();
 	}
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
+	 * @return 
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void nuevoServicioClasificacion() {
+	public SAClasificacion nuevoServicioClasificacion() {
+		return null;
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 

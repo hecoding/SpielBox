@@ -16,6 +16,13 @@ import Presentacion.biblioteca.JPanelBiblioteca;
 import Presentacion.biblioteca.JPanelBiblioteca.TableModelBiblioteca;
 import Presentacion.controlador.Dispatcher;
 import Presentacion.controlador.Eventos;
+import Presentacion.controlador.comandos.plataforma.CommandAnadirProgramaPlataforma;
+import Presentacion.controlador.comandos.plataforma.CommandBorrarProgramaPlataforma;
+import Presentacion.controlador.comandos.plataforma.CommandCrearPlataforma;
+import Presentacion.controlador.comandos.plataforma.CommandEliminarPlataforma;
+import Presentacion.controlador.comandos.plataforma.CommandModificarPlataforma;
+import Presentacion.controlador.comandos.plataforma.CommandMostrarPlataforma;
+import Presentacion.controlador.comandos.plataforma.CommandMostrarPlataformas;
 import Presentacion.usuario.JPanelUsuarios;
 import Presentacion.videojuego.JDialogMostrarVideojuego;
 import Presentacion.videojuego.JPanelVideojuego;
@@ -108,20 +115,53 @@ public class DispatcherImp extends Dispatcher {
 			}
 			JOptionPane.showMessageDialog(null, msg+msg2);
 			
-			
-			
         break;
+        
 		case Eventos.MOSTRAR_TODOS_USUARIOS:
 			JPanelUsuarios.getTableModel().setValue((ArrayList<TransferUsuario>) datos);
 			break;
 		case Eventos.QUERY_BIBLIOTECA:
 			//JPanelUsuarios.getTableUsuario().setValue(TransferUsuario) datos);
         break;
+		
 		case Eventos.QUERY_DESARROLLADOR:
 			ArrayList<TransferUsuario> p =  new ArrayList<TransferUsuario>();
 			JOptionPane.showMessageDialog(null,p.get(0).getID());
 			//JPanelUsuarios.getTableUsuario().setValue(TransferUsuario) datos);
         break;
+        
+        
+        /////////////////////////////////////////////////////////////
+        //////////////    Segunda Parte /////////////////////////////
+        /////////////////////////////////////////////////////////////
+		case Eventos.CREAR_PLATAFORMA:
+        	JOptionPane.showMessageDialog(null, "CREAR");
+        break;
+        
+		case Eventos.MODIFICAR_PLATAFORMA:
+			JOptionPane.showMessageDialog(null, "modicar");
+        break;
+        
+		case Eventos.MOSTRAR_PLATAFORMA:
+			JOptionPane.showMessageDialog(null, "mostrar");
+        break;
+        
+		case Eventos.MOSTRAR_PLATAFORMAS:
+        break;
+        
+		case Eventos.ELIMINAR_PLATAFORMA:
+			JOptionPane.showMessageDialog(null, "delete");
+        break;
+        
+		case Eventos.AÑADIR_PROGRAMA_PLATAFORMA:
+			JOptionPane.showMessageDialog(null, "anaprogplat");
+        break;
+        
+		case Eventos.BORRAR_PROGRAMA_PLATAFORMA:
+			JOptionPane.showMessageDialog(null, "borraprofplat");
+        break;       
+        
+        
 		}
 	}
 }

@@ -19,13 +19,21 @@ public class Eventos {
     public static final int MOSTRAR_USUARIO = 14;   
     public static final int QUERY_DESARROLLADOR = 15;
     public static final int QUERY_BIBLIOTECA = 16;
+    public static int Id_Unica = 4242;
+////////////////////////segunda parte//////////////////////////////////////
     public static final int CREAR_CLASIFICACION = 17;
     public static final int MODIFICAR_CLASIFICACION = 18;
     public static final int MOSTRAR_CLASIFICACION = 19;
     public static final int MOSTRAR_CLASIFICACIONES = 20;
-    public static final int ELIMINAR_CLASIFICACION = 21;
-    public static int Id_Unica = 4242;
     
+    public static final int CREAR_PLATAFORMA = 21;
+    public static final int MODIFICAR_PLATAFORMA = 22;
+    public static final int ELIMINAR_PLATAFORMA = 23;
+    public static final int MOSTRAR_PLATAFORMA = 24;
+    public static final int MOSTRAR_PLATAFORMAS = 25;   
+    public static final int AÑADIR_PROGRAMA_PLATAFORMA = 26;
+    public static final int BORRAR_PROGRAMA_PLATAFORMA = 27;
+    ///////////////////////////////////////////////////////////////////////////
     
     
 }

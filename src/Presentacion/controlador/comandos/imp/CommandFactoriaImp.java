@@ -13,6 +13,13 @@ import Presentacion.controlador.comandos.bibliotecas.commandMostrarBiblioteca;
  */
 import Presentacion.controlador.comandos.bibliotecas.commandModificarBiblioteca;
 import Presentacion.controlador.comandos.bibliotecas.commandQueryBiblioteca;
+import Presentacion.controlador.comandos.plataforma.CommandAnadirProgramaPlataforma;
+import Presentacion.controlador.comandos.plataforma.CommandBorrarProgramaPlataforma;
+import Presentacion.controlador.comandos.plataforma.CommandCrearPlataforma;
+import Presentacion.controlador.comandos.plataforma.CommandEliminarPlataforma;
+import Presentacion.controlador.comandos.plataforma.CommandModificarPlataforma;
+import Presentacion.controlador.comandos.plataforma.CommandMostrarPlataforma;
+import Presentacion.controlador.comandos.plataforma.CommandMostrarPlataformas;
 import Presentacion.controlador.comandos.usuarios.commandCrearUsuario;
 import Presentacion.controlador.comandos.usuarios.commandEliminarUsuario;
 import Presentacion.controlador.comandos.usuarios.commandModificarUsuario;
@@ -97,6 +104,36 @@ public class CommandFactoriaImp extends CommandFactoria {
 		case Eventos.QUERY_DESARROLLADOR:
         	c = new commandQueryDesarrollador();
         break;	
+        //////////////segunda parte////////////////////////
+        
+		case Eventos.CREAR_PLATAFORMA:
+        	c = new CommandCrearPlataforma();
+        break;
+        
+		case Eventos.MODIFICAR_PLATAFORMA:
+        	c = new CommandModificarPlataforma();
+        break;
+        
+		case Eventos.MOSTRAR_PLATAFORMA:
+        	c = new CommandMostrarPlataforma();
+        break;
+        
+		case Eventos.MOSTRAR_PLATAFORMAS:
+        	c = new CommandMostrarPlataformas();
+        break;
+        
+		case Eventos.ELIMINAR_PLATAFORMA:
+        	c = new CommandEliminarPlataforma();
+        break;
+        
+		case Eventos.AÑADIR_PROGRAMA_PLATAFORMA:
+        	c = new CommandAnadirProgramaPlataforma();
+        break;
+        
+		case Eventos.BORRAR_PROGRAMA_PLATAFORMA:
+        	c = new CommandBorrarProgramaPlataforma();
+        break;
+        
 		}
 		
 		
