@@ -19,6 +19,11 @@ public class Eventos {
     public static final int MOSTRAR_USUARIO = 14;   
     public static final int QUERY_DESARROLLADOR = 15;
     public static final int QUERY_BIBLIOTECA = 16;
+    public static final int CREAR_CLASIFICACION = 17;
+    public static final int MODIFICAR_CLASIFICACION = 18;
+    public static final int MOSTRAR_CLASIFICACION = 19;
+    public static final int MOSTRAR_CLASIFICACIONES = 20;
+    public static final int ELIMINAR_CLASIFICACION = 21;
     public static int Id_Unica = 4242;
     
     

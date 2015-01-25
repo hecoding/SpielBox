@@ -65,6 +65,6 @@ ALTER TABLE espacio_total
 		FOREIGN KEY (plataforma) REFERENCES plataforma (ID), 
 		FOREIGN KEY (programa_pago) REFERENCES programa_pago(ID),
 		FOREIGN KEY (programa_alquiler) REFERENCES programa_alquiler(ID),
-        CONSTRAINT restricc_tamaño
-			CHECK (tamaño >= 0)
+        CONSTRAINT restricc_tamano
+			CHECK (tamano >= 0)
 	);

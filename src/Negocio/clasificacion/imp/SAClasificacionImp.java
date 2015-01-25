@@ -1,74 +1,115 @@
-/**
- * 
- */
 package Negocio.clasificacion.imp;
 
+import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+import Integracion.transaction.Transaction;
+import Integracion.transactionManager.TransactionManager;
+import Negocio.clasificacion.Clasificacion;
 import Negocio.clasificacion.SAClasificacion;
+import Negocio.clasificacion.TransferClasificacion;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author Héctor
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
 public class SAClasificacionImp implements SAClasificacion {
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void crearClasificacion() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	
+	public void crearClasificacion(TransferClasificacion transfer) {
+		Transaction transaccion = TransactionManager.getInstance().nuevaTransaccion();
+		transaccion.start();
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SAFactoryClasificacion");
+		EntityManager em = factory.createEntityManager();
+		
+		em.getTransaction().begin();
+		
+		Clasificacion BOClasificacion = em.find(Clasificacion.class, transfer.getID());
+		
+		if (BOClasificacion == null) {
+			BOClasificacion = new Clasificacion ();
+			BOClasificacion.setDificultad(transfer.getDificultad());
+			
+			em.persist(BOClasificacion);
+			em.getTransaction().commit();
+		}
+		else {
+			em.clear();
+			em.getTransaction().rollback();
+		}
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void modificarClasificacion() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	public void modificarClasificacion(TransferClasificacion transfer) {
+		Transaction transaccion = TransactionManager.getInstance().nuevaTransaccion();
+		transaccion.start();
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SAFactoryClasificacion");
+		EntityManager em = factory.createEntityManager();
+		
+		em.getTransaction().begin();
+		
+		Clasificacion BOClasificacion = em.find(Clasificacion.class, transfer.getID());
+		
+		if (BOClasificacion != null) {
+			BOClasificacion = new Clasificacion ();
+			BOClasificacion.setDificultad(transfer.getDificultad());
+			
+			em.persist(BOClasificacion);
+			em.getTransaction().commit();
+		}
+		else {
+			em.clear();
+			em.getTransaction().rollback();
+		}
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void mostrarClasificacion() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	public TransferClasificacion mostrarClasificacion (TransferClasificacion transfer) {
+		Transaction transaccion = TransactionManager.getInstance().nuevaTransaccion();
+		transaccion.start();
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SAFactoryClasificacion");
+		EntityManager em = factory.createEntityManager();
+		
+		em.getTransaction().begin();
+		
+		Clasificacion BOClasificacion = em.find(Clasificacion.class, transfer.getID());
+		
+		if (BOClasificacion != null) {
+			return transfer;
+		} 
+		else return null;
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void mostrarClasificaciones() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	public ArrayList<TransferClasificacion> mostrarClasificaciones() {
+		Transaction transaccion = TransactionManager.getInstance().nuevaTransaccion();
+		transaccion.start();
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SAFactoryClasificacion");
+		EntityManager em = factory.createEntityManager();
+		
+		em.getTransaction().begin();
+		
+		TypedQuery query = em.createNamedQuery("SELECT c FROM clasificacion c", Clasificacion.class);
+		
+		return (ArrayList<TransferClasificacion>) query.getResultList(); // boom headshot MIRALO JEFF HIJOPUTA
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void eliminarClasificacion() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	public void eliminarClasificacion (TransferClasificacion transfer) {
+		Transaction transaccion = TransactionManager.getInstance().nuevaTransaccion();
+		transaccion.start();
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SAFactoryClasificacion");
+		EntityManager em = factory.createEntityManager();
+		
+		em.getTransaction().begin();
+		
+		Clasificacion BOClasificacion = em.find(Clasificacion.class, transfer.getID());
+		
+		if (BOClasificacion != null) {
+			em.remove(BOClasificacion);
+			em.getTransaction().commit();
+		}
+		else {
+			em.getTransaction().rollback();
+		}
 	}
 }

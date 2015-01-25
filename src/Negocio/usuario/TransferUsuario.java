@@ -147,6 +147,4 @@ public class TransferUsuario {
 	public void setID(int id) {
 		this.ID = id;
 	}
-
-	
 }

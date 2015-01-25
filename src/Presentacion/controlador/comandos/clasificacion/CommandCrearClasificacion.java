@@ -1,11 +1,9 @@
-/**
- * 
- */
 package Presentacion.controlador.comandos.clasificacion;
 
+import Negocio.clasificacion.SAClasificacion;
+import Negocio.clasificacion.TransferClasificacion;
+import Negocio.factoria.SAFactoria;
 import Presentacion.controlador.comandos.Command;
-
-
 
 /** 
  * <!-- begin-UML-doc -->
@@ -17,7 +15,10 @@ public class CommandCrearClasificacion implements Command {
 
 	@Override
 	public Object execute(Object datos) {
-		// TODO Auto-generated method stub
-		return null;
+		SAClasificacion sa = SAFactoria.getInstancia().nuevoServicioClasificacion();
+		
+		sa.crearClasificacion((TransferClasificacion) datos);
+		
+		return (TransferClasificacion) datos; 
 	}
 }

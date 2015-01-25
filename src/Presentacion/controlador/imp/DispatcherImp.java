@@ -15,9 +15,6 @@ import Presentacion.biblioteca.JDialogMostrarBiblioteca;
 import Presentacion.biblioteca.JPanelBiblioteca;
 import Presentacion.biblioteca.JPanelBiblioteca.TableModelBiblioteca;
 import Presentacion.controlador.Dispatcher;
-/**
- * 
- */
 import Presentacion.controlador.Eventos;
 import Presentacion.usuario.JPanelUsuarios;
 import Presentacion.videojuego.JDialogMostrarVideojuego;

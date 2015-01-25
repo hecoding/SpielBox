@@ -2,8 +2,6 @@ package Presentacion.usuario;
 
 import javax.swing.JDialog;
 
-import Negocio.usuario.TransferCliente;
-import Negocio.usuario.TransferDesarrollador;
 import Negocio.usuario.TransferUsuario;
 import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Eventos;

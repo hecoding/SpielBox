@@ -1,7 +1,10 @@
 package Negocio.factoria;
 
 import Negocio.biblioteca.SABiblioteca;
+import Negocio.clasificacion.SAClasificacion;
 import Negocio.factoria.imp.SAFactoriaImp;
+import Negocio.plataforma.SAPlataforma;
+import Negocio.programa.SAPrograma;
 import Negocio.usuario.SAUsuario;
 import Negocio.videojuego.SAVideojuego;
 
@@ -17,11 +20,11 @@ public abstract class SAFactoria {
 	
 	////////////////////////////////////////////////////////
 
-	public abstract void nuevoServicioPrograma();
+	public abstract SAPrograma nuevoServicioPrograma();
 
-	public abstract void  nuevoServicioPlataforma();
+	public abstract SAPlataforma  nuevoServicioPlataforma();
 
-	public abstract void nuevoServicioClasificacion();
+	public abstract SAClasificacion nuevoServicioClasificacion();
 	
 	
 	

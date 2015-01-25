@@ -5,7 +5,9 @@ package Presentacion.clasificacion;
 
 import java.util.ArrayList;
 
-import Negocio.clasificacion.Clasificacion;
+import javax.swing.table.AbstractTableModel;
+
+import Negocio.clasificacion.TransferClasificacion;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -13,23 +15,75 @@ import Negocio.clasificacion.Clasificacion;
  * @author Héctor
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class TableModelClasificacion {
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+public class TableModelClasificacion extends AbstractTableModel {
+	/**
+	 * 
 	 */
-	private ArrayList<Clasificacion> content;
+	private static final long serialVersionUID = 1L;
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setValue() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
+	private ArrayList<TransferClasificacion> content; //para mantener una copia de la memoria
 
-		// end-user-code
+	String[] columnNames = { "Dificultad"};
+
+	public TableModelClasificacion() {
+		content = new ArrayList<TransferClasificacion>();
+	}
+
+	public int getRowCount() {
+		return content.size();
+	}
+
+	public String getColumnName(int col) {
+		return columnNames[col];
+	}
+
+	public int getColumnCount() {
+		return columnNames.length;
+	}
+
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		TransferClasificacion clasificacion = content.get(rowIndex);
+        Object value = clasificacion.getID();//SIEMPRE DEVOLVEMOS EL CAMPO DE ID
+        switch (columnIndex) {
+            case 0:
+                value = clasificacion.getID();
+                break;
+            case 1:
+                value = clasificacion.getDificultad();
+                break;
+        }
+        return value;
+	}
+
+	public boolean isCellEditable(int fila, int col) {
+		return false;
+	}
+	/** Modifica la posicion de index (en content) para que tenga el valor nuevo y 
+	 * avisa al JTable que el modelo ha sido modificado */
+	public void setValue(ArrayList<TransferClasificacion> value){
+		this.content = value;
+
+		fireTableDataChanged();
+	}
+	/**Borra todos los elementos de content y avisa al JTable que el modelo ha sido modificado*/
+	public void reset() {      
+		content.clear();
+		fireTableDataChanged();
+	}
+	
+	
+	public TransferClasificacion getItem(int rowIndex) {
+		return content.get(rowIndex);
+	}
+
+	public void removeRow(TransferClasificacion datos) {
+		content.remove(datos);
+		fireTableDataChanged();
+		
+	}
+
+	public void setValue(TransferClasificacion datos) {
+		content.add(datos);
+		fireTableDataChanged();
 	}
 }

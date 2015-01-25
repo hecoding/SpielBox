@@ -11,36 +11,28 @@ import javax.swing.JTextField;
 import Negocio.clasificacion.TransferClasificacion;
 import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Eventos;
+import Presentacion.clasificacion.JPanelClasificacion;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author Héctor
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
-public class JDialogCrearClasificacion extends JDialog {
+public class JDialogModificarClasificacion extends JDialog {
 	private static final long serialVersionUID = 1L;
-	private JTextField jTextFieldDificultad;
-	
-	public JDialogCrearClasificacion() {
+
+	public JDialogModificarClasificacion(){
 		// TODO Auto-generated constructor stub
 		initComponents();
 	}
 
 	private void initComponents() {
-		// TODO Auto-generated method stub
         JLabel jLabelDificultad = new javax.swing.JLabel();
-        jTextFieldDificultad = new javax.swing.JTextField();
-        JButton jButtonCrear = new javax.swing.JButton();
+        final JTextField jTextFieldDificultad = new javax.swing.JTextField();
+        JButton jButtonModificar = new javax.swing.JButton();
         JButton jButtonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Crear Clasificacion");
+        setTitle("Modificar Clasificación");
 
         jLabelDificultad.setText("Dificultad:");
 
-
-        jButtonCrear.setText("Crear");
+        jButtonModificar.setText("Modificar");
 
         jButtonCancel.setText("Cancelar");
 
@@ -54,9 +46,9 @@ public class JDialogCrearClasificacion extends JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldDificultad, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                		.addComponent(jButtonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -70,22 +62,23 @@ public class JDialogCrearClasificacion extends JDialog {
                             .addComponent(jTextFieldDificultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButtonCrear)
+                        .addComponent(jButtonModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonCancel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         
-        
         /////////////////ACTION LISTENER /////////////////////
-        jButtonCrear.addActionListener(new ActionListener() {			
+        jButtonModificar.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				TransferClasificacion nuevaClasificacion = new TransferClasificacion();
-				nuevaClasificacion.setDificultad(jTextFieldDificultad.getText());
+				TransferClasificacion clasif = (TransferClasificacion) JPanelClasificacion.getModelo().getItem(JPanelClasificacion.getTableClasificacion().getSelectedRow());
+				JPanelClasificacion.getModelo().removeRow(clasif);
 				
-				ControladorAplicacion.getInstance().accionCommand(Eventos.CREAR_CLASIFICACION, nuevaClasificacion);
-				setVisible (false);
+				clasif.setDificultad(jTextFieldDificultad.getText());
+				
+				ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_CLASIFICACION, clasif);
+				setVisible(false);
 			}
         });
         
@@ -102,4 +95,5 @@ public class JDialogCrearClasificacion extends JDialog {
         setLocationRelativeTo(null);
         pack();
 	}
+
 }
