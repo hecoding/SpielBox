@@ -3,10 +3,8 @@
  */
 package Negocio.plataforma.imp;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 import javax.persistence.Persistence;
 
@@ -38,7 +36,7 @@ public class SAPlataformaImp implements SAPlataforma {
 	//	Plataforma pl=  entityManager.find(Plataforma.class, datos.getTipo());
 		Plataforma pl= new Plataforma();
 		pl.setTipo(datos.getTipo());
-		pl.setId(132);
+		pl.setId(142);
 		//Collection<ProgramaPlataforma> programasPl= new ArrayList<ProgramaPlataforma>();
 		//pl.setAsociacion(programasPl);
 		entityManager.persist(pl);

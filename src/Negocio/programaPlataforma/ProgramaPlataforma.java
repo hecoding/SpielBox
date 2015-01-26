@@ -1,12 +1,22 @@
 package Negocio.programaPlataforma;
 
+import javax.persistence.*;
+
 import Negocio.plataforma.Plataforma;
 import Negocio.programa.Programa;
 
+@Entity
+@IdClass(ProgramaPlataformaId.class)
 public class ProgramaPlataforma {
-	private int espacioTotal;
+	@Id
+	@ManyToOne
 	private Programa programa;
+	
+	@Id
+	@ManyToOne
 	private Plataforma plataforma;
+	
+	private int espacioTotal;
 	
 	public int getEspacioTotal() {
 		return espacioTotal;

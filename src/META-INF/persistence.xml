@@ -6,7 +6,7 @@
 		<class>Negocio.programa.ProgramaAlquiler</class>
 		<class>Negocio.plataforma.Plataforma</class>
 		<class>Negocio.clasificacion.Clasificacion</class>
-		<class>Negocio.programaplataforma.ProgramaPlataforma</class>
+		<!--<class>Negocio.programaplataforma.ProgramaPlataforma</class>-->
 		
 		<!-- Database connection settings -->
 		<properties>

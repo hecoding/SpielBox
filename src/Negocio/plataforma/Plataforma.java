@@ -23,9 +23,10 @@ public class Plataforma {
 	
 	private String tipo;
 
-	////////////////////////////
-	//private Collection<ProgramaPlataforma> asociacion;
-	//////////////////////////////
+	///*
+	@OneToMany(mappedBy="plataforma")
+	private Collection<ProgramaPlataforma> asociacion;
+	//////////////////////////////*/
 	
 	
 	
