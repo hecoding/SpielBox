@@ -52,16 +52,23 @@ public class Plataforma {
 		// end-user-code
 	}
 
+	public Plataforma(int i, String tipo2) {
+		// TODO Auto-generated constructor stub
+		ID=i;
+		tipo=tipo2;
+	}
+
+
 	public void setId(int i) {
 		// TODO Auto-generated method stub
 		ID=i;
 	}
-/*
+
 	public Collection<ProgramaPlataforma> getAsociacion() {
 		return asociacion;
 	}
 
 	public void setAsociacion(Collection<ProgramaPlataforma> asociacion) {
 		this.asociacion = asociacion;
-	}*/
+	}
 }

@@ -16,7 +16,7 @@ public class CommandCrearClasificacion implements Command {
 	@Override
 	public Object execute(Object datos) {
 		SAClasificacion sa = SAFactoria.getInstancia().nuevoServicioClasificacion();
-		
+		TransferClasificacion p =(TransferClasificacion) datos;
 		sa.crearClasificacion((TransferClasificacion) datos);
 		
 		return (TransferClasificacion) datos; 

@@ -6,11 +6,9 @@ package Negocio.plataforma.imp;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 
-import org.eclipse.persistence.internal.jpa.rs.metadata.model.Query;
+
 
 import Negocio.plataforma.Plataforma;
 import Negocio.plataforma.SAPlataforma;
@@ -37,16 +35,32 @@ public class SAPlataformaImp implements SAPlataforma {
 		EntityManager entityManager = entityFactoria.createEntityManager();
 		entityManager.getTransaction().begin();
 		
-	//	Plataforma pl=  entityManager.find(Plataforma.class, datos.getTipo());
-		Plataforma pl= new Plataforma();
-		pl.setTipo(datos.getTipo());
-		pl.setId(142);
-		//Collection<ProgramaPlataforma> programasPl= new ArrayList<ProgramaPlataforma>();
-		//pl.setAsociacion(programasPl);
-		entityManager.persist(pl);
-		entityManager.getTransaction().commit();
+		try{
+			//	Plataforma pl=  entityManager.find(Plataforma.class, datos.getTipo());
+			Query query = entityManager.createQuery("SELECT x FROM Plataforma x WHERE x.tipo = ?1");
+			query.setParameter(1,datos.getTipo());
+			
+			if(query.getResultList().isEmpty()){ //si es vacia el resultado introduzco plataforma
+				System.out.println("Consulta vacia - Introduzco plataforma");
+				Plataforma nuevo;
+				if(datos.getTipo().equalsIgnoreCase("pepito"))
+					nuevo= new Plataforma(3212,datos.getTipo());
+				else
+					nuevo= new Plataforma(1234,datos.getTipo());
+				entityManager.persist(nuevo);
+				entityManager.getTransaction().commit();
+			}
+			else{
+				System.out.println("Existe plataforma envio mensaje error");
+				entityManager.getTransaction().rollback();
+			}
+			
+		}catch(Exception e){
+			System.err.println("ENTRO EN LA EXCEPCION");
+			entityManager.getTransaction().rollback();
+		}
 		
-		
+
 		entityManager.close();
 		entityFactoria.close();	
 		
