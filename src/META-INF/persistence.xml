@@ -2,11 +2,9 @@
 	<persistence-unit name="SpielBox" transaction-type="RESOURCE_LOCAL">
 	
 		<class>Negocio.programa.Programa</class>
-		<class>Negocio.programa.ProgramaPago</class>
-		<class>Negocio.programa.ProgramaAlquiler</class>
 		<class>Negocio.plataforma.Plataforma</class>
 		<class>Negocio.clasificacion.Clasificacion</class>
-		<!--<class>Negocio.programaplataforma.ProgramaPlataforma</class>-->
+		<class>Negocio.programaPlataforma.ProgramaPlataforma</class>
 		
 		<!-- Database connection settings -->
 		<properties>

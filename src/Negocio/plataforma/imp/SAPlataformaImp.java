@@ -8,6 +8,8 @@ import java.util.Collection;
 
 import javax.persistence.Persistence;
 
+import org.eclipse.persistence.internal.jpa.rs.metadata.model.Query;
+
 import Negocio.plataforma.Plataforma;
 import Negocio.plataforma.SAPlataforma;
 import Negocio.plataforma.TransferPlataforma;
@@ -40,7 +42,8 @@ public class SAPlataformaImp implements SAPlataforma {
 		//Collection<ProgramaPlataforma> programasPl= new ArrayList<ProgramaPlataforma>();
 		//pl.setAsociacion(programasPl);
 		entityManager.persist(pl);
-		entityManager.getTransaction().commit();	
+		entityManager.getTransaction().commit();
+		
 		
 		entityManager.close();
 		entityFactoria.close();	
