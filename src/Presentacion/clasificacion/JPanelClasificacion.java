@@ -16,9 +16,6 @@ import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Eventos;
 
 public class JPanelClasificacion extends JPanel {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static TableModelClasificacion model;
 	private static JTable jTableClasificacion;
@@ -109,7 +106,7 @@ public class JPanelClasificacion extends JPanel {
     			@Override
     			public void actionPerformed(ActionEvent arg0) {
     				if(validar()){
-    				jDialogEliminarClasificacion  = new JDialogEliminarClasificacion();
+    					jDialogEliminarClasificacion  = new JDialogEliminarClasificacion();
     				}
     			}
               });

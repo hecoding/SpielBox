@@ -6,6 +6,8 @@ package Negocio.plataforma.imp;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import org.eclipse.persistence.internal.jpa.rs.metadata.model.Query;
@@ -31,8 +33,8 @@ public class SAPlataformaImp implements SAPlataforma {
 		// TODO Auto-generated method stub
 		
 		String mensaje;
-		javax.persistence.EntityManagerFactory entityFactoria =Persistence.createEntityManagerFactory("SpielBox");
-		javax.persistence.EntityManager entityManager = entityFactoria.createEntityManager();
+		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
+		EntityManager entityManager = entityFactoria.createEntityManager();
 		entityManager.getTransaction().begin();
 		
 	//	Plataforma pl=  entityManager.find(Plataforma.class, datos.getTipo());

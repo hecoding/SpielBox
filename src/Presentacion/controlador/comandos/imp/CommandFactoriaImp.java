@@ -1,5 +1,7 @@
 package Presentacion.controlador.comandos.imp;
 
+import javax.swing.JOptionPane;
+
 import Presentacion.controlador.Eventos;
 import Presentacion.controlador.comandos.Command;
 import Presentacion.controlador.comandos.CommandFactoria;
@@ -13,6 +15,11 @@ import Presentacion.controlador.comandos.bibliotecas.commandMostrarBiblioteca;
  */
 import Presentacion.controlador.comandos.bibliotecas.commandModificarBiblioteca;
 import Presentacion.controlador.comandos.bibliotecas.commandQueryBiblioteca;
+import Presentacion.controlador.comandos.clasificacion.CommandCrearClasificacion;
+import Presentacion.controlador.comandos.clasificacion.CommandEliminarClasificacion;
+import Presentacion.controlador.comandos.clasificacion.CommandModificarClasificacion;
+import Presentacion.controlador.comandos.clasificacion.CommandMostrarClasificacion;
+import Presentacion.controlador.comandos.clasificacion.CommandMostrarTodasClasificaciones;
 import Presentacion.controlador.comandos.plataforma.CommandAnadirProgramaPlataforma;
 import Presentacion.controlador.comandos.plataforma.CommandBorrarProgramaPlataforma;
 import Presentacion.controlador.comandos.plataforma.CommandCrearPlataforma;
@@ -20,6 +27,11 @@ import Presentacion.controlador.comandos.plataforma.CommandEliminarPlataforma;
 import Presentacion.controlador.comandos.plataforma.CommandModificarPlataforma;
 import Presentacion.controlador.comandos.plataforma.CommandMostrarPlataforma;
 import Presentacion.controlador.comandos.plataforma.CommandMostrarPlataformas;
+import Presentacion.controlador.comandos.programa.CommandCrearPrograma;
+import Presentacion.controlador.comandos.programa.CommandEliminarPrograma;
+import Presentacion.controlador.comandos.programa.CommandModificarPrograma;
+import Presentacion.controlador.comandos.programa.CommandMostrarPrograma;
+import Presentacion.controlador.comandos.programa.CommandMostrarProgramas;
 import Presentacion.controlador.comandos.usuarios.commandCrearUsuario;
 import Presentacion.controlador.comandos.usuarios.commandEliminarUsuario;
 import Presentacion.controlador.comandos.usuarios.commandModificarUsuario;
@@ -133,8 +145,48 @@ public class CommandFactoriaImp extends CommandFactoria {
 		case Eventos.BORRAR_PROGRAMA_PLATAFORMA:
         	c = new CommandBorrarProgramaPlataforma();
         break;
+		case Eventos.CREAR_CLASIFICACION:
+			c = new CommandCrearClasificacion();
+		break;
+		
+		case Eventos.ELIMINAR_CLASIFICACION:
+			c = new CommandEliminarClasificacion();
+		break;
+		
+		case Eventos.MODIFICAR_CLASIFICACION:
+			c = new CommandModificarClasificacion();
+		break;
+		
+		case Eventos.MOSTRAR_CLASIFICACION:
+			c = new CommandMostrarClasificacion();
+		break;
+		
+		case Eventos.MOSTRAR_CLASIFICACIONES:
+			c = new CommandMostrarTodasClasificaciones();
+		break;
+		
+		case Eventos.CREAR_PROGRAMA:
+			c = new CommandCrearPrograma();
+		break;
+		
+		case Eventos.ELIMINAR_PROGRAMA:
+			c = new CommandEliminarPrograma();
+		break;
+		
+		case Eventos.MODIFICAR_PROGRAMA:
+			c = new CommandModificarPrograma();
+		break;
+		
+		case Eventos.MOSTRAR_PROGRAMA:
+			c = new CommandMostrarPrograma();
+		break;
+		
+		case Eventos.MOSTRAR_PROGRAMAS:
+			c = new CommandMostrarProgramas();
+		break;
         
 		}
+		
 		
 		
 		return c;

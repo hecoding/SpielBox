@@ -34,6 +34,12 @@ public class Eventos {
     public static final int MOSTRAR_PLATAFORMAS = 26;   
     public static final int AÑADIR_PROGRAMA_PLATAFORMA = 27;
     public static final int BORRAR_PROGRAMA_PLATAFORMA = 28;
+    
+    public static final int CREAR_PROGRAMA = 29;
+    public static final int MODIFICAR_PROGRAMA = 30;
+    public static final int MOSTRAR_PROGRAMA = 31;
+    public static final int ELIMINAR_PROGRAMA = 32;
+    public static final int MOSTRAR_PROGRAMAS = 33;
     ///////////////////////////////////////////////////////////////////////////
     
     

@@ -21,21 +21,16 @@ public class JDialogMostrarClasificacion extends JDialog {
 	}
 
 	private void initComponents() {
-        JLabel jLabelNombre = new javax.swing.JLabel();
-        JLabel jLabelCategoria = new javax.swing.JLabel();
-        JLabel jLabelPrecio = new javax.swing.JLabel();
-        JLabel jLabelCalificacion = new JLabel();
-        JTextField jTextFieldNombre = new javax.swing.JTextField();
-        JTextField jTextFieldCategoria = new JTextField();
-        JTextField jTextFieldCalificacion = new JTextField();
-        JTextField jTextFieldPrecio = new JTextField();
-        JButton jButtonModificar = new javax.swing.JButton();
-        JButton jButtonCancel = new javax.swing.JButton();
+        JLabel jLabelID = new javax.swing.JLabel();
+        JLabel jLabelDificultad = new javax.swing.JLabel();
+        JTextField jTextFieldID = new javax.swing.JTextField();
+        JTextField jTextFieldDificultad = new JTextField();
+        JButton jButtonAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mostrar Clasificación");
 
-        jButtonCancel.setText("Aceptar");
+        jButtonAceptar.setText("Aceptar");
         ///MOSTRAR /// 
         Negocio.clasificacion.TransferClasificacion clasificacion = JPanelClasificacion.getModelo().getItem(JPanelClasificacion.getTableClasificacion().getSelectedRow());
         ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_VIDEOJUEGO, clasificacion);
@@ -48,16 +43,12 @@ public class JDialogMostrarClasificacion extends JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                    .addComponent(jLabelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelCalificacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelDificultad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                    .addComponent(jTextFieldCategoria)
-                    .addComponent(jTextFieldCalificacion)
-                    .addComponent(jTextFieldPrecio))
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                    .addComponent(jTextFieldDificultad))
                 .addContainerGap(237, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -65,31 +56,21 @@ public class JDialogMostrarClasificacion extends JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNombre)
-                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelID)
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCategoria)
-                    .addComponent(jTextFieldCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCalificacion)
-                    .addComponent(jTextFieldCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelPrecio)
-                    .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(137, Short.MAX_VALUE))
+                    .addComponent(jLabelDificultad)
+                    .addComponent(jTextFieldDificultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
         );
         
         /////////////////ACTION LISTENER /////////////////////
               
-        jButtonCancel.addActionListener(new ActionListener() {			
+        jButtonAceptar.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				TransferClasificacion mostrarClasificacion = new TransferClasificacion();
-				// mostrarClasificacion.cosas;
-				
 				ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_CLASIFICACION, mostrarClasificacion);
 				setVisible (false);
 			}

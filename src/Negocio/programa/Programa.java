@@ -1,12 +1,11 @@
-/**
- * 
- */
+
 package Negocio.programa;
 
 import java.util.Collection;
 
 import javax.persistence.*;
 
+import Negocio.clasificacion.Clasificacion;
 import Negocio.programaPlataforma.ProgramaPlataforma;
 
 @Entity
@@ -17,6 +16,8 @@ public class Programa {
 	private String nombre;
 
 	private Float version;
+	
+	private Float precio;
 
 	private String requisitos;
 
@@ -24,6 +25,8 @@ public class Programa {
 
 	@OneToMany(mappedBy="programa")
 	private Collection<ProgramaPlataforma> asociacion;
+	@ManyToOne
+	private Clasificacion clasificacion;
 	
 	public Integer getID() {
 		// begin-user-code
@@ -32,11 +35,7 @@ public class Programa {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	
 	public String getNombre() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
@@ -44,11 +43,7 @@ public class Programa {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	
 	public Float getVersion() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
@@ -56,11 +51,7 @@ public class Programa {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	
 	public String getRequisitos() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
@@ -68,11 +59,7 @@ public class Programa {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	
 	public String getFuncionalidad() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
@@ -80,11 +67,7 @@ public class Programa {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	
 	public void setNombre(String n) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
@@ -92,11 +75,7 @@ public class Programa {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	
 	public void setVersion(Float f) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
@@ -104,11 +83,7 @@ public class Programa {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	
 	public void setRequisitos(String r) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
@@ -116,11 +91,7 @@ public class Programa {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	
 	public void setFuncionalidad(String f) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
@@ -128,14 +99,18 @@ public class Programa {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	
 	public Programa() {
 		// begin-user-code
 		// TODO Apéndice de constructor generado automáticamente
 		// end-user-code
+	}
+
+	public Float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Float precio) {
+		this.precio = precio;
 	}
 }

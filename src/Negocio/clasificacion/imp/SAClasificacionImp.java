@@ -6,8 +6,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-import Integracion.transaction.Transaction;
-import Integracion.transactionManager.TransactionManager;
 import Negocio.clasificacion.Clasificacion;
 import Negocio.clasificacion.SAClasificacion;
 import Negocio.clasificacion.TransferClasificacion;
@@ -15,10 +13,7 @@ import Negocio.clasificacion.TransferClasificacion;
 public class SAClasificacionImp implements SAClasificacion {
 	
 	public void crearClasificacion(TransferClasificacion transfer) {
-		Transaction transaccion = TransactionManager.getInstance().nuevaTransaccion();
-		transaccion.start();
-		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SAFactoryClasificacion");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager em = factory.createEntityManager();
 		
 		em.getTransaction().begin();
@@ -39,10 +34,7 @@ public class SAClasificacionImp implements SAClasificacion {
 	}
 
 	public void modificarClasificacion(TransferClasificacion transfer) {
-		Transaction transaccion = TransactionManager.getInstance().nuevaTransaccion();
-		transaccion.start();
-		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SAFactoryClasificacion");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager em = factory.createEntityManager();
 		
 		em.getTransaction().begin();
@@ -63,10 +55,7 @@ public class SAClasificacionImp implements SAClasificacion {
 	}
 
 	public TransferClasificacion mostrarClasificacion (TransferClasificacion transfer) {
-		Transaction transaccion = TransactionManager.getInstance().nuevaTransaccion();
-		transaccion.start();
-		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SAFactoryClasificacion");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager em = factory.createEntityManager();
 		
 		em.getTransaction().begin();
@@ -80,24 +69,18 @@ public class SAClasificacionImp implements SAClasificacion {
 	}
 
 	public ArrayList<TransferClasificacion> mostrarClasificaciones() {
-		Transaction transaccion = TransactionManager.getInstance().nuevaTransaccion();
-		transaccion.start();
-		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SAFactoryClasificacion");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager em = factory.createEntityManager();
 		
 		em.getTransaction().begin();
 		
-		TypedQuery query = em.createNamedQuery("SELECT c FROM clasificacion c", Clasificacion.class);
+		TypedQuery query = em.createNamedQuery("SELECT * FROM clasificacion c", Clasificacion.class);
 		
 		return (ArrayList<TransferClasificacion>) query.getResultList(); // boom headshot MIRALO JEFF HIJOPUTA
 	}
 
 	public void eliminarClasificacion (TransferClasificacion transfer) {
-		Transaction transaccion = TransactionManager.getInstance().nuevaTransaccion();
-		transaccion.start();
-		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SAFactoryClasificacion");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager em = factory.createEntityManager();
 		
 		em.getTransaction().begin();

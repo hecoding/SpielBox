@@ -51,4 +51,12 @@ public class ProgramaAlquiler extends Programa {
 		// TODO Apéndice de constructor generado automáticamente
 		// end-user-code
 	}
+
+	public float getPrecioHora() {
+		return precioHora;
+	}
+
+	public void setPrecioHora(float precioHora) {
+		this.precioHora = precioHora;
+	}
 }

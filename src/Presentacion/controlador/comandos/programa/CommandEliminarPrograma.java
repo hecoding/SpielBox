@@ -3,6 +3,9 @@
  */
 package Presentacion.controlador.comandos.programa;
 
+import Negocio.factoria.SAFactoria;
+import Negocio.programa.SAPrograma;
+import Negocio.programa.TransferPrograma;
 import Presentacion.controlador.comandos.Command;
 
 /** 
@@ -13,10 +16,11 @@ import Presentacion.controlador.comandos.Command;
  */
 public class CommandEliminarPrograma implements Command {
 
-
-	@Override
 	public Object execute(Object datos) {
-		// TODO Auto-generated method stub
-		return null;
+		SAPrograma sa = SAFactoria.getInstancia().nuevoServicioPrograma();
+
+		sa.eliminarPrograma ((TransferPrograma) datos);
+
+		return (TransferPrograma) datos;
 	}
 }

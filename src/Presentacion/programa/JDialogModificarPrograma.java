@@ -1,33 +1,21 @@
-/**
- * 
- */
 package Presentacion.programa;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-import Negocio.programa.TransferProgramaPago;
-import Negocio.programa.TransferProgramaAlquiler;
 import Negocio.programa.TransferPrograma;
+import Negocio.programa.TransferProgramaPago;
 import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Eventos;
-import Presentacion.controlador.Generador;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author Héctor
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
-public class JDialogCrearPrograma extends JDialog {
+public class JDialogModificarPrograma extends JDialog {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public JDialogCrearPrograma() {
+	public JDialogModificarPrograma() {
 		// TODO Auto-generated constructor stub
 		initComponents();
 	}
@@ -39,18 +27,16 @@ public class JDialogCrearPrograma extends JDialog {
         jLabelRequisitos = new javax.swing.JLabel();
         jLabelFuncionalidad = new javax.swing.JLabel();
         jLabelPrecio = new javax.swing.JLabel();
-        jRadioButtonPago = new javax.swing.JRadioButton();
-        jRadioButtonAlquiler = new javax.swing.JRadioButton();
         jTextFieldNombrePrograma = new javax.swing.JTextField();
         jTextFieldVersionPrograma = new javax.swing.JTextField();
         jTextFieldRequisitosPrograma = new javax.swing.JTextField();
         jTextFieldFuncionalidadPrograma = new javax.swing.JTextField();
         jTextFieldPrecioPrograma = new javax.swing.JTextField();
-        jButtonCrear = new javax.swing.JButton();
+        jButtonModificar = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Crear Programa");
+        setTitle("Modificar Programa");
 
         // Código propio
         jLabelPrecio.setVisible(false);
@@ -72,11 +58,7 @@ public class JDialogCrearPrograma extends JDialog {
         jLabelPrecio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPrecio.setText("Precio");
 
-        jRadioButtonPago.setText("Pago");
-
-        jRadioButtonAlquiler.setText("Alquiler");
-
-        jButtonCrear.setText("Crear");
+        jButtonModificar.setText("Modificar");
 
         jButtonCancel.setText("Cancelar");
 
@@ -104,24 +86,16 @@ public class JDialogCrearPrograma extends JDialog {
                             .addComponent(jTextFieldFuncionalidadPrograma))
                         .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonCancel, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(68, 68, 68))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButtonAlquiler)
-                            .addComponent(jRadioButtonPago))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(6, 6, 6))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
-                .addComponent(jRadioButtonPago)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButtonAlquiler)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -136,7 +110,7 @@ public class JDialogCrearPrograma extends JDialog {
                             .addComponent(jLabelRequisitos)
                             .addComponent(jTextFieldRequisitosPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonCrear)
+                        .addComponent(jButtonModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonCancel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -150,51 +124,20 @@ public class JDialogCrearPrograma extends JDialog {
                 .addGap(75, 75, 75))
         );
         
-        jRadioButtonPago.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				jRadioButtonAlquiler.setSelected(false);
-				jLabelPrecio.setText("Precio de Pago");
-			}
-        });
-        jRadioButtonAlquiler.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				jRadioButtonPago.setSelected(false);
-				jLabelPrecio.setText("Precio de Alquiler");
-			}
-        });
-        jButtonCrear.addActionListener(new ActionListener() {			
+        jButtonModificar.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 			try {
 				TransferPrograma nuevoPrograma = null;
-				if(!jRadioButtonPago.isSelected() && !jRadioButtonAlquiler.isSelected()) {
-					JOptionPane.showMessageDialog(new JPanel(),"No se puede crear el Programa sin seleccionar Pago o Alquiler");
-				} else {
-					if(jRadioButtonPago.isSelected()) {
-						nuevoPrograma = new TransferProgramaPago();
-						nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
-						nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
-						nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
-						nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
-						((TransferProgramaPago) nuevoPrograma).setPrecio(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
-					} else {
-						nuevoPrograma = new TransferProgramaAlquiler();
-						nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
-						nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
-						nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
-						nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
-						((TransferProgramaAlquiler) nuevoPrograma).setPrecio(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
-					}
-					
-					nuevoPrograma.setID(Generador.generaIds());
-					ControladorAplicacion.getInstance().accionCommand(Eventos.CREAR_PROGRAMA, nuevoPrograma);
+					nuevoPrograma = new TransferProgramaPago();
+					nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
+					nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
+					nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
+					nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
+					nuevoPrograma.setPrecio(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
+					ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_PROGRAMA, nuevoPrograma);
 					setVisible(false);
-				}
 			} catch(IllegalArgumentException e) {
 				JOptionPane.showMessageDialog(null, "Datos introducidos en los campos no válidos");
 			}
@@ -214,14 +157,12 @@ public class JDialogCrearPrograma extends JDialog {
 	}
 	
     private javax.swing.JButton jButtonCancel;
-    private javax.swing.JButton jButtonCrear;
+    private javax.swing.JButton jButtonModificar;
     private javax.swing.JLabel jLabelVersion;
     private javax.swing.JLabel jLabelPrecio;
     private javax.swing.JLabel jLabelRequisitos;
     private javax.swing.JLabel jLabelFuncionalidad;
     private javax.swing.JLabel jLabelNombre;
-    private javax.swing.JRadioButton jRadioButtonPago;
-    private javax.swing.JRadioButton jRadioButtonAlquiler;
     private javax.swing.JTextField jTextFieldVersionPrograma;
     private javax.swing.JTextField jTextFieldPrecioPrograma;
     private javax.swing.JTextField jTextFieldRequisitosPrograma;

@@ -159,7 +159,45 @@ public class DispatcherImp extends Dispatcher {
         
 		case Eventos.BORRAR_PROGRAMA_PLATAFORMA:
 			JOptionPane.showMessageDialog(null, "borraprofplat");
-        break;       
+        break;  
+        
+		case Eventos.CREAR_CLASIFICACION:
+			JOptionPane.showMessageDialog(null,"Crear");
+		break;
+		
+		case Eventos.ELIMINAR_CLASIFICACION:
+			JOptionPane.showMessageDialog(null,"Eliminar");
+		break;
+		
+		case Eventos.MODIFICAR_CLASIFICACION:
+			JOptionPane.showMessageDialog(null,"Modificar");
+		break;
+		
+		case Eventos.MOSTRAR_CLASIFICACION:
+			JOptionPane.showMessageDialog(null,"Mostrar");
+		break;
+		
+		case Eventos.MOSTRAR_CLASIFICACIONES:
+		break;
+		
+		case Eventos.CREAR_PROGRAMA:
+			JOptionPane.showMessageDialog(null,"Crear");
+		break;
+		
+		case Eventos.ELIMINAR_PROGRAMA:
+			JOptionPane.showMessageDialog(null,"Eliminar");
+		break;
+		
+		case Eventos.MODIFICAR_PROGRAMA:
+			JOptionPane.showMessageDialog(null,"Modificar");
+		break;
+		
+		case Eventos.MOSTRAR_PROGRAMA:
+			JOptionPane.showMessageDialog(null,"Mostrar");
+		break;
+		
+		case Eventos.MOSTRAR_PROGRAMAS:
+		break;
         
         
 		}
