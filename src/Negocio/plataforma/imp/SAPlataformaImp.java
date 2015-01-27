@@ -26,35 +26,35 @@ public class SAPlataformaImp implements SAPlataforma {
 	
 
 	@Override
-	public void crearPlataforma(TransferPlataforma datos) throws commandException {
+	public void crearPlataforma(TransferPlataforma datos)
+			throws commandException {
 		// TODO Auto-generated method stub
-		
-		boolean ret=false;
+
+		boolean ret = false;
 		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager entityManager = entityFactoria.createEntityManager();
 		entityManager.getTransaction().begin();
+
+		Query query = entityManager.createQuery("SELECT x FROM Plataforma x WHERE x.tipo = ?1");
+		query.setParameter(1, datos.getTipo());
+		Plataforma nuevo;
 		
-			//	Plataforma pl=  entityManager.find(Plataforma.class, datos.getTipo());
-			Query query = entityManager.createQuery("SELECT x FROM Plataforma x WHERE x.tipo = ?1");
-			query.setParameter(1,datos.getTipo());
-			Plataforma nuevo;
-			if(query.getResultList().isEmpty()){ //si es vacia el resultado introduzco plataforma
-				nuevo= new Plataforma();
-				nuevo.setTipo(datos.getTipo());
-				entityManager.persist(nuevo);
-				entityManager.getTransaction().commit();
-				ret=true;
-				datos.setID(nuevo.getID());
-			}
-			else
-				entityManager.getTransaction().rollback();
-		
-		
-		if(!ret)
+		if (query.getResultList().isEmpty()) { // si es vacia el resultado
+												// introduzco plataforma
+			nuevo = new Plataforma();
+			nuevo.setTipo(datos.getTipo());
+			entityManager.persist(nuevo);
+			entityManager.getTransaction().commit();
+			ret = true;
+			datos.setID(nuevo.getID());
+		} else
+			entityManager.getTransaction().rollback();
+
+		if (!ret)
 			throw new commandException("Ya existe esa plataforma.");
 
 		entityManager.close();
-		entityFactoria.close();			
+		entityFactoria.close();
 	}
 
 	@Override

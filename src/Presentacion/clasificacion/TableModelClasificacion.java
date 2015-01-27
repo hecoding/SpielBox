@@ -8,13 +8,8 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import Negocio.clasificacion.TransferClasificacion;
+import Negocio.plataforma.TransferPlataforma;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author Héctor
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
 public class TableModelClasificacion extends AbstractTableModel {
 	/**
 	 * 
@@ -23,7 +18,7 @@ public class TableModelClasificacion extends AbstractTableModel {
 
 	private ArrayList<TransferClasificacion> content; //para mantener una copia de la memoria
 
-	String[] columnNames = { "Dificultad"};
+	String[] columnNames = { "ID", "Dificultad"};
 
 	public TableModelClasificacion() {
 		content = new ArrayList<TransferClasificacion>();
@@ -84,6 +79,15 @@ public class TableModelClasificacion extends AbstractTableModel {
 
 	public void setValue(TransferClasificacion datos) {
 		content.add(datos);
+		fireTableDataChanged();
+	}
+	
+	public void modify(TransferClasificacion datos){
+		for(int i=0; i < content.size(); i++){
+			if(content.get(i).getID().equals(datos.getID()))
+				content.set(i, datos);
+		}
+		
 		fireTableDataChanged();
 	}
 }

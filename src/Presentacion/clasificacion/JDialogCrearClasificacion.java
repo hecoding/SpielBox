@@ -87,7 +87,6 @@ public class JDialogCrearClasificacion extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				TransferClasificacion nuevaClasificacion = new TransferClasificacion();
-				nuevaClasificacion.setID(Generador.generaIds());
 				nuevaClasificacion.setDificultad(jTextFieldDificultad.getText());
 				
 				ControladorAplicacion.getInstance().accionCommand(Eventos.CREAR_CLASIFICACION, nuevaClasificacion);

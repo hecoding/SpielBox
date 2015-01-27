@@ -7,7 +7,7 @@ public class TransferPrograma {
 	private Float version;
 	private String requisitos;
 	private String funcionalidad;
-	private Float precio;
+	protected Float precio;
 
 	public String getNombre() {
 		

@@ -3,15 +3,16 @@ package Negocio.clasificacion;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import Negocio.programa.Programa;
-import Presentacion.controlador.Generador;
 
 @Entity
 public class Clasificacion {
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer ID;
 	private String dificultad;
 	
@@ -19,10 +20,12 @@ public class Clasificacion {
 	private Collection <Programa> programas;
 	
 	public Clasificacion() {
-		this.ID = Generador.generaIds();
+		
+		//this.ID = Generador.generaIds();
 	}
 	
 	public Integer getID() {
+		
 		return this.ID;
 	}
 
@@ -33,5 +36,13 @@ public class Clasificacion {
 
 	public void setDificultad(String dificultad) {
 		this.dificultad = dificultad;
+	}
+	
+	public Collection<Programa> getProgramas() {
+		return this.programas;
+	}
+
+	public void setAsociacion (Collection<Programa> programas) {
+		this.programas = programas;
 	}
 }

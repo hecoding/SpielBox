@@ -1,40 +1,26 @@
 package Presentacion.controlador.imp;
 import java.util.ArrayList;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 
 import Negocio.biblioteca.TransferBiblioteca;
+import Negocio.clasificacion.TransferClasificacion;
 import Negocio.plataforma.TransferPlataforma;
+import Negocio.programa.TransferPrograma;
 import Negocio.usuario.TransferCliente;
 import Negocio.usuario.TransferDesarrollador;
 import Negocio.usuario.TransferUsuario;
 import Negocio.videojuego.TransferVideojuego;
-import Presentacion.biblioteca.JDialogMostrarBiblioteca;
 import Presentacion.biblioteca.JPanelBiblioteca;
-import Presentacion.biblioteca.JPanelBiblioteca.TableModelBiblioteca;
+import Presentacion.clasificacion.JPanelClasificacion;
 import Presentacion.controlador.Dispatcher;
 import Presentacion.controlador.Eventos;
-import Presentacion.controlador.comandos.plataforma.CommandAnadirProgramaPlataforma;
-import Presentacion.controlador.comandos.plataforma.CommandBorrarProgramaPlataforma;
-import Presentacion.controlador.comandos.plataforma.CommandCrearPlataforma;
-import Presentacion.controlador.comandos.plataforma.CommandEliminarPlataforma;
-import Presentacion.controlador.comandos.plataforma.CommandModificarPlataforma;
-import Presentacion.controlador.comandos.plataforma.CommandMostrarPlataforma;
-import Presentacion.controlador.comandos.plataforma.CommandMostrarPlataformas;
 import Presentacion.plataforma.JPanelPlataforma;
+import Presentacion.programa.JPanelPrograma;
 import Presentacion.usuario.JPanelUsuarios;
-import Presentacion.videojuego.JDialogMostrarVideojuego;
 import Presentacion.videojuego.JPanelVideojuego;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author Héctor
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
 public class DispatcherImp extends Dispatcher {
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -165,15 +151,15 @@ public class DispatcherImp extends Dispatcher {
         break;  
         
 		case Eventos.CREAR_CLASIFICACION:
-			JOptionPane.showMessageDialog(null,"Crear");
+			JPanelClasificacion.getModelo().setValue ((TransferClasificacion) datos);
 		break;
 		
 		case Eventos.ELIMINAR_CLASIFICACION:
-			JOptionPane.showMessageDialog(null,"Eliminar");
+			JPanelClasificacion.getModelo().removeRow((TransferClasificacion) datos);
 		break;
 		
 		case Eventos.MODIFICAR_CLASIFICACION:
-			JOptionPane.showMessageDialog(null,"Modificar");
+			JPanelClasificacion.getModelo().modify((TransferClasificacion)datos);
 		break;
 		
 		case Eventos.MOSTRAR_CLASIFICACION:
@@ -181,18 +167,19 @@ public class DispatcherImp extends Dispatcher {
 		break;
 		
 		case Eventos.MOSTRAR_CLASIFICACIONES:
+			JPanelClasificacion.getModelo().setValue((ArrayList<TransferClasificacion>) datos);
 		break;
 		
 		case Eventos.CREAR_PROGRAMA:
-			JOptionPane.showMessageDialog(null,"Crear");
+			JPanelPrograma.getModelo().setValue((TransferPrograma)datos);
 		break;
 		
 		case Eventos.ELIMINAR_PROGRAMA:
-			JOptionPane.showMessageDialog(null,"Eliminar");
+			JPanelPrograma.getModelo().removeRow((TransferPrograma) datos);
 		break;
 		
 		case Eventos.MODIFICAR_PROGRAMA:
-			JOptionPane.showMessageDialog(null,"Modificar");
+			JPanelPrograma.getModelo().modify((TransferPrograma)datos);
 		break;
 		
 		case Eventos.MOSTRAR_PROGRAMA:
@@ -200,6 +187,7 @@ public class DispatcherImp extends Dispatcher {
 		break;
 		
 		case Eventos.MOSTRAR_PROGRAMAS:
+			JPanelPrograma.getModelo().setValue((ArrayList<TransferPrograma>) datos);
 		break;
         
         

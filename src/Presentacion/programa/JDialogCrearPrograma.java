@@ -53,8 +53,8 @@ public class JDialogCrearPrograma extends JDialog {
         setTitle("Crear Programa");
 
         // Código propio
-        jLabelPrecio.setVisible(false);
-        jTextFieldPrecioPrograma.setVisible(false);
+        jLabelPrecio.setVisible(true);
+        jTextFieldPrecioPrograma.setVisible(true);
         // Hasta aquí
         
         jLabelNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -67,7 +67,7 @@ public class JDialogCrearPrograma extends JDialog {
         jLabelRequisitos.setText("Requisitos");
 
         jLabelFuncionalidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFuncionalidad.setText("Funcionalidadname");
+        jLabelFuncionalidad.setText("Funcionalidad");
 
         jLabelPrecio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPrecio.setText("Precio");
@@ -181,17 +181,16 @@ public class JDialogCrearPrograma extends JDialog {
 						nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
 						nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
 						nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
-						((TransferProgramaPago) nuevoPrograma).setPrecio(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
+						nuevoPrograma.setPrecio(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
 					} else {
 						nuevoPrograma = new TransferProgramaAlquiler();
 						nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
 						nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
 						nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
 						nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
-						((TransferProgramaAlquiler) nuevoPrograma).setPrecio(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
+						nuevoPrograma.setPrecio(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
 					}
 					
-					nuevoPrograma.setID(Generador.generaIds());
 					ControladorAplicacion.getInstance().accionCommand(Eventos.CREAR_PROGRAMA, nuevoPrograma);
 					setVisible(false);
 				}
