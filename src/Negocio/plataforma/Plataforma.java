@@ -58,12 +58,6 @@ public class Plataforma {
 		tipo=tipo2;
 	}
 
-
-	public void setId(int i) {
-		// TODO Auto-generated method stub
-		ID=i;
-	}
-
 	public Collection<ProgramaPlataforma> getAsociacion() {
 		return asociacion;
 	}
