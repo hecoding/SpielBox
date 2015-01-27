@@ -28,13 +28,11 @@ public class SAPlataformaImp implements SAPlataforma {
 	@Override
 	public void crearPlataforma(TransferPlataforma datos) throws commandException {
 		// TODO Auto-generated method stub
-		
 		boolean ret=false;
 		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager entityManager = entityFactoria.createEntityManager();
 		entityManager.getTransaction().begin();
 		
-			//	Plataforma pl=  entityManager.find(Plataforma.class, datos.getTipo());
 			Query query = entityManager.createQuery("SELECT x FROM Plataforma x WHERE x.tipo = ?1");
 			query.setParameter(1,datos.getTipo());
 			Plataforma nuevo;
@@ -58,15 +56,33 @@ public class SAPlataformaImp implements SAPlataforma {
 	}
 
 	@Override
-	public void modificarPlataforma(TransferPlataforma datos) {
+	public void modificarPlataforma(TransferPlataforma datos) throws commandException {
 		// TODO Auto-generated method stub
+		boolean ret=false;
 		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager entityManager = entityFactoria.createEntityManager();
 		entityManager.getTransaction().begin();
-		Plataforma modPla = entityManager.find(Plataforma.class, datos.getID());
-		modPla.setTipo(datos.getTipo());
-		entityManager.merge(modPla);
-		entityManager.getTransaction().commit();
+		
+			Query query = entityManager.createQuery("SELECT x FROM Plataforma x WHERE x.tipo = ?1");
+			query.setParameter(1,datos.getTipo());
+			if(query.getResultList().isEmpty()){ //si es vacia el resultado introduzco plataforma
+				Plataforma modPla = entityManager.find(Plataforma.class, datos.getID());
+				entityManager.lock(modPla, LockModeType.PESSIMISTIC_WRITE);
+				modPla.setTipo(datos.getTipo());
+				entityManager.merge(modPla);
+				entityManager.getTransaction().commit();
+				ret=true;
+			}
+			else{
+				Plataforma modPla = entityManager.find(Plataforma.class, datos.getID());
+				//lo busco para actualizar el transfer de la JTable (sino lo hago se pone el transfer que envió y no el que esta en BD
+				datos.setTipo(modPla.getTipo());
+				entityManager.getTransaction().rollback();
+			}
+			
+		if(!ret)
+			throw new commandException("Ya existe esa plataforma.");
+		
 		entityManager.close();
 		entityFactoria.close();
 	}
@@ -101,9 +117,8 @@ public class SAPlataformaImp implements SAPlataforma {
 		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager entityManager = entityFactoria.createEntityManager();
 		entityManager.getTransaction().begin();
-		System.err.println(datos.getID());
+
 		Plataforma delPal = entityManager.find(Plataforma.class, datos.getID());
-		System.err.println(delPal.getTipo());
 		entityManager.remove(delPal);
 		
 		entityManager.getTransaction().commit();

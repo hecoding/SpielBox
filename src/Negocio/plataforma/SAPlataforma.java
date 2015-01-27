@@ -28,9 +28,10 @@ public interface SAPlataforma {
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
+	 * @throws commandException 
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void modificarPlataforma(TransferPlataforma datos);
+	public void modificarPlataforma(TransferPlataforma datos) throws commandException;
 
 	/** 
 	 * <!-- begin-UML-doc -->
