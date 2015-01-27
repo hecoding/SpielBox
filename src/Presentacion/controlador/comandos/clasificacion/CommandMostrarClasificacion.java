@@ -4,11 +4,12 @@ import Negocio.clasificacion.SAClasificacion;
 import Negocio.clasificacion.TransferClasificacion;
 import Negocio.factoria.SAFactoria;
 import Presentacion.controlador.comandos.Command;
+import Presentacion.controlador.comandos.exceptions.commandException;
 
 public class CommandMostrarClasificacion implements Command {
 	
 	@Override
-	public Object execute(Object datos) {
+	public Object execute(Object datos) throws commandException {
 		SAClasificacion sa = SAFactoria.getInstancia().nuevoServicioClasificacion();
 		
 		sa.mostrarClasificacion ((TransferClasificacion) datos);

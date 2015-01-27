@@ -1,4 +1,6 @@
 package Presentacion.controlador.imp;
+import javax.swing.JOptionPane;
+
 import Presentacion.controlador.ControladorAplicacion;
 /**
  * 
@@ -6,6 +8,7 @@ import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Dispatcher;
 import Presentacion.controlador.comandos.Command;
 import Presentacion.controlador.comandos.CommandFactoria;
+import Presentacion.controlador.comandos.exceptions.commandException;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -35,9 +38,15 @@ public class ControladorAplicacionImp extends ControladorAplicacion {
 		//Obtienes comando dependiendo del evento que haya sido generado en la vista
 		
 		Command c = CommandFactoria.getInstance().getCommand(evento);
-        Object retorno = c.execute(datos); //Puede contener un arrayList o contenedor para actualizar la vista con el Dispatcher
+        Object retorno;
+		try {
+			retorno = c.execute(datos);
+			Dispatcher.getInstance().dispatch(evento, retorno); // ACTUALIZA LA VISTA DEPENDIENDO DEL COMMANDO CORRESPONDIENTE
+		} catch (commandException e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
         
-        Dispatcher.getInstance().dispatch(evento, retorno); // ACTUALIZA LA VISTA DEPENDIENDO DEL COMMANDO CORRESPONDIENTE
 	}
 
 }

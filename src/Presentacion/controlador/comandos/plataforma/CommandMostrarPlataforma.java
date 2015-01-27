@@ -4,6 +4,7 @@
 package Presentacion.controlador.comandos.plataforma;
 
 import Presentacion.controlador.comandos.Command;
+import Presentacion.controlador.comandos.exceptions.commandException;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -14,7 +15,7 @@ import Presentacion.controlador.comandos.Command;
 public class CommandMostrarPlataforma implements Command {
 
 	@Override
-	public Object execute(Object datos) {
+	public Object execute(Object datos) throws commandException {
 		// TODO Auto-generated method stub
 		return null;
 	}

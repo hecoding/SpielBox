@@ -24,7 +24,7 @@ public class commandCrearUsuario implements Command {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object execute(Object datos) {
+	public Object execute(Object datos) throws commandException {
 		//en algunas funciones devolvemos o no datos.
 				SAUsuario service = SAFactoria.getInstancia().nuevoServicioUsuario();
 				try {

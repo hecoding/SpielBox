@@ -37,7 +37,7 @@ public class JDialogMostrarPlataforma extends JDialog {
         jTableVideojuegos.setModel(JPanelBiblioteca.getModeloVideojuegoBiblioteca());
 
         //////RELLENO DE TABLA///////
-        TransferPlataforma mostrarPls = (TransferPlataforma) JPanelPlataforma.getModelo().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
+        TransferPlataforma mostrarPls = (TransferPlataforma) JPanelPlataforma.getModel().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
 		
 		ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_PLATAFORMA, mostrarPls);
         //////////////////////////

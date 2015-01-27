@@ -3,7 +3,11 @@
  */
 package Presentacion.controlador.comandos.plataforma;
 
+import Negocio.factoria.SAFactoria;
+import Negocio.plataforma.SAPlataforma;
+import Negocio.plataforma.TransferPlataforma;
 import Presentacion.controlador.comandos.Command;
+import Presentacion.controlador.comandos.exceptions.commandException;
 
 
 /** 
@@ -15,9 +19,13 @@ import Presentacion.controlador.comandos.Command;
 public class CommandEliminarPlataforma implements Command {
 
 	@Override
-	public Object execute(Object datos) {
+	public Object execute(Object datos) throws commandException {
 		// TODO Auto-generated method stub
-		return null;
+		SAPlataforma service = SAFactoria.getInstancia().nuevoServicioPlataforma();
+
+		service.eliminarPlataforma((TransferPlataforma)datos);
+		
+		return (TransferPlataforma)datos; 
 	}
 
 }

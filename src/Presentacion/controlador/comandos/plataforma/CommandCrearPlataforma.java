@@ -3,14 +3,11 @@
  */
 package Presentacion.controlador.comandos.plataforma;
 
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 
 import Negocio.factoria.SAFactoria;
 import Negocio.plataforma.SAPlataforma;
 import Negocio.plataforma.TransferPlataforma;
-import Negocio.videojuego.SAVideojuego;
-import Negocio.videojuego.TransferVideojuego;
 import Presentacion.controlador.comandos.Command;
 import Presentacion.controlador.comandos.exceptions.commandException;
 
@@ -23,16 +20,12 @@ import Presentacion.controlador.comandos.exceptions.commandException;
 public class CommandCrearPlataforma implements Command {
 
 	@Override
-	public Object execute(Object datos) {
+	public Object execute(Object datos) throws commandException {
 		// TODO Auto-generated method stub
 		SAPlataforma service = SAFactoria.getInstancia().nuevoServicioPlataforma();
-		String ret="";
-		try {
-			ret= service.crearPlataforma((TransferPlataforma)datos);
-		} catch (commandException e) {
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(null, ret);
-		}
+
+		service.crearPlataforma((TransferPlataforma)datos);
+		
 		return (TransferPlataforma)datos; 
 	}
 }

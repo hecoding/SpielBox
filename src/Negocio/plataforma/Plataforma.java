@@ -11,7 +11,7 @@ import Negocio.programaPlataforma.ProgramaPlataforma;
 
 @Entity
 public class Plataforma {
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer ID;
 	
 	private String tipo;

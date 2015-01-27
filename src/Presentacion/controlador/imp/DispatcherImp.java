@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 
 import Negocio.biblioteca.TransferBiblioteca;
+import Negocio.plataforma.TransferPlataforma;
 import Negocio.usuario.TransferCliente;
 import Negocio.usuario.TransferDesarrollador;
 import Negocio.usuario.TransferUsuario;
@@ -23,6 +24,7 @@ import Presentacion.controlador.comandos.plataforma.CommandEliminarPlataforma;
 import Presentacion.controlador.comandos.plataforma.CommandModificarPlataforma;
 import Presentacion.controlador.comandos.plataforma.CommandMostrarPlataforma;
 import Presentacion.controlador.comandos.plataforma.CommandMostrarPlataformas;
+import Presentacion.plataforma.JPanelPlataforma;
 import Presentacion.usuario.JPanelUsuarios;
 import Presentacion.videojuego.JDialogMostrarVideojuego;
 import Presentacion.videojuego.JPanelVideojuego;
@@ -135,7 +137,7 @@ public class DispatcherImp extends Dispatcher {
         //////////////    Segunda Parte /////////////////////////////
         /////////////////////////////////////////////////////////////
 		case Eventos.CREAR_PLATAFORMA:
-        	JOptionPane.showMessageDialog(null, "CREAR");
+			JPanelPlataforma.getModel().setValue((TransferPlataforma)datos);
         break;
         
 		case Eventos.MODIFICAR_PLATAFORMA:
@@ -147,6 +149,7 @@ public class DispatcherImp extends Dispatcher {
         break;
         
 		case Eventos.MOSTRAR_PLATAFORMAS:
+			JPanelPlataforma.getModel().setValue((ArrayList<TransferPlataforma>) datos);
         break;
         
 		case Eventos.ELIMINAR_PLATAFORMA:

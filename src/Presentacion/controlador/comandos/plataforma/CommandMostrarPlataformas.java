@@ -3,7 +3,14 @@
  */
 package Presentacion.controlador.comandos.plataforma;
 
+import java.awt.List;
+import java.util.ArrayList;
+
+import Negocio.factoria.SAFactoria;
+import Negocio.plataforma.SAPlataforma;
+import Negocio.plataforma.TransferPlataforma;
 import Presentacion.controlador.comandos.Command;
+import Presentacion.controlador.comandos.exceptions.commandException;
 
 
 
@@ -17,8 +24,12 @@ public class CommandMostrarPlataformas implements Command {
 
 
 	@Override
-	public Object execute(Object datos) {
+	public Object execute(Object datos) throws commandException {
 		// TODO Auto-generated method stub
-		return null;
+		SAPlataforma service = SAFactoria.getInstancia().nuevoServicioPlataforma();
+		
+		ArrayList<TransferPlataforma> ret = service.mostrarPlataformas();
+
+		return ret;
 	}
 }

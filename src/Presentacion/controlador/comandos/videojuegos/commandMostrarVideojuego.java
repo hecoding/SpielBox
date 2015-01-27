@@ -22,7 +22,7 @@ public class commandMostrarVideojuego implements Command {
 	 * @throws commandException 
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object execute(Object datos)  {
+	public Object execute(Object datos) throws commandException  {
 		SAVideojuego service = SAFactoria.getInstancia().nuevoServicioVideojuego();
 		
 		TransferVideojuego ret = null;

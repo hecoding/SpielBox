@@ -4,6 +4,7 @@ import Negocio.clasificacion.SAClasificacion;
 import Negocio.clasificacion.TransferClasificacion;
 import Negocio.factoria.SAFactoria;
 import Presentacion.controlador.comandos.Command;
+import Presentacion.controlador.comandos.exceptions.commandException;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -14,7 +15,7 @@ import Presentacion.controlador.comandos.Command;
 public class CommandCrearClasificacion implements Command {
 
 	@Override
-	public Object execute(Object datos) {
+	public Object execute(Object datos) throws commandException {
 		SAClasificacion sa = SAFactoria.getInstancia().nuevoServicioClasificacion();
 		TransferClasificacion p =(TransferClasificacion) datos;
 		sa.crearClasificacion((TransferClasificacion) datos);

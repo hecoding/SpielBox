@@ -40,17 +40,17 @@ public class TableModelPlataforma extends AbstractTableModel {
 	}
 
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		TransferPlataforma juego = content.get(rowIndex);
-      /*  Object value = juego.getID();//SIEMPRE DEVOLVEMOS EL CAMPO DE ID
+		TransferPlataforma plataforma = content.get(rowIndex);
+        Object value = plataforma.getID();//SIEMPRE DEVOLVEMOS EL CAMPO DE ID
         switch (columnIndex) {
             case 0:
-                value = juego.getID();
+                value = plataforma.getID();
                 break;
             case 1:
-                value = juego.getNombre();
+                value = plataforma.getTipo();
                 break;
-        }*/
-        return null;
+        }
+        return value;
 	}
 
 	public boolean isCellEditable(int fila, int col) {

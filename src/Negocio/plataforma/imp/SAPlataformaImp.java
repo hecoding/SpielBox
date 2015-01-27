@@ -5,16 +5,14 @@ package Negocio.plataforma.imp;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.*;
-
-
-
 import Negocio.plataforma.Plataforma;
 import Negocio.plataforma.SAPlataforma;
 import Negocio.plataforma.TransferPlataforma;
+import Negocio.programa.Programa;
 import Negocio.programa.TransferPrograma;
-import Negocio.programaPlataforma.ProgramaPlataforma;
 import Presentacion.controlador.comandos.exceptions.commandException;
 
 /** 
@@ -25,47 +23,38 @@ import Presentacion.controlador.comandos.exceptions.commandException;
  */
 public class SAPlataformaImp implements SAPlataforma {
 
+	
+
 	@Override
-	public String crearPlataforma(TransferPlataforma datos)
-			throws commandException {
+	public void crearPlataforma(TransferPlataforma datos) throws commandException {
 		// TODO Auto-generated method stub
 		
-		String mensaje;
+		boolean ret=false;
 		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager entityManager = entityFactoria.createEntityManager();
 		entityManager.getTransaction().begin();
 		
-		try{
 			//	Plataforma pl=  entityManager.find(Plataforma.class, datos.getTipo());
 			Query query = entityManager.createQuery("SELECT x FROM Plataforma x WHERE x.tipo = ?1");
 			query.setParameter(1,datos.getTipo());
-			
+			Plataforma nuevo;
 			if(query.getResultList().isEmpty()){ //si es vacia el resultado introduzco plataforma
-				System.out.println("Consulta vacia - Introduzco plataforma");
-				Plataforma nuevo;
-				if(datos.getTipo().equalsIgnoreCase("pepito"))
-					nuevo= new Plataforma(3212,datos.getTipo());
-				else
-					nuevo= new Plataforma(1234,datos.getTipo());
+				nuevo= new Plataforma();
+				nuevo.setTipo(datos.getTipo());
 				entityManager.persist(nuevo);
 				entityManager.getTransaction().commit();
+				ret=true;
+				datos.setID(nuevo.getID());
 			}
-			else{
-				System.out.println("Existe plataforma envio mensaje error");
+			else
 				entityManager.getTransaction().rollback();
-			}
-			
-		}catch(Exception e){
-			System.err.println("ENTRO EN LA EXCEPCION");
-			entityManager.getTransaction().rollback();
-		}
 		
+		
+		if(!ret)
+			throw new commandException("Ya existe esa plataforma.");
 
 		entityManager.close();
-		entityFactoria.close();	
-		
-		
-		return "OK";
+		entityFactoria.close();			
 	}
 
 	@Override
@@ -81,15 +70,42 @@ public class SAPlataformaImp implements SAPlataforma {
 	}
 
 	@Override
-	public void mostrarPlataformas(TransferPlataforma datos) {
+	public ArrayList<TransferPlataforma> mostrarPlataformas() {
 		// TODO Auto-generated method stub
+		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
+		EntityManager entityManager = entityFactoria.createEntityManager();
+		entityManager.getTransaction().begin();
 		
+		Query query = entityManager.createQuery("SELECT p FROM Plataforma p");
+		List<Object> pl = query.getResultList();
+		System.out.println(pl.size());
+		ArrayList<TransferPlataforma> plataformas = new ArrayList<TransferPlataforma>();
+		for(int i = 0; i < pl.size(); i++){
+			Plataforma p = (Plataforma) pl.get(i);
+			TransferPlataforma all = new TransferPlataforma();
+			all.setID(p.getID());
+			all.setTipo(p.getTipo());
+			plataformas.add(all);
+		}
+		
+		entityManager.close();
+		entityFactoria.close();
+		
+		return plataformas;
 	}
 
 	@Override
 	public void eliminarPlataforma(TransferPlataforma datos) {
 		// TODO Auto-generated method stub
+		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
+		EntityManager entityManager = entityFactoria.createEntityManager();
+		entityManager.getTransaction().begin();
+		System.err.println(datos.getID());
+		Plataforma delPal = entityManager.find(Plataforma.class, datos.getID());
+		entityManager.remove(delPal);
 		
+		entityManager.close();
+		entityFactoria.close();
 	}
 
 	@Override
@@ -105,10 +121,34 @@ public class SAPlataformaImp implements SAPlataforma {
 	}
 
 	@Override
-	public ArrayList<TransferPrograma> mostrarProgramasPlataforma(
+	public ArrayList<TransferPrograma> mostrarProgramasPlataforma( // NO ESTA HECHO OJOOOOOOOOOOOOOOOOOOOOOOOOOOO
 			TransferPlataforma datos) {
 		// TODO Auto-generated method stub
-		return null;
+		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
+		EntityManager entityManager = entityFactoria.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		Query query = entityManager.createQuery("SELECT x FROM Plataforma x WHERE x.tipo = ?1");
+		query.setParameter(1,datos.getTipo());
+		List<Object> pl = query.getResultList();
+		System.out.println(pl.size());
+		ArrayList<TransferPrograma> programas = new ArrayList<TransferPrograma>();
+		for(int i = 0; i < pl.size(); i++){
+			Programa p = (Programa) pl.get(i);
+			TransferPrograma all = new TransferPrograma();
+			all.setID(p.getID());
+			all.setFuncionalidad(p.getFuncionalidad());
+			all.setNombre(p.getNombre());
+			all.setPrecio(p.getPrecio());
+			all.setRequisitos(p.getRequisitos());
+			all.setVersion(p.getVersion());
+			programas.add(all);
+		}
+		
+		entityManager.close();
+		entityFactoria.close();
+		
+		return programas;
 	}
 
 

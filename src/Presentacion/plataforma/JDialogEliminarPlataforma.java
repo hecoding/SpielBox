@@ -68,7 +68,7 @@ public class JDialogEliminarPlataforma extends JDialog {
         jButtonEliminar.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				TransferPlataforma del = (TransferPlataforma) JPanelPlataforma.getModelo().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
+				TransferPlataforma del = (TransferPlataforma) JPanelPlataforma.getModel().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
 				
 				ControladorAplicacion.getInstance().accionCommand(Eventos.ELIMINAR_PLATAFORMA, del);
 				setVisible (false);

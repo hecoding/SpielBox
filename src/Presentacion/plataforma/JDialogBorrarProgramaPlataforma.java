@@ -39,7 +39,7 @@ public class JDialogBorrarProgramaPlataforma extends JDialog {
         jButtonEliminar.setText("Eliminar");
 
         //////RELLENO DE TABLA///////
-        TransferPlataforma proPla = (TransferPlataforma) JPanelPlataforma.getModelo().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
+        TransferPlataforma proPla = (TransferPlataforma) JPanelPlataforma.getModel().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
 		
 		ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_PLATAFORMA, proPla);
         //////////////////////////

@@ -1,4 +1,6 @@
 package Presentacion.controlador.comandos;
+
+import Presentacion.controlador.comandos.exceptions.commandException;
 /**
  * 
  */
@@ -16,6 +18,7 @@ public interface Command {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 * @param datos TODO
 	 * @return TODO
+	 * @throws commandException TODO
 	 */
-	public Object execute(Object datos);
+	public Object execute(Object datos) throws commandException;
 }

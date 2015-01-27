@@ -67,4 +67,10 @@ public class TransferPlataforma {
 	public TransferPlataforma() {
 
 	}
+
+
+	public void setID(Integer id2) {
+		// TODO Auto-generated method stub
+		ID=id2;
+	}
 }

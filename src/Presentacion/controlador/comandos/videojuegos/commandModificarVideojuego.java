@@ -23,7 +23,7 @@ public class commandModificarVideojuego implements Command {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object execute(Object datos) {
+	public Object execute(Object datos) throws commandException {
 		SAVideojuego service = SAFactoria.getInstancia().nuevoServicioVideojuego();
 		
 		try { //No HACE FALTA DEVOLVER ALGO PORQUE SI HUBIESE ALGO MAL PRIMERO SALTARIA LA EXCEPCION

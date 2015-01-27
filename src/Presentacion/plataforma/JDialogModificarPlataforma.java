@@ -48,7 +48,7 @@ public class JDialogModificarPlataforma extends JDialog{
         jButtonCancel.setText("Cancelar");
         
         ////RELLENO DE CAMPOS /////
-		TransferPlataforma rellenaDatos = (TransferPlataforma) JPanelPlataforma.getModelo().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
+		TransferPlataforma rellenaDatos = (TransferPlataforma) JPanelPlataforma.getModel().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
 		jTextFieldTipo.setText(rellenaDatos.getTipo());
         ///////////////////
         
@@ -89,7 +89,7 @@ public class JDialogModificarPlataforma extends JDialog{
         jButtonModificar.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				TransferPlataforma mod = (TransferPlataforma) JPanelPlataforma.getModelo().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());				
+				TransferPlataforma mod = (TransferPlataforma) JPanelPlataforma.getModel().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());				
 				mod.setTipo(jTextFieldTipo.getText());				
 				ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_CLASIFICACION, mod);
 				setVisible(false);

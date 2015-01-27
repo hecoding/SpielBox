@@ -7,6 +7,7 @@ import Negocio.factoria.SAFactoria;
 import Negocio.programa.SAPrograma;
 import Negocio.programa.TransferPrograma;
 import Presentacion.controlador.comandos.Command;
+import Presentacion.controlador.comandos.exceptions.commandException;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -17,7 +18,7 @@ import Presentacion.controlador.comandos.Command;
 public class CommandCrearPrograma implements Command {
 
 	@Override
-	public Object execute(Object datos) {
+	public Object execute(Object datos) throws commandException {
 		SAPrograma sa = SAFactoria.getInstancia().nuevoServicioPrograma();
 		
 		sa.crearPrograma ((TransferPrograma) datos);

@@ -36,7 +36,7 @@ public class JDialogAnadirProgramaPlataforma extends JDialog {
         jButtonAñadir.setText("Añadir");
 
         //////RELLENO DE TABLA///////
-        TransferPlataforma proPla = (TransferPlataforma) JPanelPlataforma.getModelo().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
+        TransferPlataforma proPla = (TransferPlataforma) JPanelPlataforma.getModel().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
 		
 		ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_PLATAFORMA, proPla);
         //////////////////////////

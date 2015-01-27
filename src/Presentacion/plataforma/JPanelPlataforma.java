@@ -2,6 +2,7 @@ package Presentacion.plataforma;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -11,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import Negocio.plataforma.TransferPlataforma;
+import Negocio.videojuego.TransferVideojuego;
 import Presentacion.biblioteca.JDialogAñadirVideojuegoBiblioteca;
 import Presentacion.biblioteca.JDialogCrearBiblioteca;
 import Presentacion.biblioteca.JDialogEliminarBiblioteca;
@@ -20,6 +23,9 @@ import Presentacion.biblioteca.JDialogMostrarBiblioteca;
 import Presentacion.biblioteca.JDialogQueryBiblioteca;
 import Presentacion.biblioteca.JPanelBiblioteca;
 import Presentacion.biblioteca.TableModelVideojuegoBiblioteca;
+import Presentacion.controlador.ControladorAplicacion;
+import Presentacion.controlador.Eventos;
+import Presentacion.videojuego.JPanelVideojuego.TableModelVideojuego;
 
 public class JPanelPlataforma extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -60,7 +66,7 @@ public class JPanelPlataforma extends JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePlataforma = new javax.swing.JTable();
         jButtonBorrarProgramaPlataforma = new javax.swing.JButton();
-        
+    
         modeloPlataforma = new TableModelPlataforma();
         modeloProgramaPlataforma = new TableModelProgramaPlataforma();
 
@@ -81,6 +87,11 @@ public class JPanelPlataforma extends JPanel {
         
         jScrollPane1.setViewportView(jTablePlataforma);
 
+        
+        jTablePlataforma.setModel(modeloPlataforma);
+        ArrayList<TransferPlataforma> content = new ArrayList<TransferPlataforma>();
+        ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_PLATAFORMAS, content); 
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -193,7 +204,7 @@ public class JPanelPlataforma extends JPanel {
     	return jTablePlataforma;
     }
 
-	public static TableModelPlataforma getModelo(){
+	public static TableModelPlataforma getModel(){
 		return modeloPlataforma;
 	}
 	public static TableModelProgramaPlataforma getModeloProgramaPlataforma(){
