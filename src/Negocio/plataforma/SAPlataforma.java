@@ -30,7 +30,7 @@ public interface SAPlataforma {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public String modificarPlataforma(TransferPlataforma datos);
+	public void modificarPlataforma(TransferPlataforma datos);
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -38,7 +38,7 @@ public interface SAPlataforma {
 	 * @return 
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void mostrarPlataforma(TransferPlataforma datos);
+	public ArrayList<TransferPrograma> mostrarPlataforma(TransferPlataforma datos);
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -68,12 +68,5 @@ public interface SAPlataforma {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void borrarProgramaPlataforma(TransferPlataforma datos);
-
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public ArrayList<TransferPrograma> mostrarProgramasPlataforma(TransferPlataforma datos);
 
 }

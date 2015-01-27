@@ -82,6 +82,15 @@ public class TableModelPlataforma extends AbstractTableModel {
 
 	public void setValue(TransferPlataforma datos) {
 		content.add(datos);
+		
+		fireTableDataChanged();
+	}
+	public void modify(TransferPlataforma datos){
+		
+		for(int i=0; i < content.size(); i++){
+			if(content.get(i).getID().equals(datos.getID()))
+				content.set(i, datos);
+		}
 		fireTableDataChanged();
 	}
 

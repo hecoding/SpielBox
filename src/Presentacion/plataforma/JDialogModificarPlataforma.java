@@ -91,7 +91,7 @@ public class JDialogModificarPlataforma extends JDialog{
 			public void actionPerformed(ActionEvent arg0) {
 				TransferPlataforma mod = (TransferPlataforma) JPanelPlataforma.getModel().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());				
 				mod.setTipo(jTextFieldTipo.getText());				
-				ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_CLASIFICACION, mod);
+				ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_PLATAFORMA, mod);
 				setVisible(false);
 			}
         });

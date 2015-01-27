@@ -58,15 +58,17 @@ public class SAPlataformaImp implements SAPlataforma {
 	}
 
 	@Override
-	public String modificarPlataforma(TransferPlataforma datos) {
+	public void modificarPlataforma(TransferPlataforma datos) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void mostrarPlataforma(TransferPlataforma datos) {
-		// TODO Auto-generated method stub
-		
+		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
+		EntityManager entityManager = entityFactoria.createEntityManager();
+		entityManager.getTransaction().begin();
+		Plataforma modPla = entityManager.find(Plataforma.class, datos.getID());
+		modPla.setTipo(datos.getTipo());
+		entityManager.merge(modPla);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		entityFactoria.close();
 	}
 
 	@Override
@@ -78,7 +80,6 @@ public class SAPlataformaImp implements SAPlataforma {
 		
 		Query query = entityManager.createQuery("SELECT p FROM Plataforma p");
 		List<Object> pl = query.getResultList();
-		System.out.println(pl.size());
 		ArrayList<TransferPlataforma> plataformas = new ArrayList<TransferPlataforma>();
 		for(int i = 0; i < pl.size(); i++){
 			Plataforma p = (Plataforma) pl.get(i);
@@ -102,7 +103,10 @@ public class SAPlataformaImp implements SAPlataforma {
 		entityManager.getTransaction().begin();
 		System.err.println(datos.getID());
 		Plataforma delPal = entityManager.find(Plataforma.class, datos.getID());
+		System.err.println(delPal.getTipo());
 		entityManager.remove(delPal);
+		
+		entityManager.getTransaction().commit();
 		
 		entityManager.close();
 		entityFactoria.close();
@@ -121,7 +125,7 @@ public class SAPlataformaImp implements SAPlataforma {
 	}
 
 	@Override
-	public ArrayList<TransferPrograma> mostrarProgramasPlataforma( // NO ESTA HECHO OJOOOOOOOOOOOOOOOOOOOOOOOOOOO
+	public ArrayList<TransferPrograma> mostrarPlataforma( // NO ESTA HECHO OJOOOOOOOOOOOOOOOOOOOOOOOOOOO
 			TransferPlataforma datos) {
 		// TODO Auto-generated method stub
 		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
@@ -131,7 +135,6 @@ public class SAPlataformaImp implements SAPlataforma {
 		Query query = entityManager.createQuery("SELECT x FROM Plataforma x WHERE x.tipo = ?1");
 		query.setParameter(1,datos.getTipo());
 		List<Object> pl = query.getResultList();
-		System.out.println(pl.size());
 		ArrayList<TransferPrograma> programas = new ArrayList<TransferPrograma>();
 		for(int i = 0; i < pl.size(); i++){
 			Programa p = (Programa) pl.get(i);

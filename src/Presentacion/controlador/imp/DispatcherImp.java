@@ -141,7 +141,7 @@ public class DispatcherImp extends Dispatcher {
         break;
         
 		case Eventos.MODIFICAR_PLATAFORMA:
-			JOptionPane.showMessageDialog(null, "modicar");
+			JPanelPlataforma.getModel().modify((TransferPlataforma)datos);
         break;
         
 		case Eventos.MOSTRAR_PLATAFORMA:
@@ -153,7 +153,7 @@ public class DispatcherImp extends Dispatcher {
         break;
         
 		case Eventos.ELIMINAR_PLATAFORMA:
-			JOptionPane.showMessageDialog(null, "delete");
+			JPanelPlataforma.getModel().removeRow((TransferPlataforma) datos);
         break;
         
 		case Eventos.AÑADIR_PROGRAMA_PLATAFORMA:
