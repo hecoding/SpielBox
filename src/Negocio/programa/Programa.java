@@ -9,6 +9,7 @@ import Negocio.clasificacion.Clasificacion;
 import Negocio.programaPlataforma.ProgramaPlataforma;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Programa {
 	@Id
 	private Integer ID;

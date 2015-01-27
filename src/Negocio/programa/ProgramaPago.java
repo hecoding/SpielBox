@@ -3,12 +3,15 @@
  */
 package Negocio.programa;
 
+import javax.persistence.Entity;
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
  * @author Héctor
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
+@Entity
 public class ProgramaPago extends Programa {
 	/** 
 	 * <!-- begin-UML-doc -->
