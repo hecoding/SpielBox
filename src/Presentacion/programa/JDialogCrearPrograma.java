@@ -196,6 +196,9 @@ public class JDialogCrearPrograma extends JDialog {
 				if(!jRadioButtonPago.isSelected() && !jRadioButtonAlquiler.isSelected()) {
 					JOptionPane.showMessageDialog(new JPanel(),"No se puede crear el Programa sin seleccionar Pago o Alquiler");
 				} else {
+					if (jComboBoxClasificacion.getSelectedItem() == null)
+						throw new IllegalArgumentException();
+					
 					if(jRadioButtonPago.isSelected()) {
 						nuevoPrograma = new TransferProgramaPago();
 						nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());

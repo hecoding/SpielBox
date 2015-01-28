@@ -1,6 +1,8 @@
 package Presentacion.programa;
 
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 import Negocio.programa.TransferProgramaAlquiler;
 import Negocio.programa.TransferProgramaPago;
 import Presentacion.clasificacion.JPanelClasificacion;
@@ -154,28 +156,36 @@ public class JDialogModificarPrograma extends JDialog {
         pack();
     }// </editor-fold>                        
 
-    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {                                             
-    				
-    	if(JPanelPrograma.getModelo().getItem(JPanelPrograma.getTablePrograma().getSelectedRow()).getClass().equals(TransferProgramaPago.class)) {
-			TransferProgramaPago nuevoPrograma = new TransferProgramaPago();
-			nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
-			nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
-			nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
-			nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
-			nuevoPrograma.setClasificacion(jComboBoxClasificacion.getSelectedItem().toString());
-			((TransferProgramaPago)nuevoPrograma).setPrecioFinal(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
-			ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_PROGRAMA, nuevoPrograma);
-			setVisible(false);
-		} else {
-			TransferProgramaAlquiler nuevoPrograma = new TransferProgramaAlquiler();
-			nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
-			nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
-			nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
-			nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
-			nuevoPrograma.setClasificacion(jComboBoxClasificacion.getSelectedItem().toString());
-			((TransferProgramaAlquiler)nuevoPrograma).setPrecioHora(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
-			ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_PROGRAMA, nuevoPrograma);
-			setVisible(false);
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {
+    	try {
+			if (jComboBoxClasificacion.getSelectedItem() == null)
+				throw new IllegalArgumentException();
+			
+			if(JPanelPrograma.getModelo().getItem(JPanelPrograma.getTablePrograma().getSelectedRow()).getClass().equals(TransferProgramaPago.class)) {
+				TransferProgramaPago nuevoPrograma = new TransferProgramaPago();
+				nuevoPrograma.setID(JPanelPrograma.getModelo().getItem(JPanelPrograma.getTablePrograma().getSelectedRow()).getID());
+				nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
+				nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
+				nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
+				nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
+				nuevoPrograma.setClasificacion(jComboBoxClasificacion.getSelectedItem().toString());
+				((TransferProgramaPago)nuevoPrograma).setPrecioFinal(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
+				ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_PROGRAMA, nuevoPrograma);
+				setVisible(false);
+			} else {
+				TransferProgramaAlquiler nuevoPrograma = new TransferProgramaAlquiler();
+				nuevoPrograma.setID(JPanelPrograma.getModelo().getItem(JPanelPrograma.getTablePrograma().getSelectedRow()).getID());
+				nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
+				nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
+				nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
+				nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
+				nuevoPrograma.setClasificacion(jComboBoxClasificacion.getSelectedItem().toString());
+				((TransferProgramaAlquiler)nuevoPrograma).setPrecioHora(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
+				ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_PROGRAMA, nuevoPrograma);
+				setVisible(false);
+			}
+		} catch (IllegalArgumentException e) {
+			JOptionPane.showMessageDialog(null, "Datos introducidos en los campos no válidos");
 		}
     }                                            
 
