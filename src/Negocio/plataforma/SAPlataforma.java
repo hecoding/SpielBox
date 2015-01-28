@@ -59,7 +59,7 @@ public interface SAPlataforma {
 
 
 	void anadirProgramaPlataforma(TransferPlataforma platform,
-			TransferPrograma program);
+			TransferPrograma program, Integer integer) throws commandException;
 
 	void borrarProgramaPlataforma(TransferPlataforma platform,
 			TransferPrograma program);

@@ -15,6 +15,7 @@ import Negocio.plataforma.TransferPlataforma;
 import Negocio.programa.Programa;
 import Negocio.programa.TransferPrograma;
 import Negocio.programaPlataforma.ProgramaPlataforma;
+import Negocio.programaPlataforma.ProgramaPlataformaId;
 import Presentacion.controlador.comandos.exceptions.commandException;
 
 /** 
@@ -136,25 +137,40 @@ public class SAPlataformaImp implements SAPlataforma {
 	}
 
 	@Override
-	public void anadirProgramaPlataforma(TransferPlataforma platform,TransferPrograma program) {
+	public void anadirProgramaPlataforma(TransferPlataforma platform,TransferPrograma program, Integer tam) throws commandException {
 		// TODO Auto-generated method stub
 		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager entityManager = entityFactoria.createEntityManager();
 		entityManager.getTransaction().begin();
-
+		boolean error=false;
 		Plataforma addPlat = entityManager.find(Plataforma.class, platform.getID());
 		Programa addProg = entityManager.find(Programa.class, program.getID());
-		if(addPlat != null){ //existe plataforma
-			ProgramaPlataforma pr = new ProgramaPlataforma();
-			pr.setPlataforma(addPlat);
-			pr.setPrograma(addProg);
-			entityManager.persist(pr);
-			
-			entityManager.getTransaction().commit();
+		if(addPlat != null){ //existe plataforma			
+			if(addProg != null){
+				ProgramaPlataformaId ids= new ProgramaPlataformaId();
+				ids.setPlataforma(platform.getID());
+				ids.setPrograma(program.getID());
+				ProgramaPlataforma search = entityManager.find(ProgramaPlataforma.class,ids);	
+				if(search == null){	//SINO EXISTE PROGRAMA EN PLATAFORMA			
+					ProgramaPlataforma prPl = new ProgramaPlataforma();				
+					prPl.setPlataforma(addPlat);
+					prPl.setPrograma(addProg);
+					prPl.setEspacioTotal(tam);
+					entityManager.persist(prPl);
+					entityManager.getTransaction().commit();
+					error=true; //todo ok
+				}else
+					entityManager.getTransaction().rollback();
+			}
+			else
+				entityManager.getTransaction().rollback();
 		}
 		else
 			entityManager.getTransaction().rollback();
 
+		if(!error)
+			throw new commandException("Ya existe esa programa en esa plataforma.");
+		
 		entityManager.close();
 		entityFactoria.close();
 	}
@@ -165,9 +181,24 @@ public class SAPlataformaImp implements SAPlataforma {
 		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager entityManager = entityFactoria.createEntityManager();
 		entityManager.getTransaction().begin();
-		
-		
-		
+
+		Plataforma delPlat = entityManager.find(Plataforma.class, platform.getID());
+		Programa delProg = entityManager.find(Programa.class, program.getID());
+		if(delPlat != null){ //existe plataforma			
+			if(delProg != null){ //existe programa
+				ProgramaPlataformaId ids= new ProgramaPlataformaId();
+				ids.setPlataforma(platform.getID());
+				ids.setPrograma(program.getID());
+				ProgramaPlataforma prPl = entityManager.find(ProgramaPlataforma.class,ids);				
+				entityManager.remove(prPl);
+				entityManager.getTransaction().commit();
+			}
+			else
+				entityManager.getTransaction().rollback();
+		}
+		else
+			entityManager.getTransaction().rollback();
+
 		entityManager.close();
 		entityFactoria.close();
 	}
@@ -180,16 +211,16 @@ public class SAPlataformaImp implements SAPlataforma {
 		EntityManager entityManager = entityFactoria.createEntityManager();
 		entityManager.getTransaction().begin();
 
-		
+
 		Query query = entityManager.createNativeQuery("SELECT PROGRAMA_ID FROM programaplataforma WHERE PLATAFORMA_ID =?1");
 		query.setParameter(1,datos.getID());
-	
+
 		List<Object> pl = query.getResultList();
 		ArrayList<TransferPrograma> programas = new ArrayList<TransferPrograma>();		
 		for(int i = 0; i < pl.size(); i++){
 			Integer primaryKey= Integer.parseInt(pl.get(i).toString());
 			Programa p = entityManager.find(Programa.class, primaryKey);
-		
+
 			TransferPrograma all = new TransferPrograma();
 			all.setID(p.getID());
 			all.setFuncionalidad(p.getFuncionalidad());
@@ -204,8 +235,5 @@ public class SAPlataformaImp implements SAPlataforma {
 
 		return programas;
 	}
-
-
-
 
 }
