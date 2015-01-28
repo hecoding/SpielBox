@@ -1,13 +1,7 @@
 package Presentacion.programa;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
-
-import Negocio.clasificacion.TransferClasificacion;
-import Negocio.programa.TransferPrograma;
+import Negocio.programa.TransferProgramaAlquiler;
 import Negocio.programa.TransferProgramaPago;
 import Presentacion.clasificacion.JPanelClasificacion;
 import Presentacion.controlador.ControladorAplicacion;
@@ -23,162 +17,195 @@ public class JDialogModificarPrograma extends JDialog {
 		initComponents();
 	}
 
-	private void initComponents() {
-		// TODO Auto-generated method stub
-		jLabelNombre = new javax.swing.JLabel();
+    private void initComponents() {
+    	
+    	this.setVisible(true);
+        jLabelNombre = new javax.swing.JLabel();
         jLabelVersion = new javax.swing.JLabel();
         jLabelRequisitos = new javax.swing.JLabel();
+        jLabelClasificacion = new javax.swing.JLabel();
         jLabelFuncionalidad = new javax.swing.JLabel();
         jLabelPrecio = new javax.swing.JLabel();
-        jLabelClasificacion = new javax.swing.JLabel();
         jTextFieldNombrePrograma = new javax.swing.JTextField();
         jTextFieldVersionPrograma = new javax.swing.JTextField();
         jTextFieldRequisitosPrograma = new javax.swing.JTextField();
+        jTextFieldClasificacion = new javax.swing.JTextField();
         jTextFieldFuncionalidadPrograma = new javax.swing.JTextField();
         jTextFieldPrecioPrograma = new javax.swing.JTextField();
-        jTextFieldClasificacion = new javax.swing.JTextField();
-        jButtonModificar = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
+        jButtonModificar = new javax.swing.JButton();
+        jComboBoxClasificacion = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Modificar Programa");
 
-        // Hasta aquí
-        
-        jLabelNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelNombre.setText("Nombre");
 
-        jLabelVersion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelVersion.setText("Version");
 
-        jLabelRequisitos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelRequisitos.setText("Requisitos");
 
-        jLabelFuncionalidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFuncionalidad.setText("Funcionalidad");
-
-        jLabelPrecio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelPrecio.setText("Precio");
-        
-        jLabelClasificacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelClasificacion.setText("Clasificacion");
 
-        jButtonModificar.setText("Modificar");
+        jLabelFuncionalidad.setText("Funcionalidad");
 
+        jLabelPrecio.setText("Precio");
+        
+       
+        
         jButtonCancel.setText("Cancelar");
+        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelActionPerformed(evt);
+            }
+        });
+
+        jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
+
+        jComboBoxClasificacion.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[]{}));
+
+    	for(int i = 0; i < JPanelClasificacion.getModelo().getRowCount(); ++i) {
+       		jComboBoxClasificacion.addItem(JPanelClasificacion.getModelo().getValueAt(i, 1).toString());
+       	}
+        
+
+        jComboBoxClasificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxClasificacionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelPrecio)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabelNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelVersion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelRequisitos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelFuncionalidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelClasificacion, javax.swing.GroupLayout.Alignment.TRAILING)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldNombrePrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldVersionPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldPrecioPrograma)
-                            .addComponent(jTextFieldRequisitosPrograma)
-                            .addComponent(jTextFieldFuncionalidadPrograma)
-                            .addComponent(jTextFieldClasificacion))
-                        .addGap(60, 60, 60)
+                            .addComponent(jLabelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonCancel, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(68, 68, 68))
+                            .addComponent(jLabelVersion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelRequisitos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelClasificacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelFuncionalidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelPrecio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldNombrePrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldVersionPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldRequisitosPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldFuncionalidadPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldPrecioPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(38, 38, 38))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBoxClasificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelNombre)
-                            .addComponent(jTextFieldNombrePrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelVersion)
-                            .addComponent(jTextFieldVersionPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelRequisitos)
-                            .addComponent(jTextFieldRequisitosPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelClasificacion)
-                            .addComponent(jTextFieldClasificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
                         .addComponent(jButtonModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonCancel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelFuncionalidad)
-                    .addComponent(jTextFieldFuncionalidadPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNombrePrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelPrecio)
-                    .addComponent(jTextFieldPrecioPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75))
+                    .addComponent(jLabelVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldVersionPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldRequisitosPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelClasificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxClasificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelFuncionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldFuncionalidadPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldPrecioPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
-        
-        jButtonModificar.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-			try {
-					TransferPrograma nuevoPrograma = (TransferPrograma) JPanelPrograma.getModelo().getItem(JPanelPrograma.getTablePrograma().getSelectedRow());
-					nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
-					nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
-					nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
-					nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
-					nuevoPrograma.setPrecio(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
-					nuevoPrograma.setClasificacion(""+jTextFieldClasificacion.getText());
-					ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_PROGRAMA, nuevoPrograma);
-					setVisible(false);
-			} catch(IllegalArgumentException e) {
-				JOptionPane.showMessageDialog(null, "Datos introducidos en los campos no válidos");
-			}
-			}
-        });
-        jButtonCancel.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				setVisible(false);
-			}
-        });
-        //////////////////////////////////////////////////////
-        this.setVisible(true);
-        setLocationRelativeTo(null);
+
         pack();
-	}
-	
+    }// </editor-fold>                        
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    				
+    	if(JPanelPrograma.getModelo().getItem(JPanelPrograma.getTablePrograma().getSelectedRow()).getClass().equals(TransferProgramaPago.class)) {
+			TransferProgramaPago nuevoPrograma = new TransferProgramaPago();
+			nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
+			nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
+			nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
+			nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
+			nuevoPrograma.setClasificacion(jComboBoxClasificacion.getSelectedItem().toString());
+			((TransferProgramaPago)nuevoPrograma).setPrecioFinal(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
+			ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_PROGRAMA, nuevoPrograma);
+			setVisible(false);
+		} else {
+			TransferProgramaAlquiler nuevoPrograma = new TransferProgramaAlquiler();
+			nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
+			nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
+			nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
+			nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
+			nuevoPrograma.setClasificacion(jComboBoxClasificacion.getSelectedItem().toString());
+			((TransferProgramaAlquiler)nuevoPrograma).setPrecioHora(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
+			ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_PROGRAMA, nuevoPrograma);
+			setVisible(false);
+		}
+    }                                            
+
+    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        setVisible(false);
+    }                                             
+    
+    private void jComboBoxClasificacionActionPerformed(java.awt.event.ActionEvent evt) {                                                       
+    	jTextFieldClasificacion.setText(jComboBoxClasificacion.getSelectedItem().toString());
+    } 
+
+    /**
+     * @param args the command line arguments
+     */
+
+    // Variables declaration - do not modify                     
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonModificar;
-    private javax.swing.JLabel jLabelVersion;
-    private javax.swing.JLabel jLabelPrecio;
-    private javax.swing.JLabel jLabelRequisitos;
+    private javax.swing.JComboBox<String> jComboBoxClasificacion;
+    private javax.swing.JLabel jLabelClasificacion;
     private javax.swing.JLabel jLabelFuncionalidad;
     private javax.swing.JLabel jLabelNombre;
-    private javax.swing.JLabel jLabelClasificacion;
-    private javax.swing.JTextField jTextFieldVersionPrograma;
-    private javax.swing.JTextField jTextFieldPrecioPrograma;
-    private javax.swing.JTextField jTextFieldRequisitosPrograma;
+    private javax.swing.JLabel jLabelPrecio;
+    private javax.swing.JLabel jLabelRequisitos;
+    private javax.swing.JLabel jLabelVersion;
+    private javax.swing.JTextField jTextFieldClasificacion;
     private javax.swing.JTextField jTextFieldFuncionalidadPrograma;
     private javax.swing.JTextField jTextFieldNombrePrograma;
-    private javax.swing.JTextField jTextFieldClasificacion;
+    private javax.swing.JTextField jTextFieldPrecioPrograma;
+    private javax.swing.JTextField jTextFieldRequisitosPrograma;
+    private javax.swing.JTextField jTextFieldVersionPrograma;
+    // End of variables declaration                   
 }

@@ -1,5 +1,4 @@
 package Presentacion.controlador.imp;
-
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -189,7 +188,7 @@ public class DispatcherImp extends Dispatcher {
 		break;
 		
 		case Eventos.MOSTRAR_PROGRAMA:
-			JOptionPane.showMessageDialog(null,"Mostrar");
+			JOptionPane.showMessageDialog(null,datos.toString());
 		break;
 		
 		case Eventos.MOSTRAR_PROGRAMAS:

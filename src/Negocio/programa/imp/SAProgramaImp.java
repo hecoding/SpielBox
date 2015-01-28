@@ -49,18 +49,14 @@ public class SAProgramaImp implements SAPrograma {
 			BOPrograma.setRequisitos(datos.getRequisitos());
 			BOPrograma.setVersion(datos.getVersion());
 			
-			if(!datos.getClasificacion().equals("")) {
-				if(query2.getResultList().isEmpty()) {
-					em.clear();
-					em.getTransaction().rollback();
-					throw new commandException("No existe esa clasificacion");
-				} else {
-					Clasificacion c = (Clasificacion) query2.getSingleResult();
-					Clasificacion clasificacion = em.find(Clasificacion.class, c.getID());
-					BOPrograma.setClasificacion(clasificacion);
-				}
+			if(query2.getResultList().isEmpty()) {
+				em.clear();
+				em.getTransaction().rollback();
+				throw new commandException("No existe esa clasificacion");
 			} else {
-				BOPrograma.setClasificacion(null);
+				Clasificacion c = (Clasificacion) query2.getSingleResult();
+				Clasificacion clasificacion = em.find(Clasificacion.class, c.getID());
+				BOPrograma.setClasificacion(clasificacion);
 			}
 			em.persist(BOPrograma);
 			em.getTransaction().commit();

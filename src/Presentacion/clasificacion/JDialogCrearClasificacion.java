@@ -6,12 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Negocio.clasificacion.TransferClasificacion;
 import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Eventos;
-import Presentacion.controlador.Generador;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -86,11 +87,14 @@ public class JDialogCrearClasificacion extends JDialog {
         jButtonCrear.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				TransferClasificacion nuevaClasificacion = new TransferClasificacion();
-				nuevaClasificacion.setDificultad(jTextFieldDificultad.getText());
-				
-				ControladorAplicacion.getInstance().accionCommand(Eventos.CREAR_CLASIFICACION, nuevaClasificacion);
-				setVisible (false);
+				if(jTextFieldDificultad.getText().equals("")) {
+					JOptionPane.showMessageDialog(new JPanel(),"El campo no puede estar vacío");
+				} else {
+					TransferClasificacion nuevaClasificacion = new TransferClasificacion();
+					nuevaClasificacion.setDificultad(jTextFieldDificultad.getText());
+					ControladorAplicacion.getInstance().accionCommand(Eventos.CREAR_CLASIFICACION, nuevaClasificacion);
+					setVisible (false);
+				}
 			}
         });
         

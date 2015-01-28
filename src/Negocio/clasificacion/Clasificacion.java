@@ -2,6 +2,7 @@ package Negocio.clasificacion;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,7 @@ public class Clasificacion {
 	private Integer ID;
 	private String dificultad;
 	
-	@OneToMany(mappedBy = "clasificacion")
+	@OneToMany(mappedBy = "clasificacion", cascade ={CascadeType.REMOVE})
 	private Collection <Programa> programas;
 	
 	public Clasificacion() {
