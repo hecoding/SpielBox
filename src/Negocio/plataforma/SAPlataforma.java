@@ -56,18 +56,12 @@ public interface SAPlataforma {
 	 */
 	public void eliminarPlataforma(TransferPlataforma datos);
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void anadirProgramaPlataforma(TransferPlataforma datos);
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void borrarProgramaPlataforma(TransferPlataforma datos);
+
+	void anadirProgramaPlataforma(TransferPlataforma platform,
+			TransferPrograma program);
+
+	void borrarProgramaPlataforma(TransferPlataforma platform,
+			TransferPrograma program);
 
 }
