@@ -189,9 +189,12 @@ public class SAPlataformaImp implements SAPlataforma {
 				ProgramaPlataformaId ids= new ProgramaPlataformaId();
 				ids.setPlataforma(platform.getID());
 				ids.setPrograma(program.getID());
-				ProgramaPlataforma prPl = entityManager.find(ProgramaPlataforma.class,ids);				
-				entityManager.remove(prPl);
-				entityManager.getTransaction().commit();
+				ProgramaPlataforma prPl = entityManager.find(ProgramaPlataforma.class,ids);	
+				if(prPl != null){//lo ha encontrado y lo borra
+					entityManager.remove(prPl);
+					entityManager.getTransaction().commit();
+				}else
+					entityManager.getTransaction().rollback();
 			}
 			else
 				entityManager.getTransaction().rollback();
