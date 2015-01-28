@@ -144,6 +144,10 @@ public class DispatcherImp extends Dispatcher {
 			JPanelPlataforma.getModel().removeRow((TransferPlataforma) datos);
         break;
         
+		case Eventos.MOSTRAR_PROGRAMA_PLATAFORMA:
+			JPanelPlataforma.getModeloProgramaPlataforma().setValue((ArrayList<TransferPrograma>) datos);
+        break;
+        
 		case Eventos.AÑADIR_PROGRAMA_PLATAFORMA:
 			JOptionPane.showMessageDialog(null, "anaprogplat");
         break;

@@ -12,6 +12,7 @@ import Negocio.plataforma.TransferPlataforma;
 import Presentacion.biblioteca.JPanelBiblioteca;
 import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Eventos;
+import Presentacion.programa.JPanelPrograma;
 
 public class JDialogAnadirProgramaPlataforma extends JDialog {
 
@@ -38,14 +39,13 @@ public class JDialogAnadirProgramaPlataforma extends JDialog {
         //////RELLENO DE TABLA///////
         TransferPlataforma proPla = (TransferPlataforma) JPanelPlataforma.getModel().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
 		
-		ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_PLATAFORMA, proPla);
+		ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_PROGRAMA_PLATAFORMA, proPla);
         //////////////////////////
 		
 		///AÑADO EL MODELO /////
-        jTablePlataforma.setModel(JPanelBiblioteca.getModeloVideojuegoBiblioteca());
+        jTablePlataforma.setModel(JPanelPrograma.getModelo());
         jScrollPane1.setViewportView(jTablePlataforma);
         /////////////////////////////
-        jScrollPane1.setViewportView(jTablePlataforma);
 
         jButtonCancel.setText("Cancel");
 
