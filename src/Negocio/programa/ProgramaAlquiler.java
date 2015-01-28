@@ -1,5 +1,8 @@
 package Negocio.programa;
 
+import javax.persistence.Entity;
+
+@Entity
 public class ProgramaAlquiler extends Programa {
 	private float precioHora;
 

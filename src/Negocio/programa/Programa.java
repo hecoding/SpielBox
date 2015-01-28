@@ -8,14 +8,20 @@ import javax.persistence.*;
 import Negocio.clasificacion.Clasificacion;
 import Negocio.programaPlataforma.ProgramaPlataforma;
 
-@Entity @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Programa {
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
 	private Integer ID;
+
 	private String nombre;
+
 	private Float version;
+	
 	private Float precio;
+
 	private String requisitos;
+
 	private String funcionalidad;
 
 	@OneToMany(mappedBy="programa")
