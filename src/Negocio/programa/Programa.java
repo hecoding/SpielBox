@@ -24,7 +24,7 @@ public class Programa {
 
 	private String funcionalidad;
 
-	@OneToMany(mappedBy="programa")
+	@OneToMany(mappedBy="programa", cascade = {CascadeType.REMOVE})
 	private Collection<ProgramaPlataforma> asociacion;
 	@ManyToOne
 	private Clasificacion clasificacion;
