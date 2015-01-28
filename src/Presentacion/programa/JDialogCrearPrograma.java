@@ -39,6 +39,7 @@ public class JDialogCrearPrograma extends JDialog {
         jLabelRequisitos = new javax.swing.JLabel();
         jLabelFuncionalidad = new javax.swing.JLabel();
         jLabelPrecio = new javax.swing.JLabel();
+        jLabelClasificacion = new javax.swing.JLabel();
         jRadioButtonPago = new javax.swing.JRadioButton();
         jRadioButtonAlquiler = new javax.swing.JRadioButton();
         jTextFieldNombrePrograma = new javax.swing.JTextField();
@@ -46,6 +47,7 @@ public class JDialogCrearPrograma extends JDialog {
         jTextFieldRequisitosPrograma = new javax.swing.JTextField();
         jTextFieldFuncionalidadPrograma = new javax.swing.JTextField();
         jTextFieldPrecioPrograma = new javax.swing.JTextField();
+        jTextFieldClasificacion = new javax.swing.JTextField();
         jButtonCrear = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
 
@@ -69,9 +71,12 @@ public class JDialogCrearPrograma extends JDialog {
         jLabelFuncionalidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFuncionalidad.setText("Funcionalidad");
 
+        jLabelClasificacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelClasificacion.setText("Clasificacion");
+
         jLabelPrecio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPrecio.setText("Precio");
-
+        
         jRadioButtonPago.setText("Pago");
 
         jRadioButtonAlquiler.setText("Alquiler");
@@ -79,6 +84,7 @@ public class JDialogCrearPrograma extends JDialog {
         jButtonCrear.setText("Crear");
 
         jButtonCancel.setText("Cancelar");
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,14 +100,16 @@ public class JDialogCrearPrograma extends JDialog {
                                 .addComponent(jLabelNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabelVersion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabelRequisitos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelFuncionalidad, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                .addComponent(jLabelFuncionalidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelClasificacion, javax.swing.GroupLayout.Alignment.TRAILING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldNombrePrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldVersionPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldPrecioPrograma)
                             .addComponent(jTextFieldRequisitosPrograma)
-                            .addComponent(jTextFieldFuncionalidadPrograma))
+                            .addComponent(jTextFieldFuncionalidadPrograma)
+                            .addComponent(jTextFieldClasificacion))
                         .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,7 +142,11 @@ public class JDialogCrearPrograma extends JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelRequisitos)
-                            .addComponent(jTextFieldRequisitosPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextFieldRequisitosPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelClasificacion)
+                            .addComponent(jTextFieldClasificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonCrear)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -181,6 +193,7 @@ public class JDialogCrearPrograma extends JDialog {
 						nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
 						nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
 						nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
+						nuevoPrograma.setClasificacion(""+jTextFieldClasificacion.getText());
 						nuevoPrograma.setPrecio(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
 					} else {
 						nuevoPrograma = new TransferProgramaAlquiler();
@@ -188,6 +201,7 @@ public class JDialogCrearPrograma extends JDialog {
 						nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
 						nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
 						nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
+						nuevoPrograma.setClasificacion(""+jTextFieldClasificacion.getText());
 						nuevoPrograma.setPrecio(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
 					}
 					
@@ -219,6 +233,7 @@ public class JDialogCrearPrograma extends JDialog {
     private javax.swing.JLabel jLabelRequisitos;
     private javax.swing.JLabel jLabelFuncionalidad;
     private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabelClasificacion;
     private javax.swing.JRadioButton jRadioButtonPago;
     private javax.swing.JRadioButton jRadioButtonAlquiler;
     private javax.swing.JTextField jTextFieldVersionPrograma;
@@ -226,4 +241,5 @@ public class JDialogCrearPrograma extends JDialog {
     private javax.swing.JTextField jTextFieldRequisitosPrograma;
     private javax.swing.JTextField jTextFieldFuncionalidadPrograma;
     private javax.swing.JTextField jTextFieldNombrePrograma;
+    private javax.swing.JTextField jTextFieldClasificacion;
 }

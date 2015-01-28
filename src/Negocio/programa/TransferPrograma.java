@@ -7,6 +7,7 @@ public class TransferPrograma {
 	private Float version;
 	private String requisitos;
 	private String funcionalidad;
+	private String clasificacion;
 	protected Float precio;
 
 	public String getNombre() {
@@ -68,5 +69,14 @@ public class TransferPrograma {
 
 		this.ID = generaIds;
 		
+	}
+
+	public void setClasificacion(String string) {
+		this.clasificacion = string;
+		
+	}
+	
+	public String getClasificacion() {
+		return this.clasificacion;
 	}
 }

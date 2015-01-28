@@ -9,8 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
-
 import Negocio.clasificacion.TransferClasificacion;
 import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Eventos;
@@ -45,7 +43,7 @@ public class JPanelClasificacion extends JPanel {
 	    model = new TableModelClasificacion();
         jTableClasificacion.setModel(model);
         ArrayList<TransferClasificacion> content = new ArrayList<TransferClasificacion>();
-        ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_TODOS_VIDEOJUEGOS, content);        
+        ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_CLASIFICACIONES, content);        
         
         jScrollPaneClasificacion.setViewportView(jTableClasificacion);
         

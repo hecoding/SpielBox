@@ -73,10 +73,7 @@ public class JDialogModificarClasificacion extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				TransferClasificacion clasif = (TransferClasificacion) JPanelClasificacion.getModelo().getItem(JPanelClasificacion.getTableClasificacion().getSelectedRow());
-				JPanelClasificacion.getModelo().removeRow(clasif);
-				
 				clasif.setDificultad(jTextFieldDificultad.getText());
-				
 				ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_CLASIFICACION, clasif);
 				setVisible(false);
 			}

@@ -11,7 +11,7 @@ import Negocio.programaPlataforma.ProgramaPlataforma;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Programa {
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer ID;
 
 	private String nombre;
@@ -93,5 +93,13 @@ public class Programa {
 	public void setPrecio(Float precio) {
 		
 		this.precio = precio;
+	}
+	
+	public void setClasificacion(Clasificacion c) {
+		this.clasificacion = c;
+	}
+	
+	public Clasificacion getClasificacion() {
+		return this.clasificacion;
 	}
 }

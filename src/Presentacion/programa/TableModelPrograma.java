@@ -14,7 +14,7 @@ public class TableModelPrograma extends AbstractTableModel {
 
 	private ArrayList<TransferPrograma> content; //para mantener una copia de la memoria
 
-	String[] columnNames = { "Nombre", "Precio"};
+	String[] columnNames = { "ID", "Nombre", "Precio"};
 
 	public TableModelPrograma() {
 		content = new ArrayList<TransferPrograma>();

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.LockModeType;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -49,28 +50,34 @@ public class SAClasificacionImp implements SAClasificacion {
 			throw new commandException("Ya existe esta clasificación.");
 	}
 
-	public void modificarClasificacion(TransferClasificacion transfer) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpielBox");
-		EntityManager em = factory.createEntityManager();
-		
-		em.getTransaction().begin();
-		
-		Clasificacion BOClasificacion = em.find(Clasificacion.class, transfer.getID());
-		
-		if (BOClasificacion != null) {
-			BOClasificacion = new Clasificacion ();
+	public void modificarClasificacion(TransferClasificacion transfer) throws commandException {
+		// TODO Auto-generated method stub
+		boolean ret=false;
+		EntityManagerFactory entityFactoria = Persistence.createEntityManagerFactory("SpielBox");
+		EntityManager entityManager = entityFactoria.createEntityManager();
+		entityManager.getTransaction().begin();
+				
+		Query query = entityManager.createQuery("SELECT x FROM Clasificacion x WHERE x.dificultad = ?1");
+		query.setParameter(1,transfer.getDificultad());
+		if(query.getResultList().isEmpty()){ //si es vacia el resultado introduzco plataforma
+			Clasificacion BOClasificacion = entityManager.find(Clasificacion.class, transfer.getID());
+			entityManager.lock(BOClasificacion, LockModeType.PESSIMISTIC_WRITE);
 			BOClasificacion.setDificultad(transfer.getDificultad());
-			
-			em.persist(BOClasificacion);
-			em.getTransaction().commit();
+			entityManager.merge(BOClasificacion);
+			entityManager.getTransaction().commit();
+			ret=true;
+		} else {
+			Clasificacion BOClasificacion = entityManager.find(Clasificacion.class, transfer.getID());
+			//lo busco para actualizar el transfer de la JTable (sino lo hago se pone el transfer que envió y no el que esta en BD
+			transfer.setDificultad(BOClasificacion.getDificultad());
+			entityManager.getTransaction().rollback();
 		}
-		else {
-			em.clear();
-			em.getTransaction().rollback();
-		}
-		
-		em.close();
-		factory.close();
+					
+		if(!ret)
+			throw new commandException("Ya existe esa Clasificación.");
+				
+		entityManager.close();
+		entityFactoria.close();
 	}
 
 	public TransferClasificacion mostrarClasificacion (TransferClasificacion transfer) {
@@ -98,16 +105,16 @@ public class SAClasificacionImp implements SAClasificacion {
 		
 		em.getTransaction().begin();
 		
-		TypedQuery<Clasificacion> query = em.createNamedQuery("SELECT c FROM clasificacion c", Clasificacion.class);
-		List<Clasificacion> pl = query.getResultList();
+		Query query = em.createQuery("SELECT c FROM Clasificacion c");
+		List<Clasificacion> cl = query.getResultList();
 		
 		ArrayList<TransferClasificacion> clasificaciones = new ArrayList<TransferClasificacion>();
 		
-		for (int i = 0; i < pl.size(); i++){
-			Clasificacion p = (Clasificacion) pl.get(i);
+		for (int i = 0; i < cl.size(); i++){
+			Clasificacion c = (Clasificacion) cl.get(i);
 			TransferClasificacion all = new TransferClasificacion();
-			all.setID (p.getID());
-			all.setDificultad (p.getDificultad());
+			all.setID (c.getID());
+			all.setDificultad (c.getDificultad());
 			clasificaciones.add(all);
 		}
 		

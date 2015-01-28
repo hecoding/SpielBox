@@ -49,7 +49,7 @@ public class JPanelPrograma extends JPanel {
 	    model = new TableModelPrograma();
         jTablePrograma.setModel(model);
         ArrayList<TransferPrograma> content = new ArrayList<TransferPrograma>();
-        ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_TODOS_VIDEOJUEGOS, content);        
+        ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_PROGRAMAS, content);        
         
         jScrollPanePrograma.setViewportView(jTablePrograma);
         
