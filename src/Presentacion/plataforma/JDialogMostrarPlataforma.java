@@ -28,20 +28,20 @@ public class JDialogMostrarPlataforma extends JDialog {
 
         JButton jButtonAceptar = new javax.swing.JButton();
         JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
-        JTable jTableVideojuegos = new javax.swing.JTable();
+        JTable jTableProgramaPlataforma = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mostrar Plataforma");
 
         jButtonAceptar.setText("Aceptar");
-        jTableVideojuegos.setModel(JPanelBiblioteca.getModeloVideojuegoBiblioteca());
+        jTableProgramaPlataforma.setModel(JPanelPlataforma.getModeloProgramaPlataforma());
 
         //////RELLENO DE TABLA///////
         TransferPlataforma mostrarPls = (TransferPlataforma) JPanelPlataforma.getModel().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
 		
 		ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_PLATAFORMA, mostrarPls);
         //////////////////////////
-        jScrollPane1.setViewportView(jTableVideojuegos);
+        jScrollPane1.setViewportView(jTableProgramaPlataforma);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

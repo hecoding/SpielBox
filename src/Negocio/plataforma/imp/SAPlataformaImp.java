@@ -187,8 +187,6 @@ public class SAPlataformaImp implements SAPlataforma {
 		List<Object> pl = query.getResultList();
 		ArrayList<TransferPrograma> programas = new ArrayList<TransferPrograma>();		
 		for(int i = 0; i < pl.size(); i++){
-			//Programa p = (Programa) pl.get(i);
-			//String p = (String) pl.get(i);
 			Integer primaryKey= Integer.parseInt(pl.get(i).toString());
 			Programa p = entityManager.find(Programa.class, primaryKey);
 		
