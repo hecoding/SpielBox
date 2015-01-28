@@ -5,31 +5,17 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import Negocio.plataforma.TransferPlataforma;
-import Negocio.videojuego.TransferVideojuego;
-import Presentacion.biblioteca.JDialogAñadirVideojuegoBiblioteca;
-import Presentacion.biblioteca.JDialogCrearBiblioteca;
-import Presentacion.biblioteca.JDialogEliminarBiblioteca;
-import Presentacion.biblioteca.JDialogEliminarVideojuegoBiblioteca;
-import Presentacion.biblioteca.JDialogModificarBiblioteca;
-import Presentacion.biblioteca.JDialogMostrarBiblioteca;
-import Presentacion.biblioteca.JDialogQueryBiblioteca;
-import Presentacion.biblioteca.JPanelBiblioteca;
-import Presentacion.biblioteca.TableModelVideojuegoBiblioteca;
 import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Eventos;
-import Presentacion.videojuego.JPanelVideojuego.TableModelVideojuego;
 
 public class JPanelPlataforma extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private JScrollPane jScrollPanePlataforma;
 	private static TableModelPlataforma modeloPlataforma;
 	private static TableModelProgramaPlataforma modeloProgramaPlataforma;
 

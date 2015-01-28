@@ -79,4 +79,8 @@ public class TransferPrograma {
 	public String getClasificacion() {
 		return this.clasificacion;
 	}
+	
+	public String toString() {
+		return "ID :" + this.ID + System.lineSeparator() + "Nombre: " + this.nombre + System.lineSeparator() + "Version: " + this.version + System.lineSeparator() + "Requisitos: " + this.requisitos + System.lineSeparator() + "Funcionalidad: " + this.funcionalidad + System.lineSeparator() + "Clasificación: " + this.clasificacion + System.lineSeparator();
+	}
 }

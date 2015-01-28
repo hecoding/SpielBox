@@ -17,15 +17,21 @@ public class ProgramaAlquiler extends Programa {
 	public ProgramaAlquiler() {
 		
 	}
-
-	public float getPrecioHora() {
+	
+	
+	public float getPrecio() {
 		
 		return precioHora;
 	}
 
-	public void setPrecioHora(float precioHora) {
+	
+	public void setPrecio(float dineros) {
 		
-		this.precioHora = precioHora;
+		precioHora = dineros;
+	}
+	
+	public String toString() {
+		return super.toString() + "PRECIO HORA: " + precioHora;
 	}
 	
 	

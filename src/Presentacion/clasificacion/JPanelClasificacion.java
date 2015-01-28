@@ -145,7 +145,7 @@ public class JPanelClasificacion extends JPanel {
 	public boolean validar(){
 		boolean ret=false;
 			if(JPanelClasificacion.getTableClasificacion().getSelectedRow() == -1)
-				JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna clasificacion");
+				JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna clasificación");
 			else
 				ret =true;
 		

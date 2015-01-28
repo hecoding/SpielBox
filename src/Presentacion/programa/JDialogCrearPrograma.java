@@ -14,7 +14,6 @@ import Negocio.programa.TransferProgramaAlquiler;
 import Negocio.programa.TransferPrograma;
 import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Eventos;
-import Presentacion.controlador.Generador;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -194,7 +193,7 @@ public class JDialogCrearPrograma extends JDialog {
 						nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
 						nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
 						nuevoPrograma.setClasificacion(""+jTextFieldClasificacion.getText());
-						nuevoPrograma.setPrecio(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
+						((TransferProgramaPago)nuevoPrograma).setPrecioFinal(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
 					} else {
 						nuevoPrograma = new TransferProgramaAlquiler();
 						nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
@@ -202,7 +201,7 @@ public class JDialogCrearPrograma extends JDialog {
 						nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
 						nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
 						nuevoPrograma.setClasificacion(""+jTextFieldClasificacion.getText());
-						nuevoPrograma.setPrecio(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
+						((TransferProgramaAlquiler)nuevoPrograma).setPrecioHora(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
 					}
 					
 					ControladorAplicacion.getInstance().accionCommand(Eventos.CREAR_PROGRAMA, nuevoPrograma);

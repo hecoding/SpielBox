@@ -2,14 +2,17 @@ package Negocio.programa;
 
 
 public class TransferProgramaAlquiler extends TransferPrograma {
-	private double precioHora;
+	private float precioHora;
 
-	public double getPrecioHora() {
+	public float getPrecioHora() {
 		return precioHora;
 	}
 
-	public void setPrecioHora(double precioHora) {
-		this.precioHora = precioHora;
+	public void setPrecioHora(float dineros) {
+		precioHora = dineros;
 	}
 	
+	public String toString() {
+		return super.toString() + "Precio por hora: " + this.precioHora;
+	}
 }

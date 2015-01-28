@@ -5,8 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+
+import Negocio.clasificacion.TransferClasificacion;
 import Negocio.programa.TransferPrograma;
 import Negocio.programa.TransferProgramaPago;
+import Presentacion.clasificacion.JPanelClasificacion;
 import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Eventos;
 
@@ -27,7 +30,7 @@ public class JDialogModificarPrograma extends JDialog {
         jLabelRequisitos = new javax.swing.JLabel();
         jLabelFuncionalidad = new javax.swing.JLabel();
         jLabelPrecio = new javax.swing.JLabel();
-        jLabelClasificacion = new javax.swing.Jlabel();
+        jLabelClasificacion = new javax.swing.JLabel();
         jTextFieldNombrePrograma = new javax.swing.JTextField();
         jTextFieldVersionPrograma = new javax.swing.JTextField();
         jTextFieldRequisitosPrograma = new javax.swing.JTextField();
@@ -112,13 +115,12 @@ public class JDialogModificarPrograma extends JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelRequisitos)
-                            .addComponent(jTextFieldRequisitosPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                       .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jTextFieldRequisitosPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelRequisitos)
-                            .addComponent(jTextFieldRequisitosPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    
-                      .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabelClasificacion)
+                            .addComponent(jTextFieldClasificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonCancel)))
@@ -138,13 +140,13 @@ public class JDialogModificarPrograma extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 			try {
-				TransferPrograma nuevoPrograma = null;
-					nuevoPrograma = new TransferProgramaPago();
+					TransferPrograma nuevoPrograma = (TransferPrograma) JPanelPrograma.getModelo().getItem(JPanelPrograma.getTablePrograma().getSelectedRow());
 					nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
 					nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
 					nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
 					nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
 					nuevoPrograma.setPrecio(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
+					nuevoPrograma.setClasificacion(""+jTextFieldClasificacion.getText());
 					ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_PROGRAMA, nuevoPrograma);
 					setVisible(false);
 			} catch(IllegalArgumentException e) {

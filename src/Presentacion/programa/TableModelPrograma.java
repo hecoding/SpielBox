@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import Negocio.programa.TransferPrograma;
+import Negocio.programa.TransferProgramaAlquiler;
+import Negocio.programa.TransferProgramaPago;
 
 public class TableModelPrograma extends AbstractTableModel {
 	/**
@@ -43,7 +45,11 @@ public class TableModelPrograma extends AbstractTableModel {
                 value = programa.getNombre();
                 break;
             case 2:
-            	value = programa.getPrecio();
+            	if(TransferProgramaPago.class.equals(programa.getClass())) {
+            		value = ((TransferProgramaPago)programa).getPrecioFinal();
+            	} else {
+            		value = ((TransferProgramaAlquiler)programa).getPrecioHora();
+            	}
             	break;
         }
         return value;

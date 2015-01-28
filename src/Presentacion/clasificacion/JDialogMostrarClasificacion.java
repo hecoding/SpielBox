@@ -5,9 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
 import Negocio.clasificacion.TransferClasificacion;
 import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Eventos;
@@ -21,11 +18,13 @@ public class JDialogMostrarClasificacion extends JDialog {
 	}
 
 	private void initComponents() {
-        JLabel jLabelID = new javax.swing.JLabel();
-        JLabel jLabelDificultad = new javax.swing.JLabel();
-        JTextField jTextFieldID = new javax.swing.JTextField();
-        JTextField jTextFieldDificultad = new JTextField();
+        jLabelID = new javax.swing.JLabel();
+        jLabelDificultad = new javax.swing.JLabel();
+        label1 = new javax.swing.JLabel();
+        label2 = new javax.swing.JLabel();
         JButton jButtonAceptar = new javax.swing.JButton();
+        label1.setText("ID: ");
+        label2.setText("Dificultad: ");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mostrar Clasificación");
@@ -33,7 +32,7 @@ public class JDialogMostrarClasificacion extends JDialog {
         jButtonAceptar.setText("Aceptar");
         ///MOSTRAR /// 
         Negocio.clasificacion.TransferClasificacion clasificacion = JPanelClasificacion.getModelo().getItem(JPanelClasificacion.getTableClasificacion().getSelectedRow());
-        ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_VIDEOJUEGO, clasificacion);
+        ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_CLASIFICACION, clasificacion);
         ////////
         
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -47,8 +46,8 @@ public class JDialogMostrarClasificacion extends JDialog {
                     .addComponent(jLabelDificultad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldID, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                    .addComponent(jTextFieldDificultad))
+                    .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                    .addComponent(label2))
                 .addContainerGap(237, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -57,11 +56,11 @@ public class JDialogMostrarClasificacion extends JDialog {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelID)
-                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDificultad)
-                    .addComponent(jTextFieldDificultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
         );
         
@@ -80,5 +79,15 @@ public class JDialogMostrarClasificacion extends JDialog {
         setLocationRelativeTo(null);
         pack();
 	}
+
+	public void setDatos(TransferClasificacion datos) {
+		jLabelID.setText(String.valueOf(datos.getID()));
+		jLabelDificultad.setText(datos.getDificultad());
+	}
+	
+	private javax.swing.JLabel jLabelID;
+	private javax.swing.JLabel jLabelDificultad;
+	private javax.swing.JLabel label1;
+	private javax.swing.JLabel label2;
 
 }

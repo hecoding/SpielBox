@@ -10,13 +10,15 @@ public class ProgramaPago extends Programa {
 		
 	}
 
-	public float getPrecioFinal() {
+	
+	public float getPrecio() {
 		
 		return precioFinal;
 	}
-
-	public void setPrecioFinal(float precioFinal) {
+	
+	
+	public void setPrecio(float dineros) {
 		
-		this.precioFinal = precioFinal;
+		precioFinal = dineros;
 	}
 }

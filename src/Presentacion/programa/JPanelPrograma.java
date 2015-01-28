@@ -151,7 +151,7 @@ public class JPanelPrograma extends JPanel {
 	public boolean validar(){
 		boolean ret=false;
 			if(JPanelPrograma.getTablePrograma().getSelectedRow() == -1)
-				JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna Programa");
+				JOptionPane.showMessageDialog(null, "No ha seleccionado ningún programa");
 			else
 				ret =true;
 		

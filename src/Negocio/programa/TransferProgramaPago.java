@@ -2,13 +2,17 @@ package Negocio.programa;
 
 
 public class TransferProgramaPago extends TransferPrograma {
+	private float precioFinal;
 	
-	public Float getPrecio() {
-		return this.precio;
+	public float getPrecioFinal() {
+		return precioFinal;
 	}
 
-	public void setPrecio(Float precioFinal) {
-		this.precio = precioFinal;
+	public void setPrecioFinal(float dineros) {
+		precioFinal = dineros;
 	}
 	
+	public String toString() {
+		return super.toString() + "Precio Final: " + this.precioFinal;
+	}
 }

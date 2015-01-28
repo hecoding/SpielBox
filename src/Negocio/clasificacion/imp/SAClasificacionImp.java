@@ -8,8 +8,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.LockModeType;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-
 import Negocio.clasificacion.Clasificacion;
 import Negocio.clasificacion.SAClasificacion;
 import Negocio.clasificacion.TransferClasificacion;

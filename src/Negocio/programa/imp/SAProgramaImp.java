@@ -11,8 +11,12 @@ import javax.persistence.Query;
 
 import Negocio.clasificacion.Clasificacion;
 import Negocio.programa.Programa;
+import Negocio.programa.ProgramaAlquiler;
+import Negocio.programa.ProgramaPago;
 import Negocio.programa.TransferPrograma;
 import Negocio.programa.SAPrograma;
+import Negocio.programa.TransferProgramaAlquiler;
+import Negocio.programa.TransferProgramaPago;
 import Presentacion.controlador.comandos.exceptions.commandException;
 
 
@@ -21,11 +25,7 @@ public class SAProgramaImp implements SAPrograma {
 	@Override
 	public void crearPrograma(TransferPrograma datos) throws commandException {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpielBox");
-		EntityManager em = factory.createEntityManager();
-		
-		//EntityManagerFactory factory2 = Persistence.createEntityManagerFactory("SpielBox");
-		EntityManager em2 = factory.createEntityManager();
-		
+		EntityManager em = factory.createEntityManager();	
 		
 		em.getTransaction().begin();
 		
@@ -34,16 +34,21 @@ public class SAProgramaImp implements SAPrograma {
 		query.setParameter (1, datos.getNombre());
 		query2.setParameter(1, datos.getClasificacion());
 		
-		Programa BOPrograma;
 		boolean ret = false;
-		
+		Programa BOPrograma;
 		if (query.getResultList().isEmpty()) {
-			BOPrograma = new Programa ();
+			if(TransferProgramaPago.class.equals(datos.getClass())) {
+				BOPrograma = new ProgramaPago ();
+				((ProgramaPago) BOPrograma).setPrecio(((TransferProgramaPago)datos).getPrecioFinal());
+			} else {
+				BOPrograma = new ProgramaAlquiler ();
+				((ProgramaAlquiler) BOPrograma).setPrecio(((TransferProgramaAlquiler)datos).getPrecioHora());
+			}
 			BOPrograma.setNombre(datos.getNombre());
 			BOPrograma.setFuncionalidad(datos.getFuncionalidad());
 			BOPrograma.setRequisitos(datos.getRequisitos());
 			BOPrograma.setVersion(datos.getVersion());
-			BOPrograma.setPrecio(datos.getPrecio());
+			
 			if(!datos.getClasificacion().equals("")) {
 				if(query2.getResultList().isEmpty()) {
 					em.clear();
@@ -121,7 +126,7 @@ public class SAProgramaImp implements SAPrograma {
 		em.getTransaction().begin();
 		
 		Query query = em.createQuery("SELECT x FROM Programa x WHERE x.nombre = ?1");
-		Query query2 = em.createQuery("SELECT x FROM Clasificacion x WHERE x.dificultad = ?!");
+		Query query2 = em.createQuery("SELECT x FROM Clasificacion x WHERE x.dificultad = ?1");
 		query.setParameter(1,datos.getNombre());
 		query2.setParameter(1, datos.getClasificacion());
 		boolean ret = false;
@@ -133,7 +138,12 @@ public class SAProgramaImp implements SAPrograma {
 			BOPrograma.setFuncionalidad(datos.getFuncionalidad());
 			BOPrograma.setRequisitos(datos.getRequisitos());
 			BOPrograma.setVersion(datos.getVersion());
-			BOPrograma.setPrecio(datos.getPrecio());
+			if(ProgramaAlquiler.class.equals(BOPrograma.getClass())) {
+				((ProgramaAlquiler) BOPrograma).setPrecio(((TransferProgramaAlquiler)datos).getPrecioHora());
+			} else {
+				((ProgramaPago) BOPrograma).setPrecio(((TransferProgramaPago)datos).getPrecioFinal());
+			}
+			
 			if(!datos.getClasificacion().equals("")) {
 				if(query2.getResultList().isEmpty()) {
 					em.clear();
@@ -159,7 +169,11 @@ public class SAProgramaImp implements SAPrograma {
 			datos.setNombre(BOPrograma.getNombre());
 			datos.setVersion(BOPrograma.getVersion());
 			datos.setClasificacion(BOPrograma.getClasificacion().getDificultad());
-			datos.setPrecio(BOPrograma.getPrecio());
+			if(ProgramaAlquiler.class.equals(BOPrograma.getClass())) {
+				((TransferProgramaAlquiler)datos).setPrecioHora(((ProgramaAlquiler) BOPrograma).getPrecio());
+			} else {
+				((TransferProgramaPago)datos).setPrecioFinal(((ProgramaPago) BOPrograma).getPrecio());
+			}
 			datos.setFuncionalidad(BOPrograma.getFuncionalidad());
 			datos.setRequisitos(BOPrograma.getRequisitos());
 			em.getTransaction().rollback();
@@ -186,15 +200,25 @@ public class SAProgramaImp implements SAPrograma {
 		
 		for (int i = 0; i < pl.size(); i++){
 			Programa p = (Programa) pl.get(i);
-			TransferPrograma all = new TransferPrograma();
-			all.setID (p.getID());
-			all.setNombre(p.getNombre());
-			all.setFuncionalidad(p.getFuncionalidad());
-			all.setPrecio(p.getPrecio());
-			all.setRequisitos(p.getRequisitos());
-			all.setVersion(p.getVersion());
-			
-			programas.add(all);
+			if(ProgramaAlquiler.class.equals(p.getClass())) {
+				TransferProgramaAlquiler all = new TransferProgramaAlquiler();
+				all.setID (p.getID());
+				all.setNombre(p.getNombre());
+				all.setFuncionalidad(p.getFuncionalidad());
+				all.setPrecioHora(((ProgramaAlquiler) p).getPrecio());
+				all.setRequisitos(p.getRequisitos());
+				all.setVersion(p.getVersion());
+				programas.add(all);
+			} else {
+				TransferProgramaPago all = new TransferProgramaPago();
+				all.setID (p.getID());
+				all.setNombre(p.getNombre());
+				all.setFuncionalidad(p.getFuncionalidad());
+				all.setPrecioFinal(((ProgramaPago) p).getPrecio());
+				all.setRequisitos(p.getRequisitos());
+				all.setVersion(p.getVersion());
+				programas.add(all);
+			}
 		}
 		
 		em.close();

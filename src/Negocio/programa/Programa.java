@@ -9,7 +9,7 @@ import Negocio.clasificacion.Clasificacion;
 import Negocio.programaPlataforma.ProgramaPlataforma;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Programa {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer ID;
@@ -18,7 +18,7 @@ public class Programa {
 
 	private Float version;
 	
-	private Float precio;
+	//private Float precio;
 
 	private String requisitos;
 
@@ -85,16 +85,6 @@ public class Programa {
 		this.funcionalidad=f;
 	}
 
-	public Float getPrecio() {
-		
-		return precio;
-	}
-
-	public void setPrecio(Float precio) {
-		
-		this.precio = precio;
-	}
-	
 	public void setClasificacion(Clasificacion c) {
 		this.clasificacion = c;
 	}
@@ -102,4 +92,5 @@ public class Programa {
 	public Clasificacion getClasificacion() {
 		return this.clasificacion;
 	}
+	
 }

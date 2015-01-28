@@ -29,7 +29,7 @@ public class JDialogEliminarClasificacion extends JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Eliminar clasificación");
 
-        jLabelEliminar.setText("Esta seguro de que desea eliminar la clasificacion");
+        jLabelEliminar.setText("¿Está seguro de que desea eliminar la clasificación?");
 
         jButtonEliminar.setText("Eliminar");
 

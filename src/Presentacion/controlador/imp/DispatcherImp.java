@@ -13,6 +13,7 @@ import Negocio.usuario.TransferDesarrollador;
 import Negocio.usuario.TransferUsuario;
 import Negocio.videojuego.TransferVideojuego;
 import Presentacion.biblioteca.JPanelBiblioteca;
+import Presentacion.clasificacion.JDialogMostrarClasificacion;
 import Presentacion.clasificacion.JPanelClasificacion;
 import Presentacion.controlador.Dispatcher;
 import Presentacion.controlador.Eventos;
@@ -163,7 +164,7 @@ public class DispatcherImp extends Dispatcher {
 		break;
 		
 		case Eventos.MOSTRAR_CLASIFICACION:
-			JOptionPane.showMessageDialog(null,"Mostrar");
+			JOptionPane.showMessageDialog(null,datos.toString());
 		break;
 		
 		case Eventos.MOSTRAR_CLASIFICACIONES:
