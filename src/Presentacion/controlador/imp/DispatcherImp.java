@@ -1,5 +1,4 @@
 package Presentacion.controlador.imp;
-
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -133,7 +132,7 @@ public class DispatcherImp extends Dispatcher {
         break;
         
 		case Eventos.MOSTRAR_PLATAFORMA:
-			JPanelPlataforma.getModeloProgramaPlataforma().setValue((ArrayList<TransferPrograma>) datos);
+			JOptionPane.showMessageDialog(null, "mostrar");
         break;
         
 		case Eventos.MOSTRAR_PLATAFORMAS:
@@ -142,10 +141,6 @@ public class DispatcherImp extends Dispatcher {
         
 		case Eventos.ELIMINAR_PLATAFORMA:
 			JPanelPlataforma.getModel().removeRow((TransferPlataforma) datos);
-        break;
-        
-		case Eventos.MOSTRAR_PROGRAMA_PLATAFORMA:
-			JPanelPlataforma.getModeloProgramaPlataforma().setValue((ArrayList<TransferPrograma>) datos);
         break;
         
 		case Eventos.AÑADIR_PROGRAMA_PLATAFORMA:

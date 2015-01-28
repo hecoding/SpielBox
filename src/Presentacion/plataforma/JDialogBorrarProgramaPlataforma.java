@@ -30,7 +30,7 @@ public class JDialogBorrarProgramaPlataforma extends JDialog {
 
         JButton jButtonEliminar = new javax.swing.JButton();
         JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
-        final JTable jTablePlataforma = new javax.swing.JTable();
+        final JTable jTableVideojuegos = new javax.swing.JTable();
         JButton jButtonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -45,9 +45,10 @@ public class JDialogBorrarProgramaPlataforma extends JDialog {
         //////////////////////////
 		
 		///AÑADO EL MODELO /////
-		jTablePlataforma.setModel(JPanelPlataforma.getModeloProgramaPlataforma());
-        jScrollPane1.setViewportView(jTablePlataforma);
+        jTableVideojuegos.setModel(JPanelBiblioteca.getModeloVideojuegoBiblioteca());
+        jScrollPane1.setViewportView(jTableVideojuegos);
         /////////////////////////////
+        jScrollPane1.setViewportView(jTableVideojuegos);
 
         jButtonCancel.setText("Cancel");
 
