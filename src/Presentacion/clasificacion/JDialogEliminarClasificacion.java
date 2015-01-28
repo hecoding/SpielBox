@@ -2,12 +2,14 @@ package Presentacion.clasificacion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 import Negocio.clasificacion.TransferClasificacion;
+import Negocio.programa.TransferPrograma;
 import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Eventos;
 
@@ -67,6 +69,8 @@ public class JDialogEliminarClasificacion extends JDialog {
 				TransferClasificacion eliminar = (TransferClasificacion) JPanelClasificacion.getModelo().getItem(JPanelClasificacion.getTableClasificacion().getSelectedRow());
 				
 				ControladorAplicacion.getInstance().accionCommand(Eventos.ELIMINAR_CLASIFICACION, eliminar);
+				ArrayList<TransferPrograma> content = new ArrayList<TransferPrograma>();
+				ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_PROGRAMAS, content);
 				setVisible (false);
 			}
         });
