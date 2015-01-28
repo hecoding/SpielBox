@@ -34,4 +34,8 @@ public class TransferClasificacion {
 		
 		return this.dificultad;
 	}
+	
+	public String toString() {
+		return "ID: " + this.ID + System.lineSeparator() + "Dificultad: " + this.dificultad;
+	}
 }
