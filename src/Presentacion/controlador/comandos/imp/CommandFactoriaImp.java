@@ -1,7 +1,10 @@
 package Presentacion.controlador.comandos.imp;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
+import Negocio.programa.TransferPrograma;
 import Presentacion.controlador.Eventos;
 import Presentacion.controlador.comandos.Command;
 import Presentacion.controlador.comandos.CommandFactoria;
@@ -43,6 +46,7 @@ import Presentacion.controlador.comandos.videojuegos.commandEliminarVideojuego;
 import Presentacion.controlador.comandos.videojuegos.commandModificarVideojuego;
 import Presentacion.controlador.comandos.videojuegos.commandMostrarTodosVideojuegos;
 import Presentacion.controlador.comandos.videojuegos.commandMostrarVideojuego;
+import Presentacion.plataforma.JPanelPlataforma;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -137,6 +141,10 @@ public class CommandFactoriaImp extends CommandFactoria {
 		case Eventos.ELIMINAR_PLATAFORMA:
         	c = new CommandEliminarPlataforma();
         break;
+        
+		case Eventos.MOSTRAR_PROGRAMA_PLATAFORMA:
+			c = new CommandMostrarProgramas();
+        break;        
         
 		case Eventos.AÑADIR_PROGRAMA_PLATAFORMA:
         	c = new CommandAnadirProgramaPlataforma();

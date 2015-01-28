@@ -11,6 +11,7 @@ import javax.swing.JTable;
 
 import Negocio.biblioteca.TransferBiblioteca;
 import Negocio.plataforma.TransferPlataforma;
+import Negocio.programa.TransferPrograma;
 import Negocio.videojuego.TransferVideojuego;
 import Presentacion.biblioteca.JPanelBiblioteca;
 import Presentacion.controlador.ControladorAplicacion;
@@ -30,7 +31,7 @@ public class JDialogBorrarProgramaPlataforma extends JDialog {
 
         JButton jButtonEliminar = new javax.swing.JButton();
         JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
-        final JTable jTableVideojuegos = new javax.swing.JTable();
+        final JTable jTablePlataforma = new javax.swing.JTable();
         JButton jButtonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -45,10 +46,9 @@ public class JDialogBorrarProgramaPlataforma extends JDialog {
         //////////////////////////
 		
 		///AÑADO EL MODELO /////
-        jTableVideojuegos.setModel(JPanelBiblioteca.getModeloVideojuegoBiblioteca());
-        jScrollPane1.setViewportView(jTableVideojuegos);
+		jTablePlataforma.setModel(JPanelPlataforma.getModeloProgramaPlataforma());
+        jScrollPane1.setViewportView(jTablePlataforma);
         /////////////////////////////
-        jScrollPane1.setViewportView(jTableVideojuegos);
 
         jButtonCancel.setText("Cancel");
 
@@ -83,20 +83,15 @@ public class JDialogBorrarProgramaPlataforma extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				
+				TransferPlataforma delPlataforma = (TransferPlataforma) JPanelPlataforma.getModel().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
+				TransferPrograma delPrograma = (TransferPrograma) JPanelPlataforma.getModeloProgramaPlataforma().getItem(jTablePlataforma.getSelectedRow());
 				
-				
-				
-				
-				/*
-				// TODO Auto-generated method stub
-				TransferVideojuego delVideo = (TransferVideojuego) JPanelBiblioteca.getModeloVideojuegoBiblioteca().getItem(jTableVideojuegos.getSelectedRow());
-				TransferBiblioteca modBiblioteca = (TransferBiblioteca) JPanelBiblioteca.getModelo().getItem(JPanelBiblioteca.getTableBiblioteca().getSelectedRow());
 				//Para poder pasar dos transfers creo un array que lo tratare en el determinado comando
-				ArrayList<Object> transferVideojuego_biblioteca= new ArrayList<>();
-				transferVideojuego_biblioteca.add(delVideo);
-				transferVideojuego_biblioteca.add(modBiblioteca);
-				ControladorAplicacion.getInstance().accionCommand(Eventos.ELIMINAR_VIDEOJUEGO_BIBLIOTECA, transferVideojuego_biblioteca);
-				setVisible(false);*/
+				ArrayList<Object> transfers= new ArrayList<>();
+				transfers.add(delPlataforma);
+				transfers.add(delPrograma);
+				ControladorAplicacion.getInstance().accionCommand(Eventos.BORRAR_PROGRAMA_PLATAFORMA, transfers);
+				setVisible(false);
 			}
         });
         

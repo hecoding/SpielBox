@@ -132,7 +132,7 @@ public class DispatcherImp extends Dispatcher {
         break;
         
 		case Eventos.MOSTRAR_PLATAFORMA:
-			JOptionPane.showMessageDialog(null, "mostrar");
+			JPanelPlataforma.getModeloProgramaPlataforma().setValue((ArrayList<TransferPrograma>) datos);
         break;
         
 		case Eventos.MOSTRAR_PLATAFORMAS:
@@ -143,12 +143,16 @@ public class DispatcherImp extends Dispatcher {
 			JPanelPlataforma.getModel().removeRow((TransferPlataforma) datos);
         break;
         
+		case Eventos.MOSTRAR_PROGRAMA_PLATAFORMA:
+			JPanelPlataforma.getModeloProgramaPlataforma().setValue((ArrayList<TransferPrograma>) datos);
+        break;
+        
 		case Eventos.AÑADIR_PROGRAMA_PLATAFORMA:
-			JOptionPane.showMessageDialog(null, "anaprogplat");
+			JOptionPane.showMessageDialog(null, "Programa añadido correctamente de la plataforma");
         break;
         
 		case Eventos.BORRAR_PROGRAMA_PLATAFORMA:
-			JOptionPane.showMessageDialog(null, "borraprofplat");
+			JOptionPane.showMessageDialog(null, "Programa borrado correctamente de la plataforma");
         break;  
         
 		case Eventos.CREAR_CLASIFICACION:
