@@ -65,7 +65,8 @@ public class MainWindow extends javax.swing.JFrame {
         panelCambiante.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanelVideojuego.setBackground(new java.awt.Color(255, 255, 255));
-
+        JPanel jp = new JPanel();
+        panelCambiante.addTab("Spielbox", jp);
         panelCambiante.addTab("Videojuegos", jPanelVideojuego);
 
         jPanelUsuarios.setBackground(new java.awt.Color(255, 255, 255));
