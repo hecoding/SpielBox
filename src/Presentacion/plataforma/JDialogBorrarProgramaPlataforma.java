@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -18,7 +19,7 @@ import Presentacion.controlador.ControladorAplicacion;
 import Presentacion.controlador.Eventos;
 
 public class JDialogBorrarProgramaPlataforma extends JDialog {
-
+	JTable jTableProgramaPlataforma = new javax.swing.JTable();
 	
 	
 	public JDialogBorrarProgramaPlataforma(){
@@ -31,7 +32,6 @@ public class JDialogBorrarProgramaPlataforma extends JDialog {
 
         JButton jButtonEliminar = new javax.swing.JButton();
         JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
-        final JTable jTablePlataforma = new javax.swing.JTable();
         JButton jButtonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -46,8 +46,8 @@ public class JDialogBorrarProgramaPlataforma extends JDialog {
         //////////////////////////
 		
 		///AÑADO EL MODELO /////
-		jTablePlataforma.setModel(JPanelPlataforma.getModeloProgramaPlataforma());
-        jScrollPane1.setViewportView(jTablePlataforma);
+		jTableProgramaPlataforma.setModel(JPanelPlataforma.getModeloProgramaPlataforma());
+        jScrollPane1.setViewportView(jTableProgramaPlataforma);
         /////////////////////////////
 
         jButtonCancel.setText("Cancel");
@@ -82,9 +82,9 @@ public class JDialogBorrarProgramaPlataforma extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
+				if(jTableProgramaPlataforma.getSelectedRow() != -1){
 				TransferPlataforma delPlataforma = (TransferPlataforma) JPanelPlataforma.getModel().getItem(JPanelPlataforma.getTablePlataforma().getSelectedRow());
-				TransferPrograma delPrograma = (TransferPrograma) JPanelPlataforma.getModeloProgramaPlataforma().getItem(jTablePlataforma.getSelectedRow());
+				TransferPrograma delPrograma = (TransferPrograma) JPanelPlataforma.getModeloProgramaPlataforma().getItem(jTableProgramaPlataforma.getSelectedRow());
 				
 				//Para poder pasar dos transfers creo un array que lo tratare en el determinado comando
 				ArrayList<Object> transfers= new ArrayList<>();
@@ -92,6 +92,8 @@ public class JDialogBorrarProgramaPlataforma extends JDialog {
 				transfers.add(delPrograma);
 				ControladorAplicacion.getInstance().accionCommand(Eventos.BORRAR_PROGRAMA_PLATAFORMA, transfers);
 				setVisible(false);
+				}else
+					JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna plataforma");
 			}
         });
         
@@ -109,4 +111,5 @@ public class JDialogBorrarProgramaPlataforma extends JDialog {
         setLocationRelativeTo(null);
         pack();
 	}
+	
 }

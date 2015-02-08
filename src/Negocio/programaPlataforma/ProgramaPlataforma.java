@@ -1,5 +1,7 @@
 package Negocio.programaPlataforma;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 import Negocio.plataforma.Plataforma;
@@ -7,7 +9,7 @@ import Negocio.programa.Programa;
 
 @Entity
 @IdClass(ProgramaPlataformaId.class)
-public class ProgramaPlataforma {
+public class ProgramaPlataforma implements Serializable{
 	@Id
 	@ManyToOne
 	private Programa programa;

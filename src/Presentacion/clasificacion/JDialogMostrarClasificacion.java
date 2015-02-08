@@ -31,7 +31,7 @@ public class JDialogMostrarClasificacion extends JDialog {
 
         jButtonAceptar.setText("Aceptar");
         ///MOSTRAR /// 
-        Negocio.clasificacion.TransferClasificacion clasificacion = JPanelClasificacion.getModelo().getItem(JPanelClasificacion.getTableClasificacion().getSelectedRow());
+        Negocio.clasificacion.TransferClasificacion clasificacion = JPanelClasificacion.getTableModel().getItem(JPanelClasificacion.getTableClasificacion().getSelectedRow());
         ControladorAplicacion.getInstance().accionCommand(Eventos.MOSTRAR_CLASIFICACION, clasificacion);
         ////////
         

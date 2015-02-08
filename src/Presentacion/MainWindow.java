@@ -3,6 +3,7 @@ package Presentacion;
 import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -66,6 +67,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanelVideojuego.setBackground(new java.awt.Color(255, 255, 255));
         JPanel jp = new JPanel();
+        JLabel labelSpielBox = new JLabel();
+        labelSpielBox.setIcon(createImageIcon("images/SpieboxImage.png"));
+        jp.add(labelSpielBox);
+        //jp.add(createImageIcon("images/plataforma.png"));
         panelCambiante.addTab("Spielbox", jp);
         panelCambiante.addTab("Videojuegos", jPanelVideojuego);
 
@@ -117,35 +122,40 @@ public class MainWindow extends javax.swing.JFrame {
 
         pack();
         //Configuramos el primer tabbed, el primer parámetro indica el índice.
-        panelCambiante.setTitleAt(0, "Videojuego");
-        panelCambiante.setIconAt(0, createImageIcon("images/videojuego.png"));
-        panelCambiante.setToolTipTextAt(0, "Gestión Videojuego");
+        panelCambiante.setTitleAt(0, "SpielBox");
+        panelCambiante.setIconAt(0, createImageIcon("images/spielbox-icon.png"));
+        panelCambiante.setToolTipTextAt(0, "SpielBox");
+        
+        //Configuramos el primer tabbed, el primer parámetro indica el índice.
+        panelCambiante.setTitleAt(1, "Videojuego");
+        panelCambiante.setIconAt(1, createImageIcon("images/videojuego.png"));
+        panelCambiante.setToolTipTextAt(1, "Gestión Videojuego");
         //Configuramos el segundo tabbed, el primer parámetro indica el índice.
-        panelCambiante.setTitleAt(1, "Usuarios");
-        panelCambiante.setIconAt(1, createImageIcon("images/usuarios.png"));
-        panelCambiante.setToolTipTextAt(1, "Gestión Usuarios");
+        panelCambiante.setTitleAt(2, "Usuarios");
+        panelCambiante.setIconAt(2, createImageIcon("images/usuarios.png"));
+        panelCambiante.setToolTipTextAt(2, "Gestión Usuarios");
 
         
         //Configuramos el tercer tabbed, el primer parámetro indica el índice.
-        panelCambiante.setTitleAt(2, "Biblioteca");
-        panelCambiante.setIconAt(2, createImageIcon("images/biblioteca.png"));
-        panelCambiante.setToolTipTextAt(2, "Gestión Biblioteca"); 
+        panelCambiante.setTitleAt(3, "Biblioteca");
+        panelCambiante.setIconAt(3, createImageIcon("images/biblioteca.png"));
+        panelCambiante.setToolTipTextAt(3, "Gestión Biblioteca"); 
         
   ///////////////////////2DA PARTE /////////////////////////////////////////////////////      
         
         //Configuramos el 4to tabbed, el primer parámetro indica el índice.
-        panelCambiante.setIconAt(3, createImageIcon("images/programa.png"));
-        panelCambiante.setToolTipTextAt(3, "Gestión Programas"); 
+        panelCambiante.setIconAt(4, createImageIcon("images/programa.png"));
+        panelCambiante.setToolTipTextAt(4, "Gestión Programas"); 
         
         //Configuramos el 5to tabbed, el primer parámetro indica el índice.
-        panelCambiante.setIconAt(4, createImageIcon("images/clasificacion.png"));
-        panelCambiante.setToolTipTextAt(4, "Gestión Clasificaciones"); 
+        panelCambiante.setIconAt(5, createImageIcon("images/clasificacion.png"));
+        panelCambiante.setToolTipTextAt(5, "Gestión Clasificaciones"); 
         
         //Configuramos el 6to tabbed, el primer parámetro indica el índice.
-        panelCambiante.setIconAt(5, createImageIcon("images/plataforma.png"));
-        panelCambiante.setToolTipTextAt(5, "Gestión Plataformas"); 
+        panelCambiante.setIconAt(6, createImageIcon("images/plataforma.png"));
+        panelCambiante.setToolTipTextAt(6, "Gestión Plataformas"); 
         
-        this.setMinimumSize(new Dimension(859, 700)); 
+        this.setMinimumSize(new Dimension(1024, 700)); 
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     

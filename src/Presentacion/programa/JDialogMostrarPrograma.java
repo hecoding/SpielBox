@@ -103,10 +103,8 @@ public class JDialogMostrarPrograma extends JDialog {
 	                .addContainerGap(34, Short.MAX_VALUE))
 	        );
 
-	    
 	        setLocationRelativeTo(null);
 	        pack();
-
 		}
 		
 	    private javax.swing.JLabel jLabelVersion;

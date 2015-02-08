@@ -9,7 +9,7 @@ import Negocio.programa.TransferPrograma;
 public class TableModelProgramaPlataforma extends AbstractTableModel {
 	private ArrayList<TransferPrograma> content; //para mantener una copia de la memoria
 
-	String[] columnNames = { "Nombre", "Categoria"};
+	String[] columnNames = { "Nombre", "Version", "Requisitos"};
 
 	public TableModelProgramaPlataforma() {
 		content = new ArrayList<TransferPrograma>();
@@ -32,10 +32,13 @@ public class TableModelProgramaPlataforma extends AbstractTableModel {
         Object value = juego.getID();//SIEMPRE DEVOLVEMOS EL CAMPO DE ID
         switch (columnIndex) {
             case 0:
-                value = juego.getID();
+                value = juego.getNombre();
                 break;
             case 1:
-                value = juego.getNombre();
+                value = juego.getVersion();
+                break;
+            case 2:
+                value = juego.getRequisitos();
                 break;
         }
         return value;

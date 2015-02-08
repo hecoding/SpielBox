@@ -1,6 +1,7 @@
 
 package Negocio.programa;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.*;
@@ -10,7 +11,12 @@ import Negocio.programaPlataforma.ProgramaPlataforma;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Programa {
+public class Programa  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer ID;
 

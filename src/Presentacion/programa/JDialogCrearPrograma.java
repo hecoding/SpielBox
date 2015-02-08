@@ -56,14 +56,16 @@ public class JDialogCrearPrograma extends JDialog {
         jRadioButtonPago.setText("Pago");
         jRadioButtonPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonPagoActionPerformed(evt);
+                jRadioButtonAlquiler.setSelected(false);
+            	jLabelPrecio.setText("Precio de Pago");	
             }
         });
 
         jRadioButtonAlquiler.setText("Alquiler");
         jRadioButtonAlquiler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonAlquilerActionPerformed(evt);
+                jRadioButtonPago.setSelected(false);
+                jLabelPrecio.setText("Precio de Alquiler");
             }
         });
 
@@ -84,27 +86,58 @@ public class JDialogCrearPrograma extends JDialog {
         jButtonCancel.setText("Cancelar");
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelActionPerformed(evt);
+            	 setVisible(false);
             }
         });
 
         jButtonCrear.setText("Crear");
         jButtonCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCrearActionPerformed(evt);
+            	try {
+    				TransferPrograma nuevoPrograma = null;
+    				if(!jRadioButtonPago.isSelected() && !jRadioButtonAlquiler.isSelected()) {
+    					JOptionPane.showMessageDialog(new JPanel(),"No se puede crear el Programa sin seleccionar Pago o Alquiler");
+    				} else {
+    					if (jComboBoxClasificacion.getSelectedItem() == null)
+    						throw new IllegalArgumentException();
+    					
+    					if(jRadioButtonPago.isSelected()) {
+    						nuevoPrograma = new TransferProgramaPago();
+    						nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
+    						nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
+    						nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
+    						nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
+    						nuevoPrograma.setClasificacion(jComboBoxClasificacion.getSelectedItem().toString());
+    						((TransferProgramaPago)nuevoPrograma).setPrecioFinal(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
+    					} else {
+    						nuevoPrograma = new TransferProgramaAlquiler();
+    						nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
+    						nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
+    						nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
+    						nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
+    						nuevoPrograma.setClasificacion(jComboBoxClasificacion.getSelectedItem().toString());
+    						((TransferProgramaAlquiler)nuevoPrograma).setPrecioHora(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
+    					}
+    					
+    					ControladorAplicacion.getInstance().accionCommand(Eventos.CREAR_PROGRAMA, nuevoPrograma);
+    					setVisible(false);
+    				}
+    			} catch(IllegalArgumentException e) {
+    				JOptionPane.showMessageDialog(null, "Datos introducidos en los campos no válidos");
+    			}
             }
         });
 
         jComboBoxClasificacion.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[]{}));
 
-    	for(int i = 0; i < JPanelClasificacion.getModelo().getRowCount(); ++i) {
-       		jComboBoxClasificacion.addItem(JPanelClasificacion.getModelo().getValueAt(i, 1).toString());
+    	for(int i = 0; i < JPanelClasificacion.getTableModel().getRowCount(); ++i) {
+       		jComboBoxClasificacion.addItem(JPanelClasificacion.getTableModel().getValueAt(i, 1).toString());
        	}
         
 
         jComboBoxClasificacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxClasificacionActionPerformed(evt);
+            	jTextFieldClasificacion.setText(jComboBoxClasificacion.getSelectedItem().toString());
             }
         });
 
@@ -186,63 +219,13 @@ public class JDialogCrearPrograma extends JDialog {
                     .addComponent(jTextFieldPrecioPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
-
+        this.setVisible(true);
+        setLocationRelativeTo(null);
         pack();
+ 
+        
     }// </editor-fold>                        
-
-    private void jButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        try {
-				TransferPrograma nuevoPrograma = null;
-				if(!jRadioButtonPago.isSelected() && !jRadioButtonAlquiler.isSelected()) {
-					JOptionPane.showMessageDialog(new JPanel(),"No se puede crear el Programa sin seleccionar Pago o Alquiler");
-				} else {
-					if (jComboBoxClasificacion.getSelectedItem() == null)
-						throw new IllegalArgumentException();
-					
-					if(jRadioButtonPago.isSelected()) {
-						nuevoPrograma = new TransferProgramaPago();
-						nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
-						nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
-						nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
-						nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
-						nuevoPrograma.setClasificacion(jComboBoxClasificacion.getSelectedItem().toString());
-						((TransferProgramaPago)nuevoPrograma).setPrecioFinal(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
-					} else {
-						nuevoPrograma = new TransferProgramaAlquiler();
-						nuevoPrograma.setNombre(""+jTextFieldNombrePrograma.getText());
-						nuevoPrograma.setVersion(Float.parseFloat(jTextFieldVersionPrograma.getText()));
-						nuevoPrograma.setRequisitos(""+jTextFieldRequisitosPrograma.getText());
-						nuevoPrograma.setFuncionalidad(""+jTextFieldFuncionalidadPrograma.getText());
-						nuevoPrograma.setClasificacion(jComboBoxClasificacion.getSelectedItem().toString());
-						((TransferProgramaAlquiler)nuevoPrograma).setPrecioHora(Float.parseFloat(jTextFieldPrecioPrograma.getText()));
-					}
-					
-					ControladorAplicacion.getInstance().accionCommand(Eventos.CREAR_PROGRAMA, nuevoPrograma);
-					setVisible(false);
-				}
-			} catch(IllegalArgumentException e) {
-				JOptionPane.showMessageDialog(null, "Datos introducidos en los campos no válidos");
-			}
-    }                                            
-
-    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        setVisible(false);
-    }                                             
-
-    private void jRadioButtonPagoActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        jRadioButtonAlquiler.setSelected(false);
-	jLabelPrecio.setText("Precio de Pago");		
-    }                                                
-
-    private void jRadioButtonAlquilerActionPerformed(java.awt.event.ActionEvent evt) {                                                     
-       jRadioButtonPago.setSelected(false);
-       jLabelPrecio.setText("Precio de Alquiler");
-    }
-    
-    private void jComboBoxClasificacionActionPerformed(java.awt.event.ActionEvent evt) {                                                       
-    	jTextFieldClasificacion.setText(jComboBoxClasificacion.getSelectedItem().toString());
-    } 
-
+                                                                                        
     /**
      * @param args the command line arguments
      */

@@ -26,14 +26,14 @@ public class SAProgramaImp implements SAPrograma {
 	public void crearPrograma(TransferPrograma datos) throws commandException {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager em = factory.createEntityManager();	
-		
+
 		em.getTransaction().begin();
-		
+
 		Query query = em.createQuery("SELECT x FROM Programa x WHERE x.nombre = ?1");
 		Query query2 = em.createQuery("Select x FROM Clasificacion x WHERE x.dificultad = ?1");
 		query.setParameter (1, datos.getNombre());
 		query2.setParameter(1, datos.getClasificacion());
-		
+
 		boolean ret = false;
 		Programa BOPrograma;
 		if (query.getResultList().isEmpty()) {
@@ -48,7 +48,7 @@ public class SAProgramaImp implements SAPrograma {
 			BOPrograma.setFuncionalidad(datos.getFuncionalidad());
 			BOPrograma.setRequisitos(datos.getRequisitos());
 			BOPrograma.setVersion(datos.getVersion());
-			
+
 			if(query2.getResultList().isEmpty()) {
 				em.clear();
 				em.getTransaction().rollback();
@@ -67,7 +67,7 @@ public class SAProgramaImp implements SAPrograma {
 			em.clear();
 			em.getTransaction().rollback();
 		}
-		
+
 		em.close();
 		factory.close();
 		if (!ret)
@@ -78,11 +78,11 @@ public class SAProgramaImp implements SAPrograma {
 	public void eliminarPrograma(TransferPrograma datos) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager em = factory.createEntityManager();
-		
+
 		em.getTransaction().begin();
-		
+
 		Programa BOPrograma = em.find(Programa.class, datos.getID());
-		
+
 		if (BOPrograma != null) {
 			em.remove(BOPrograma);
 			em.getTransaction().commit();
@@ -90,43 +90,56 @@ public class SAProgramaImp implements SAPrograma {
 		else {
 			em.getTransaction().rollback();
 		}
-		
+
 		em.close();
 		factory.close();
 	}
 
 	@Override
-	public TransferPrograma mostrarPrograma(TransferPrograma datos) {
+	public void mostrarPrograma(TransferPrograma datos) throws commandException {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager em = factory.createEntityManager();
+		boolean ret=false;
 		
 		em.getTransaction().begin();
-		
 		Programa BOPrograma = em.find(Programa.class, datos.getID());
-		
+
+		if(BOPrograma != null){
+			Clasificacion clasificacion = em.find(Clasificacion.class, BOPrograma.getClasificacion().getID());
+			if(clasificacion != null){
+				BOPrograma.setClasificacion(clasificacion);
+				datos.setClasificacion(clasificacion.getDificultad());
+
+				if(BOPrograma.getClass() == ProgramaPago.class){ //actualizamos el precio para mostrarlo luego
+					Float precio = ((ProgramaPago) BOPrograma).getPrecio();
+					((TransferProgramaPago) datos).setPrecioFinal(precio);
+				}else{
+					Float precio = ((ProgramaAlquiler) BOPrograma).getPrecio();
+					((TransferProgramaAlquiler) datos).setPrecioHora(precio);
+				}
+				ret=true;
+			}
+		}
+		if(!ret)
+			throw new commandException("Ha ocurrido un problema para mostrar el programa");
 		em.close();
 		factory.close();
-		
-		if (BOPrograma != null) {
-			return datos;
-		} 
-		else return null;
 	}
 
 	@Override
 	public void modificarPrograma(TransferPrograma datos) throws commandException {
-		
+
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager em = factory.createEntityManager();
-		
+
 		em.getTransaction().begin();
-		
+
 		Query query = em.createQuery("SELECT x FROM Programa x WHERE x.nombre = ?1");
-		Query query2 = em.createQuery("SELECT x FROM Clasificacion x WHERE x.dificultad = ?1");
+		Query query2 = em.createQuery("SELECT x FROM Clasificacion x WHERE x.dificultad = ?2");
 		query.setParameter(1,datos.getNombre());
-		query2.setParameter(1, datos.getClasificacion());
+		query2.setParameter(2, datos.getClasificacion());
 		boolean ret = false;
-		
+
 		if (query.getResultList().isEmpty()) {
 			Programa BOPrograma = em.find(Programa.class, datos.getID());
 			em.lock(BOPrograma, LockModeType.PESSIMISTIC_WRITE);
@@ -139,21 +152,19 @@ public class SAProgramaImp implements SAPrograma {
 			} else {
 				((ProgramaPago) BOPrograma).setPrecio(((TransferProgramaPago)datos).getPrecioFinal());
 			}
-			
-			if(!datos.getClasificacion().equals("")) {
-				if(query2.getResultList().isEmpty()) {
-					em.clear();
-					em.getTransaction().rollback();
-					throw new commandException("No existe esa clasificacion");
-				} else {
-					Clasificacion c = (Clasificacion) query2.getSingleResult();
-					Clasificacion clasificacion = em.find(Clasificacion.class, c.getID());
-					BOPrograma.setClasificacion(clasificacion);
-				}
+
+			if(query2.getResultList().isEmpty()) {
+				em.clear();
+				em.getTransaction().rollback();
+				throw new commandException("No existe esa clasificacion");
 			} else {
-				BOPrograma.setClasificacion(null);
+				Clasificacion c = (Clasificacion) query2.getSingleResult();
+				Clasificacion clasificacion = em.find(Clasificacion.class, c.getID());
+				BOPrograma.setClasificacion(clasificacion);
+				datos.setClasificacion(clasificacion.getDificultad());
+				//System.err.println(datos.getClasificacion());
 			}
-			
+
 			em.persist(BOPrograma);
 			em.merge(BOPrograma);
 			em.getTransaction().commit();
@@ -174,10 +185,10 @@ public class SAProgramaImp implements SAPrograma {
 			datos.setRequisitos(BOPrograma.getRequisitos());
 			em.getTransaction().rollback();
 		}
-		
+
 		em.close();
 		factory.close();
-		
+
 		if (!ret)
 			throw new commandException("Ya existe esta clasificación.");
 	}
@@ -186,14 +197,14 @@ public class SAProgramaImp implements SAPrograma {
 	public ArrayList<TransferPrograma> mostrarProgramas() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager em = factory.createEntityManager();
-		
+
 		em.getTransaction().begin();
-		
+
 		Query query = em.createQuery("SELECT p FROM Programa p");
 		List<Programa> pl = query.getResultList();
-		
+
 		ArrayList<TransferPrograma> programas = new ArrayList<TransferPrograma>();
-		
+
 		for (int i = 0; i < pl.size(); i++){
 			Programa p = (Programa) pl.get(i);
 			if(ProgramaAlquiler.class.equals(p.getClass())) {
@@ -216,10 +227,10 @@ public class SAProgramaImp implements SAPrograma {
 				programas.add(all);
 			}
 		}
-		
+
 		em.close();
 		factory.close();
-		
+
 		return programas;
 	}
 }

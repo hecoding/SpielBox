@@ -66,7 +66,7 @@ public class JDialogEliminarPrograma extends JDialog {
         jButtonEliminar.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				TransferPrograma eliminar = (TransferPrograma) JPanelPrograma.getModelo().getItem(JPanelPrograma.getTablePrograma().getSelectedRow());
+				TransferPrograma eliminar = (TransferPrograma) JPanelPrograma.getTableModel().getItem(JPanelPrograma.getTablePrograma().getSelectedRow());
 				
 				ControladorAplicacion.getInstance().accionCommand(Eventos.ELIMINAR_PROGRAMA, eliminar);
 				setVisible (false);

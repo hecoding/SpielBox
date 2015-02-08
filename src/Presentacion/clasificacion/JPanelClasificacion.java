@@ -137,12 +137,7 @@ public class JPanelClasificacion extends JPanel {
 	public static JTable getTableClasificacion() {
 		return jTableClasificacion;
 	}
-
-	public static TableModelClasificacion getModelo() {
-		return model;
-	}
-	
-	public boolean validar(){
+	private boolean validar(){
 		boolean ret=false;
 			if(JPanelClasificacion.getTableClasificacion().getSelectedRow() == -1)
 				JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna clasificación");

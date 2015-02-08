@@ -156,15 +156,15 @@ public class DispatcherImp extends Dispatcher {
         break;  
         
 		case Eventos.CREAR_CLASIFICACION:
-			JPanelClasificacion.getModelo().setValue ((TransferClasificacion) datos);
+			JPanelClasificacion.getTableModel().setValue ((TransferClasificacion) datos);
 		break;
 		
 		case Eventos.ELIMINAR_CLASIFICACION:
-			JPanelClasificacion.getModelo().removeRow((TransferClasificacion) datos);
+			JPanelClasificacion.getTableModel().removeRow((TransferClasificacion) datos);
 		break;
 		
 		case Eventos.MODIFICAR_CLASIFICACION:
-			JPanelClasificacion.getModelo().modify((TransferClasificacion)datos);
+			JPanelClasificacion.getTableModel().modify((TransferClasificacion)datos);
 		break;
 		
 		case Eventos.MOSTRAR_CLASIFICACION:
@@ -172,19 +172,19 @@ public class DispatcherImp extends Dispatcher {
 		break;
 		
 		case Eventos.MOSTRAR_CLASIFICACIONES:
-			JPanelClasificacion.getModelo().setValue((ArrayList<TransferClasificacion>) datos);
+			JPanelClasificacion.getTableModel().setValue((ArrayList<TransferClasificacion>) datos);
 		break;
 		
 		case Eventos.CREAR_PROGRAMA:
-			JPanelPrograma.getModelo().setValue((TransferPrograma)datos);
+			JPanelPrograma.getTableModel().setValue((TransferPrograma)datos);
 		break;
 		
 		case Eventos.ELIMINAR_PROGRAMA:
-			JPanelPrograma.getModelo().removeRow((TransferPrograma) datos);
+			JPanelPrograma.getTableModel().removeRow((TransferPrograma) datos);
 		break;
 		
 		case Eventos.MODIFICAR_PROGRAMA:
-			JPanelPrograma.getModelo().modify((TransferPrograma)datos);
+			JPanelPrograma.getTableModel().modify((TransferPrograma)datos);
 		break;
 		
 		case Eventos.MOSTRAR_PROGRAMA:
@@ -192,7 +192,7 @@ public class DispatcherImp extends Dispatcher {
 		break;
 		
 		case Eventos.MOSTRAR_PROGRAMAS:
-			JPanelPrograma.getModelo().setValue((ArrayList<TransferPrograma>) datos);
+			JPanelPrograma.getTableModel().setValue((ArrayList<TransferPrograma>) datos);
 		break;
         
         

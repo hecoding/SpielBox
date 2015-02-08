@@ -11,6 +11,8 @@ import javax.persistence.Query;
 import Negocio.clasificacion.Clasificacion;
 import Negocio.clasificacion.SAClasificacion;
 import Negocio.clasificacion.TransferClasificacion;
+import Negocio.programa.Programa;
+import Negocio.programa.TransferPrograma;
 import Presentacion.controlador.comandos.exceptions.commandException;
 
 public class SAClasificacionImp implements SAClasificacion {
@@ -78,23 +80,32 @@ public class SAClasificacionImp implements SAClasificacion {
 		entityFactoria.close();
 	}
 
-	public TransferClasificacion mostrarClasificacion (TransferClasificacion transfer) {
+	public ArrayList<TransferPrograma> mostrarClasificacion (TransferClasificacion transfer) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("SpielBox");
 		EntityManager em = factory.createEntityManager();
 		
 		em.getTransaction().begin();
-		
 		Clasificacion BOClasificacion = em.find(Clasificacion.class, transfer.getID());
+		Query query = em.createQuery("SELECT p FROM Programa p");
+		List<Programa> cl = query.getResultList();
 		
+		ArrayList<TransferPrograma> programas = new ArrayList<TransferPrograma>();
+		for (int i = 0; i < cl.size(); i++){
+			Programa c = cl.get(i);
+			if(c.getClasificacion().getID() == BOClasificacion.getID()){
+				TransferPrograma all = new TransferPrograma();
+				all.setNombre(c.getNombre());
+				all.setRequisitos(c.getRequisitos());
+				all.setVersion(c.getVersion());
+				all.setClasificacion(BOClasificacion.getDificultad());
+				all.setFuncionalidad(c.getFuncionalidad());
+				programas.add(all);
+			}
+		}
+				
 		em.close();
 		factory.close();
-		
-		if (BOClasificacion != null) {
-			return transfer;
-		} 
-		else return null;
-		
-		
+		return programas;
 	}
 
 	public ArrayList<TransferClasificacion> mostrarClasificaciones() {

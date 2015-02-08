@@ -35,7 +35,11 @@ public class JDialogModificarClasificacion extends JDialog {
         jButtonModificar.setText("Modificar");
 
         jButtonCancel.setText("Cancelar");
-
+        //relleno de campo
+        TransferClasificacion clasif = (TransferClasificacion) JPanelClasificacion.getTableModel().getItem(JPanelClasificacion.getTableClasificacion().getSelectedRow());
+        jTextFieldDificultad.setText(clasif.getDificultad());
+        
+        //////
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,7 +76,7 @@ public class JDialogModificarClasificacion extends JDialog {
         jButtonModificar.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				TransferClasificacion clasif = (TransferClasificacion) JPanelClasificacion.getModelo().getItem(JPanelClasificacion.getTableClasificacion().getSelectedRow());
+				TransferClasificacion clasif = (TransferClasificacion) JPanelClasificacion.getTableModel().getItem(JPanelClasificacion.getTableClasificacion().getSelectedRow());
 				clasif.setDificultad(jTextFieldDificultad.getText());
 				ControladorAplicacion.getInstance().accionCommand(Eventos.MODIFICAR_CLASIFICACION, clasif);
 				setVisible(false);

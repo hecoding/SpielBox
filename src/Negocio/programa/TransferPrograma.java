@@ -8,8 +8,7 @@ public class TransferPrograma {
 	private String requisitos;
 	private String funcionalidad;
 	private String clasificacion;
-	protected Float precio;
-
+	
 	public String getNombre() {
 		
 		return nombre;
@@ -49,17 +48,6 @@ public class TransferPrograma {
 		
 		this.funcionalidad = funcionalidad;
 	}
-
-	public Float getPrecio() {
-		
-		return precio;
-	}
-
-	public void setPrecio(Float precio) {
-		
-		this.precio = precio;
-	}
-
 	public Integer getID() {
 		
 		return ID;

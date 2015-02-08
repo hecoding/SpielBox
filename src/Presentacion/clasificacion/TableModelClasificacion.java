@@ -41,11 +41,11 @@ public class TableModelClasificacion extends AbstractTableModel {
         Object value = clasificacion.getID();//SIEMPRE DEVOLVEMOS EL CAMPO DE ID
         switch (columnIndex) {
             case 0:
-                value = clasificacion.getID();
-                break;
+            	value = clasificacion.getID();
+            break;
             case 1:
-                value = clasificacion.getDificultad();
-                break;
+            	value = clasificacion.getDificultad();
+            break;
         }
         return value;
 	}

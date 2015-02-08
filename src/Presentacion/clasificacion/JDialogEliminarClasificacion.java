@@ -66,7 +66,7 @@ public class JDialogEliminarClasificacion extends JDialog {
         jButtonEliminar.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				TransferClasificacion eliminar = (TransferClasificacion) JPanelClasificacion.getModelo().getItem(JPanelClasificacion.getTableClasificacion().getSelectedRow());
+				TransferClasificacion eliminar = (TransferClasificacion) JPanelClasificacion.getTableModel().getItem(JPanelClasificacion.getTableClasificacion().getSelectedRow());
 				
 				ControladorAplicacion.getInstance().accionCommand(Eventos.ELIMINAR_CLASIFICACION, eliminar);
 				ArrayList<TransferPrograma> content = new ArrayList<TransferPrograma>();

@@ -1,5 +1,6 @@
 package Negocio.clasificacion;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
@@ -12,7 +13,11 @@ import javax.persistence.OneToMany;
 import Negocio.programa.Programa;
 
 @Entity
-public class Clasificacion {
+public class Clasificacion implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer ID;
 	private String dificultad;
