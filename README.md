@@ -1,7 +1,7 @@
 SpielBox
 ========
-This is an application we had to built for Modeling Software subject using Software Engineering techniques.
-As the subject was taught in spanish, both the application and [documentation] are in that language.
+This is an application we had to build for Software Modeling subject using Software Engineering techniques and patterns.
+As the subject was taught in spanish, either the application and [documentation] are in that language.
 
 ---
 Para la asignatura de Modelado de Software tuvimos que construir una aplicación de gestión de información, teniendo que aplicar Ingeniería del Software.
